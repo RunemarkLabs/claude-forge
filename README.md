@@ -44,7 +44,21 @@ After install, run `/runesmith-core:setup` to configure credentials. See [INSTAL
 
 ### Manual `.plugin` files (Cowork desktop)
 
-Drag the files from `dist/` into the Cowork plugin sidebar.
+`.plugin` zips are not committed to this repo — they're generated on demand. Build them first:
+
+```
+python scripts/build.py        # cross-platform; recommended on Windows
+# or:
+bash scripts/build.sh          # Unix/Mac
+```
+
+This produces `runesmith-*.plugin` files in `./dist/` (gitignored). Drag those into the Cowork plugin sidebar to install.
+
+Custom output directory:
+
+```
+python scripts/build.py path/to/output/
+```
 
 ## Workflow contract
 
@@ -89,7 +103,11 @@ plugins/
     skills/bootstrap-aiops/
     templates/                     six storage-XHTML page templates
   runesmith-devtools/           ...
-dist/                              packaged .plugin zips + build.sh
+scripts/
+  audit.py                         pre-release validation (frontmatter, refs, forbidden patterns)
+  build.py                         cross-platform build (recommended on Windows)
+  build.sh                         Unix/Mac build
+  md-to-storage.py                 markdown → Confluence storage XHTML
 INSTALL.md                         install paths + credentials reference
 CHANGELOG.md
 CONTRIBUTING.md
@@ -126,11 +144,27 @@ Change a convention in the lib doc, then run `/runesmith-devtools:skill-updater`
 
 ## Building from source
 
-```
-bash dist/build.sh
+```bash
+# Cross-platform (recommended on Windows)
+python scripts/build.py
+
+# Unix/Mac
+bash scripts/build.sh
 ```
 
-Produces `.plugin` zip files in `dist/` ready for marketplace distribution or manual install.
+Produces `.plugin` zip files in `./dist/` (gitignored). For a custom output location:
+
+```bash
+python scripts/build.py path/to/output
+```
+
+The build performs three transformations:
+
+1. Strips retired/orphan content from `cc-skill-templates/` and removed skills before zipping.
+2. Renames `cc-skill-templates/<n>/skill-template.md` → `.txt` so Cowork's plugin validator (which scans `**/SKILL.md` and `**/*.md` with skill frontmatter) ignores deploy-time templates.
+3. Zips with forward-slash paths inside the archive (zip spec requirement; bypasses Windows tooling that uses backslash separators).
+
+Run `python scripts/audit.py` before any release — CI enforces it on every push.
 
 ## Contributing
 

@@ -1,10 +1,7 @@
-# =================================================================
-# RuneSmith .gitignore
-# =================================================================
-# Items below this header are dev-environment artifacts. The public
-# marketplace repo should ship: plugins/, dist/, .claude-plugin/,
-# README.md, INSTALL.md, CHANGELOG.md, CONTRIBUTING.md, LICENSE,
-# NOTICE, .credentials.example, .gitignore.
+# RuneSmith marketplace .gitignore
+# This is the PUBLIC repo. Ships: plugins/, scripts/, .claude-plugin/,
+# .github/, top-level docs (README, CHANGELOG, etc.), LICENSE, NOTICE,
+# .credentials.example.
 
 # --- Local secrets — never commit ---
 .credentials
@@ -12,50 +9,12 @@
 *.pem
 *.key
 
-# --- Workspace dev environment (not part of the marketplace) ---
-# CC monorepo heads — per runesmith convention, named <project>.cc/
-*.cc/
-# Legacy persistent clones (pre-runesmith era, may still linger)
-.cowork-bootstrap/
-.claude-code-bootstrap/
-# Atlassian-enabled marker
-.atlassian-enabled
-
-# --- Personal authoring artifacts ---
-notes/
-drafts/
-research/
-source-docs/
-tickets/
-_INBOX/
-plans/active/
-plans/archive/
-archive/
-atlassian-index.json
-HANDOFF*.md
-bootstrap-setup-templates.md
-claude-code-bootstrap-prompt.md
-
-# --- Temporary / scratch ---
-temp-clone/
-_plugins_build/
-plugins-v2/
-
-# --- Old packaged plugins (pre-runesmith) ---
-/bootstrap-core*.plugin
-/atlassian-workflow.plugin
-/workspace-tools.plugin
-/bcore-*.plugin
-/core.plugin
-/atlassian.plugin
-/aiops.plugin
-/devtools.plugin
-/dist-v2/
-
-# --- Screenshots and binary attachments at repo root ---
-/Screenshot*
-*.png
-!plugins/**/*.png
+# --- Build output (regeneratable; not committed) ---
+# Run `python scripts/build.py` or `bash scripts/build.sh` to produce
+# .plugin files in ./dist/. Drag those into Cowork's plugin sidebar for
+# manual install, or use `/plugin marketplace add runemarklabs/runesmith`
+# for the git-based install path.
+dist/
 
 # --- OS junk ---
 .DS_Store
@@ -68,3 +27,8 @@ Thumbs.db
 .vscode/
 .idea/
 *.iml
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
