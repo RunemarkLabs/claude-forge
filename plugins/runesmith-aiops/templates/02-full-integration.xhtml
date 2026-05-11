@@ -1,0 +1,43 @@
+<h1>{COMPANY} — Full Integration Guide</h1>
+
+<p>End-to-end setup for the AIOPS skills against <strong>{COMPANY}</strong>'s Atlassian site at <code>{SITE}</code>.</p>
+
+<h2>1. Generate credentials</h2>
+<ol>
+  <li>API token: <a href="https://id.atlassian.com/manage-profile/security/api-tokens">id.atlassian.com/manage-profile/security/api-tokens</a></li>
+  <li>Note the email address tied to the token (must be the user's account email).</li>
+  <li>GitHub PAT (for plugin sync): <a href="https://github.com/settings/tokens">github.com/settings/tokens</a> — needs <code>repo</code> scope.</li>
+</ol>
+
+<h2>2. Configure local <code>.credentials</code></h2>
+<ac:structured-macro ac:name="code">
+  <ac:parameter ac:name="language">bash</ac:parameter>
+  <ac:plain-text-body><![CDATA[ATLASSIAN_API_URL={ATLASSIAN_API_URL}
+ATLASSIAN_API_EMAIL=<your-email>
+ATLASSIAN_API_TOKEN=<api-token>
+GITHUB_PAT=<github-pat>
+
+# Optional defaults
+ATLASSIAN_CONFLUENCE_SPACE_ID={SPACE_ID}
+ATLASSIAN_JIRA_PROJECT_KEY={PROJECT_KEY}
+]]></ac:plain-text-body>
+</ac:structured-macro>
+
+<h2>3. Verify connectivity</h2>
+<ol>
+  <li>Run <code>/core:setup</code> — performs health checks against Confluence, Jira, GitHub.</li>
+  <li>Run <code>/atlassian:project-status</code> — read-only Jira call to confirm project access.</li>
+</ol>
+
+<h2>4. First write</h2>
+<ol>
+  <li>Run <code>/atlassian:session-log</code> — creates a Confluence page from a draft.</li>
+  <li>Confirm the published page has full storage formatting (headings, code, tables).</li>
+</ol>
+
+<h2>5. Common gotchas</h2>
+<ul>
+  <li>Email mismatch with token → <strong>401</strong>. Use the email of the account that minted the token.</li>
+  <li>Wrong space id → page lands in wrong space. Always pass <code>space-id={SPACE_ID}</code> on lookups.</li>
+  <li>Missing version bump on update → <strong>409</strong>. Skills handle this automatically; manual API users must GET first.</li>
+</ul>

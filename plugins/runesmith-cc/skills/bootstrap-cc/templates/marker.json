@@ -1,0 +1,8 @@
+{
+  "project": "{PROJECT}",
+  "initialized": "{ISO_TIMESTAMP}",
+  "schemaVersion": 1,
+  "atlassianEnabled": false,
+  "atlassian": null,
+  "repos": []
+}

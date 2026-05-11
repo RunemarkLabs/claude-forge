@@ -1,0 +1,21 @@
+{
+  "name": "runesmith-core",
+  "version": "0.6.0",
+  "description": "[RuneSmith] Foundation plugin. Manages credentials (Atlassian, GitHub, plugin sources), installs and syncs plugins from the marketplace, and runs chat-first /plan sessions before any writes happen. Install this first — every other RuneSmith plugin depends on its credential and plugin-management primitives.",
+  "author": {
+    "name": "Runemark Labs"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/runemarklabs/runesmith"
+  },
+  "homepage": "https://github.com/runemarklabs/runesmith",
+  "keywords": [
+    "runesmith",
+    "credentials",
+    "planning",
+    "plugin-management",
+    "atlassian"
+  ]
+}

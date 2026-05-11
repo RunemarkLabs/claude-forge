@@ -1,0 +1,15 @@
+# Normalize line endings across platforms
+* text=auto eol=lf
+
+# Markdown stays LF
+*.md text eol=lf
+
+# Shell scripts must be LF
+*.sh text eol=lf
+
+# Binary types
+*.png binary
+*.jpg binary
+*.gif binary
+*.pdf binary
+*.zip binary

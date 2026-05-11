@@ -1,0 +1,36 @@
+<h1>{COMPANY} — AIOPS Architecture</h1>
+
+<p>How AI-driven operations skills connect to <strong>{COMPANY}</strong>'s Atlassian instance.</p>
+
+<h2>Components</h2>
+<table>
+  <tbody>
+    <tr><th>Component</th><th>Role</th><th>Where it lives</th></tr>
+    <tr><td>Plugin marketplace</td><td>Distributes skills to clients</td><td>Git repo with <code>.claude-plugin/marketplace.json</code></td></tr>
+    <tr><td>Skill</td><td>Executable workflow (e.g. <code>/atlassian:ticket</code>)</td><td>Plugin folder <code>skills/&lt;name&gt;/SKILL.md</code></td></tr>
+    <tr><td>Shared libs</td><td>Endpoint, format, consent rules</td><td><code>plugins/core/lib/*.md</code></td></tr>
+    <tr><td>Atlassian Cloud</td><td>Source of truth for issues + pages</td><td><code>{SITE}</code></td></tr>
+    <tr><td>Local <code>.credentials</code></td><td>Per-user auth</td><td>Workspace root, gitignored</td></tr>
+  </tbody>
+</table>
+
+<h2>Auth flow</h2>
+<ol>
+  <li>Skill resolves <code>.credentials</code> via <code>credentials.md</code> rules.</li>
+  <li>Builds Basic auth header: <code>email:token</code> base64.</li>
+  <li>Issues request to <code>{ATLASSIAN_API_URL}</code> with the header.</li>
+  <li>On 401: re-read once, then prompt user to re-run <code>/core:setup</code>.</li>
+</ol>
+
+<h2>Data flow (page create)</h2>
+<ol>
+  <li>User invokes write skill (e.g. <code>/atlassian:feature-doc</code>).</li>
+  <li>Skill drafts markdown locally to <code>/drafts/...</code>.</li>
+  <li>User reviews and issues consent trigger phrase.</li>
+  <li>Skill converts markdown → Confluence storage XHTML per <code>confluence-format.md</code>.</li>
+  <li>Skill <code>POST /wiki/api/v2/pages</code> against <code>{ATLASSIAN_API_URL}</code>.</li>
+  <li>Skill reports page URL.</li>
+</ol>
+
+<h2>Substitution tokens</h2>
+<p>Templates in this space use canonical tokens — see <code>tokens.md</code> in the marketplace repo. <code>{COMPANY}</code>, <code>{SITE}</code>, <code>{SPACE_KEY}</code>, <code>{SPACE_ID}</code>, <code>{PROJECT_KEY}</code>, <code>{ATLASSIAN_API_URL}</code>.</p>

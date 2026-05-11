@@ -1,0 +1,24 @@
+{
+  "name": "runesmith-jira",
+  "version": "0.6.0",
+  "description": "[RuneSmith] Jira ticket and project workflows: create tickets (Task/Story/Bug/Epic) with proper ADF formatting, report bugs with linked Confluence docs, scaffold new Jira projects, and read board status. All operations run against current Atlassian Cloud REST endpoints (no deprecated paths) with explicit consent gates before any push.",
+  "author": {
+    "name": "Runemark Labs"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/runemarklabs/runesmith"
+  },
+  "homepage": "https://github.com/runemarklabs/runesmith",
+  "keywords": [
+    "runesmith",
+    "atlassian",
+    "jira",
+    "tickets",
+    "sprint"
+  ],
+  "dependencies": [
+    "runesmith-core"
+  ]
+}

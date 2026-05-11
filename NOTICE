@@ -1,0 +1,28 @@
+Claude Forge
+Copyright 2026 Runemark Labs
+
+This product includes software developed by Runemark Labs and contributors.
+
+Licensed under the Apache License, Version 2.0 (the "License").
+See LICENSE for the full license text.
+
+---
+
+Third-party references and trademarks:
+
+- "Claude" and "Claude Code" are products of Anthropic, PBC. This marketplace
+  is built for use with Anthropic's products but is not affiliated with or
+  endorsed by Anthropic. References to Claude and Claude Code in plugin
+  documentation describe the runtime environment, not the trademark holder.
+
+- "Atlassian," "Jira," and "Confluence" are trademarks of Atlassian
+  Corporation Plc. This marketplace integrates with Atlassian Cloud APIs
+  but is not affiliated with or endorsed by Atlassian.
+
+- "GitHub" is a trademark of GitHub, Inc. This marketplace integrates with
+  GitHub APIs but is not affiliated with or endorsed by GitHub.
+
+The plugins in this marketplace are generic, single-tenant configurable
+templates. All tenant-specific values (project keys, space ids, API
+credentials) are supplied by the user at runtime and never embedded in
+plugin source.

@@ -1,0 +1,25 @@
+<h1>{COMPANY} — AIOPS FAQ</h1>
+
+<h2>Why does my page publish fail with 400?</h2>
+<p>Confluence Cloud v2 does not accept markdown bodies. Skills convert to <strong>storage</strong> XHTML before publishing. If you're hand-rolling API calls, see <code>confluence-format.md</code>.</p>
+
+<h2>Why does my Jira create fail with 400 about <code>assignee.name</code>?</h2>
+<p>Jira Cloud needs <code>accountId</code>, not <code>name</code>. Use <code>GET /rest/api/3/user/search?query=&lt;email&gt;</code> to resolve.</p>
+
+<h2>Why does my page update return 409?</h2>
+<p>You posted a stale <code>version.number</code>. GET the page first, then PUT with <code>number + 1</code>.</p>
+
+<h2>Why does <code>/rest/api/3/search</code> not work anymore?</h2>
+<p>Deprecated on Cloud. Use <code>POST /rest/api/3/search/jql</code>.</p>
+
+<h2>How do I create a Confluence space via API?</h2>
+<p>v2 API does not expose space creation publicly. v1 <code>POST /wiki/rest/api/space</code> works but requires Confluence admin. For most users: create the space in the UI first, then run skills against it.</p>
+
+<h2>How do I find the right custom field id?</h2>
+<p><code>GET /rest/api/3/field</code> lists every field including custom ones. Match by name. Cache the id in <code>.credentials</code> (e.g. <code>ATLASSIAN_BUG_SEVERITY_FIELD</code>).</p>
+
+<h2>Where do plugins install?</h2>
+<p>Cowork: <code>~/AppData/Roaming/Claude/.../rpm/plugin_*/</code>. Claude Code: <code>~/.claude/plugins/</code>. Marketplace install handles paths automatically; manual install is drag-drop into Cowork.</p>
+
+<h2>Where do I get help?</h2>
+<p>Run <code>/devtools:help</code> in your Claude client. Or read the marketplace README.</p>

@@ -1,0 +1,22 @@
+# Local-only Claude Code state
+.claude/settings.local.json
+.credentials
+.credentials.local
+
+# Comms — open is ephemeral per session, archive is committed
+comms/open/*
+!comms/open/.gitkeep
+
+# Editor / OS junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Build / dependency artifacts (per-language; uncomment what applies)
+# node_modules/
+# dist/
+# build/
+# .venv/
+# __pycache__/
+# target/

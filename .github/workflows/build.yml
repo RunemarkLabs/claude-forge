@@ -1,0 +1,48 @@
+name: Build & Validate Plugins
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install validation deps
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml
+
+      - name: Run audit script
+        run: python scripts/audit.py
+
+      - name: Build .plugin zips
+        run: bash dist/build.sh
+
+      - name: Verify .plugin contents
+        run: |
+          for f in dist/*.plugin; do
+            if ! unzip -l "$f" | grep -q '\.claude-plugin/plugin\.json'; then
+              echo "FAIL: $f missing plugin.json"
+              exit 1
+            fi
+            echo "OK: $f"
+          done
+
+      - name: Upload .plugin artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: runesmith-plugins
+          path: dist/*.plugin
+          retention-days: 30

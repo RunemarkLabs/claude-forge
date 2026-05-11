@@ -1,0 +1,25 @@
+<h1>{COMPANY} — AIOPS Best Practices</h1>
+
+<h2>Consent before writes</h2>
+<p>Every Jira ticket and Confluence page require an explicit user trigger phrase ("make the ticket", "publish the page"). See <code>consent.md</code>. Skills hold drafts in <code>/drafts/</code> until the trigger fires.</p>
+
+<h2>Use canonical tokens</h2>
+<p>Always use <code>{COMPANY}</code>, <code>{SITE}</code>, <code>{SPACE_KEY}</code>, <code>{SPACE_ID}</code>, <code>{PROJECT_KEY}</code>. No synonyms (<code>{ORG}</code>, <code>{TEAM}</code>, <code>{TENANT}</code>).</p>
+
+<h2>Always scope page lookups by space</h2>
+<p>Title-only searches return cross-space hits. Always include <code>space-id={SPACE_ID}</code>.</p>
+
+<h2>Bump version on PUT</h2>
+<p>GET the page first, read <code>version.number</code>, PUT with <code>number+1</code>. Skills handle this automatically; manual API users must do it explicitly.</p>
+
+<h2>Prefer <code>/search/jql</code> POST</h2>
+<p>The <code>GET /rest/api/3/search</code> endpoint is deprecated on Cloud. Use <code>POST /rest/api/3/search/jql</code>.</p>
+
+<h2>Resolve users by accountId</h2>
+<p>Jira Cloud rejects <code>assignee.name</code>. Look up email → <code>accountId</code> via <code>GET /rest/api/3/user/search</code>.</p>
+
+<h2>Severity is custom</h2>
+<p>Severity is not a default Jira field. Map to <code>priority</code>, or set <code>ATLASSIAN_BUG_SEVERITY_FIELD</code> in <code>.credentials</code> to your custom field id.</p>
+
+<h2>Keep <code>.credentials</code> out of git</h2>
+<p>The marketplace ships <code>.gitignore</code> entries and a <code>.credentials.example</code>. Never commit real credentials. Never echo full credential values in chat.</p>
