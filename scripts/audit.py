@@ -258,14 +258,58 @@ def check_forbidden_plugin_fields(fails):
                 )
 
 
+
 def check_no_emdashes(fails):
     """Em-dashes (U+2014) and en-dashes (U+2013) are banned across all generated
-    content in this marketplace. Two reasons: (1) project style preference,
-    (2) em-dashes are multi-byte UTF-8 (E2 80 94) and PowerShell on Windows
-    defaults to reading .ps1 files as Windows-1252, which misinterprets those
-    bytes and breaks string parsing. Use ASCII hyphens or restructure prose.
-    Audit catches any em/en-dash that slips into tracked files (excluding
-    LICENSE and NOTICE which are upstream Apache content)."""
-    EMDASH = '—'
-    ENDASH = '–'
-    SCAN_SUFFIXES = {'.md', '.json', '.ps1', '.sh', '.py', '.txt', '.xhtml', '.yml',
+    content in this marketplace. Style preference + PowerShell on Windows reads
+    .ps1 as Windows-1252 by default and misinterprets UTF-8 multi-byte em-dash
+    sequences, breaking string parsing. Use ASCII hyphens or restructure prose.
+    LICENSE / NOTICE excluded (upstream Apache content)."""
+    EMDASH = chr(0x2014)
+    ENDASH = chr(0x2013)
+    EXTS = ('.md', '.json', '.ps1', '.sh', '.py', '.txt', '.xhtml', '.yml', '.yaml')
+    EXCLUDE = ('LICENSE', 'NOTICE')
+    for f in Path('.').rglob('*'):
+        if not f.is_file():
+            continue
+        if '.git' in f.parts:
+            continue
+        if f.name in EXCLUDE:
+            continue
+        if f.suffix not in EXTS:
+            continue
+        try:
+            t = f.read_text(encoding='utf-8')
+        except UnicodeDecodeError:
+            continue
+        em = t.count(EMDASH)
+        en = t.count(ENDASH)
+        if em + en > 0:
+            fail(f"{f}: {em} em-dash(es), {en} en-dash(es). Replace with ASCII hyphens.", fails)
+
+
+def main():
+    fails = []
+    m = check_marketplace_json(fails)
+    plugin_names, plugin_deps = check_plugin_manifests(fails)
+    check_dependency_dag(plugin_names, plugin_deps, fails)
+    check_skill_frontmatter(fails)
+    check_forbidden_patterns(fails)
+    check_frontmatter_placeholders(fails)
+    check_command_descriptions(fails)
+    check_forbidden_plugin_fields(fails)
+    check_no_emdashes(fails)
+    check_references(fails)
+
+    print(f"Plugins: {len(plugin_names)}")
+    print(f"Audit fails: {len(fails)}")
+    if fails:
+        for f in fails:
+            print(f"  FAIL: {f}")
+        return 1
+    print("OK: all checks pass.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
