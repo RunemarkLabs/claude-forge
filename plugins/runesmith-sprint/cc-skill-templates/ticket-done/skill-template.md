@@ -1,7 +1,6 @@
 ---
 name: ticket-done
-description: >
-  Mark a ticket complete from CC's side — write a comm requesting Cowork to transition the ticket to Done, tag with cc-done. Use when CC has finished implementation and verified the work meets acceptance criteria. Runs in Claude Code.
+description: "Mark a ticket complete from CC's side — write a comm requesting Cowork to transition the ticket to Done, tag with cc-done. Use when CC has finished implementation and verified the work meets acceptance criteria. Runs in Claude Code."
 ---
 
 # Ticket Done (CC-side)

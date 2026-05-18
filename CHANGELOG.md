@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 > **Rename note**: this marketplace was previously named "Claude Forge". Renamed to **RuneSmith** in v0.6.0 to avoid trademark confusion with Anthropic's "Claude" mark and conflict with Atlassian's "Forge" developer platform. Historical changelog entries below have been mechanically updated to reference plugins by their new names (`runesmith-*`) for consistency; the substance of past releases is unchanged.
 
+## [0.7.2] — 2026-05-17
+
+### Fixed
+- **Skill description format.** Cowork's Skill-tool dispatcher silently rejected skills whose `SKILL.md` frontmatter used YAML's `description: >` folded block scalar (multi-line indented). Anthropic's own skills (docx, pdf, pptx, xlsx, executive-assistant, skill-creator, etc.) use `description: "single-line"` quoted strings. Converted all 36 skill files (SKILL.md + cc-skill-templates/*/skill-template.md) to the canonical single-line quoted format. Same content; just the YAML serialization differs. Resolves the long-running "skill not callable via Skill tool" pattern that hit guardrail, reallocate, and likely others — agents were falling back to reading SKILL.md directly off disk for those skills instead of dispatching via the tool API. Should also fix slash-command invocation that previously sometimes silently no-op'd.
+
+### Versions
+- All eight plugin.json files bumped 0.7.1 → 0.7.2 (or 0.6.0 → 0.7.2 for the six that hadn't moved with the cc/workspace bumps).
+- Marketplace 0.7.1 → 0.7.2.
+
+### Notes
+- Conversion script preserved `model: haiku` and other top-level frontmatter keys. Audit verified clean YAML across all SKILL.md after.
+- No behavior change beyond Skill-tool dispatch working correctly. Existing fallback "read SKILL.md directly" still works as a safety net.
+
 ## [0.7.1] — 2026-05-17
 
 ### Fixed

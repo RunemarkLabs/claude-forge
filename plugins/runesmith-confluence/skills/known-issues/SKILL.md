@@ -1,7 +1,6 @@
 ---
 name: known-issues
-description: >
-  Create or update a known issues and tech debt tracker page for Confluence. Template includes issue description, severity, workaround, status, and linked tickets. Trigger on "known issues", "document known issues", "known bugs", "tech debt list", "known issues page", "update known issues".
+description: "Create or update a known issues and tech debt tracker page for Confluence. Template includes issue description, severity, workaround, status, and linked tickets. Trigger on \"known issues\", \"document known issues\", \"known bugs\", \"tech debt list\", \"known issues page\", \"update known issues\"."
 ---
 
 # Known Issues Tracker

@@ -1,7 +1,6 @@
 ---
 name: project-status
-description: >
-  Get a quick project status from Jira. Use when the user says "what's the status", "where are we", "what's in progress", "what's in the backlog", "project update", "show me the board", or asks about current work state. Also triggers on "any blockers", "what's next", or "sprint status".
+description: "Get a quick project status from Jira. Use when the user says \"what's the status\", \"where are we\", \"what's in progress\", \"what's in the backlog\", \"project update\", \"show me the board\", or asks about current work state. Also triggers on \"any blockers\", \"what's next\", or \"sprint status\"."
 model: haiku
 ---
 

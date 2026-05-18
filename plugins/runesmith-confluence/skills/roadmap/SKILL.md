@@ -1,7 +1,6 @@
 ---
 name: roadmap
-description: >
-  Create or update a product/project roadmap page for Confluence. Template includes now/next/later/someday phases with initiatives, owners, status, and dependencies. Trigger on "roadmap", "update the roadmap", "create a roadmap", "plan the roadmap", "what's on the roadmap".
+description: "Create or update a product/project roadmap page for Confluence. Template includes now/next/later/someday phases with initiatives, owners, status, and dependencies. Trigger on \"roadmap\", \"update the roadmap\", \"create a roadmap\", \"plan the roadmap\", \"what's on the roadmap\"."
 ---
 
 # Roadmap

@@ -1,7 +1,6 @@
 ---
 name: guardrail
-description: >
-  Install, uninstall, or verify the CC project-boundary guardrail at user level. Writes ~/.claude/settings.json with default-deny permissions and a PreToolUse hook that blocks cross-project filesystem reads (the credential-leak class of bug). Run once per machine from any CC session. Use when the user says "install the guardrail", "set up CC boundaries", "lock CC to project root", "guardrail install", "guardrail verify", "uninstall the guardrail".
+description: "Install, uninstall, or verify the CC project-boundary guardrail at user level. Writes ~/.claude/settings.json with default-deny permissions and a PreToolUse hook that blocks cross-project filesystem reads (the credential-leak class of bug). Run once per machine from any CC session. Use when the user says \"install the guardrail\", \"set up CC boundaries\", \"lock CC to project root\", \"guardrail install\", \"guardrail verify\", \"uninstall the guardrail\"."
 ---
 
 # CC Project-Boundary Guardrail (install skill)

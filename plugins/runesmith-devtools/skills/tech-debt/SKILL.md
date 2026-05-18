@@ -1,7 +1,6 @@
 ---
 name: tech-debt
-description: >
-  Scan the workspace for stale, orphaned, or unreferenced artifacts using a cross-reference graph (plans → refs/tickets/decisions → research/source-docs/drafts). Identifies what is ACTUALLY tech debt — content that no longer traces back to a live plan, ticket, or decision. Workspace-side only; never enters source repos. Use after a round of changes, when things feel messy, proactively between work sessions, or to verify cleanliness before a release. Triggers on: "tech debt", "clean up", "stale files", "what's out of date", "is anything orphaned".
+description: "Scan the workspace for stale, orphaned, or unreferenced artifacts using a cross-reference graph (plans → refs/tickets/decisions → research/source-docs/drafts). Identifies what is ACTUALLY tech debt — content that no longer traces back to a live plan, ticket, or decision. Workspace-side only; never enters source repos. Use after a round of changes, when things feel messy, proactively between work sessions, or to verify cleanliness before a release. Triggers on: \"tech debt\", \"clean up\", \"stale files\", \"what's out of date\", \"is anything orphaned\"."
 model: haiku
 ---
 

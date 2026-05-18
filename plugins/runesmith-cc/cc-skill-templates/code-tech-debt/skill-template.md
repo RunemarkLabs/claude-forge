@@ -1,7 +1,6 @@
 ---
 name: code-tech-debt
-description: >
-  Scan repos inside this CC head for code-level tech debt — unused exports, dead functions, orphaned files, unused dependencies, leftover scaffolding from refactors. Runs in Claude Code, scoped to the current repo. Use when the user says "code tech debt", "dead code", "unused imports", "what can I remove from this repo", or proactively after a refactor. Read-only by default; mutations require explicit consent.
+description: "Scan repos inside this CC head for code-level tech debt — unused exports, dead functions, orphaned files, unused dependencies, leftover scaffolding from refactors. Runs in Claude Code, scoped to the current repo. Use when the user says \"code tech debt\", \"dead code\", \"unused imports\", \"what can I remove from this repo\", or proactively after a refactor. Read-only by default; mutations require explicit consent."
 ---
 
 # Code Tech Debt (CC-side)

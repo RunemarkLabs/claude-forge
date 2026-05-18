@@ -1,7 +1,6 @@
 ---
 name: sprint-pull
-description: >
-  Pull the active sprint from Jira and list ticket details. Use when the session starts on an atlassian-enabled CC workspace, when the user (via comms) asks "what's the sprint", or when picking the next ticket to work. Runs in Claude Code, not Cowork.
+description: "Pull the active sprint from Jira and list ticket details. Use when the session starts on an atlassian-enabled CC workspace, when the user (via comms) asks \"what's the sprint\", or when picking the next ticket to work. Runs in Claude Code, not Cowork."
 ---
 
 # Sprint Pull (CC-side)

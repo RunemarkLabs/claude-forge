@@ -1,7 +1,6 @@
 ---
 name: check-comms
-description: >
-  Triage open comms in {PROJECT}.cc/comms/open/ — surface to-user items, draft replies, archive resolved pairs. Use when the user says "check comms", "any messages from CC", "what does CC need", "check messages", "is CC blocked", "triage comms", or wants to clear out CC's open comms.
+description: "Triage open comms in {PROJECT}.cc/comms/open/ — surface to-user items, draft replies, archive resolved pairs. Use when the user says \"check comms\", \"any messages from CC\", \"what does CC need\", \"check messages\", \"is CC blocked\", \"triage comms\", or wants to clear out CC's open comms."
 ---
 
 # Check Comms

@@ -1,7 +1,6 @@
 ---
 name: bootstrap-cc
-description: >
-  Build the Claude Code monorepo head {PROJECT}.cc/ at the workspace root with normalized naming, auto-migration of detected repos, structured prompts for user input, comms folder, and optional repo create/clone via PAT auth. Use when the user says "bootstrap CC", "set up Claude Code", "create the cc folder", "init Claude Code workspace", "add a repo to CC", "clone repo into CC". Cowork builds; Claude Code never builds itself.
+description: "Build the Claude Code monorepo head {PROJECT}.cc/ at the workspace root with normalized naming, auto-migration of detected repos, structured prompts for user input, comms folder, and optional repo create/clone via PAT auth. Use when the user says \"bootstrap CC\", \"set up Claude Code\", \"create the cc folder\", \"init Claude Code workspace\", \"add a repo to CC\", \"clone repo into CC\". Cowork builds; Claude Code never builds itself."
 ---
 
 # Bootstrap Claude Code Workspace

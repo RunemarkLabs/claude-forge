@@ -1,7 +1,6 @@
 ---
 name: disable
-description: >
-  Turn off the Atlassian interconnect for this project — strip applied CLAUDE.md sections, remove markers, remove deployed CC skills. Use when the user says "disable atlassian", "turn off atlassian", "unwire Jira", "remove atlassian from this project".
+description: "Turn off the Atlassian interconnect for this project — strip applied CLAUDE.md sections, remove markers, remove deployed CC skills. Use when the user says \"disable atlassian\", \"turn off atlassian\", \"unwire Jira\", \"remove atlassian from this project\"."
 ---
 
 # Disable Atlassian Interconnect

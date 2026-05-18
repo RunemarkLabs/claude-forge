@@ -1,7 +1,6 @@
 ---
 name: sync
-description: >
-  Sync installed plugins with latest versions and update AIOPS documentation. Use when "sync plugins", "update plugins", "pull latest bootstrap", "refresh plugins", or to get the newest skill definitions.
+description: "Sync installed plugins with latest versions and update AIOPS documentation. Use when \"sync plugins\", \"update plugins\", \"pull latest bootstrap\", \"refresh plugins\", or to get the newest skill definitions."
 ---
 
 # Sync Plugins

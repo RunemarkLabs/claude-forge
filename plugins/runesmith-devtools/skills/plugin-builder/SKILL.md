@@ -1,7 +1,6 @@
 ---
 name: plugin-builder
-description: >
-  Create Cowork plugins and install them into Claude Desktop. Replaces the old create-skill workflow. Use when the user says "create a plugin", "new plugin", "add a skill", "make a plugin", "build a plugin", "I need a new skill", or "create a skill". Also triggers on "package this plugin" or "install this plugin".
+description: "Create Cowork plugins and install them into Claude Desktop. Replaces the old create-skill workflow. Use when the user says \"create a plugin\", \"new plugin\", \"add a skill\", \"make a plugin\", \"build a plugin\", \"I need a new skill\", or \"create a skill\". Also triggers on \"package this plugin\" or \"install this plugin\"."
 ---
 
 # Plugin Builder

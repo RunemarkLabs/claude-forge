@@ -1,7 +1,6 @@
 ---
 name: bug-report
-description: >
-  Report a bug — document it, publish to Confluence, create a Jira ticket. Use when the user says "there's a bug", "something broke", "this isn't working", "found an issue", "report a bug", or describes unexpected behavior. Also triggers on "file a bug", "bug report", or "this is broken".
+description: "Report a bug — document it, publish to Confluence, create a Jira ticket. Use when the user says \"there's a bug\", \"something broke\", \"this isn't working\", \"found an issue\", \"report a bug\", or describes unexpected behavior. Also triggers on \"file a bug\", \"bug report\", or \"this is broken\"."
 ---
 
 # Report Bug

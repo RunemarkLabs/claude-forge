@@ -1,7 +1,6 @@
 ---
 name: reallocate
-description: >
-  Migrate or initialize the workspace folder structure to the canonical layout defined in lib/folder-conventions.md. Auto-detects existing git repos and migrates them into the CC head; normalizes folder/repo names to kebab-case-lowercase. Writes STRUCTURE.md and refreshes a marker-bounded section in workspace CLAUDE.md so future sessions stay coherent. Use when the user says "reallocate", "fix the structure", "set up the workspace", "migrate to new layout", "tidy the workspace", "bootstrap this project's folders", or starts work in a workspace that hasn't been organized.
+description: "Migrate or initialize the workspace folder structure to the canonical layout defined in lib/folder-conventions.md. Auto-detects existing git repos and migrates them into the CC head; normalizes folder/repo names to kebab-case-lowercase. Writes STRUCTURE.md and refreshes a marker-bounded section in workspace CLAUDE.md so future sessions stay coherent. Use when the user says \"reallocate\", \"fix the structure\", \"set up the workspace\", \"migrate to new layout\", \"tidy the workspace\", \"bootstrap this project's folders\", or starts work in a workspace that hasn't been organized."
 ---
 
 # Reallocate Workspace

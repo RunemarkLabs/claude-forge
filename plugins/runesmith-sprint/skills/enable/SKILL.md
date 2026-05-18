@@ -1,7 +1,6 @@
 ---
 name: enable
-description: >
-  Wire Atlassian into this project — collect Jira project + Confluence space details, apply workflow rules into both CLAUDE.md files, deploy CC-side skills, and write the .atlassian-enabled marker. Use when the user says "enable atlassian", "wire up Jira", "connect Atlassian to this project", "turn on atlassian", "set up sprint workflow", or "make this project use Jira".
+description: "Wire Atlassian into this project — collect Jira project + Confluence space details, apply workflow rules into both CLAUDE.md files, deploy CC-side skills, and write the .atlassian-enabled marker. Use when the user says \"enable atlassian\", \"wire up Jira\", \"connect Atlassian to this project\", \"turn on atlassian\", \"set up sprint workflow\", or \"make this project use Jira\"."
 ---
 
 # Enable Atlassian Interconnect

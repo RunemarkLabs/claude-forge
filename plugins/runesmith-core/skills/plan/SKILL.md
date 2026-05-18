@@ -1,7 +1,6 @@
 ---
 name: plan
-description: >
-  Plan a change before executing — capture problem, decision, why-now, scope, trade-offs to a clean markdown file under plans/active/. Use when the user says "plan this", "let's plan", "draft a plan for", "spec this out", "I want to plan", or wants to think through a substantial change before any writes happen. Chat-first, file-last workflow.
+description: "Plan a change before executing — capture problem, decision, why-now, scope, trade-offs to a clean markdown file under plans/active/. Use when the user says \"plan this\", \"let's plan\", \"draft a plan for\", \"spec this out\", \"I want to plan\", or wants to think through a substantial change before any writes happen. Chat-first, file-last workflow."
 ---
 
 # Plan a Change

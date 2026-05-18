@@ -1,7 +1,6 @@
 ---
 name: inbox
-description: >
-  Process files in _INBOX/ — classify each per lib/folder-conventions.md, propose a destination, route on consent. Use when the user says "process inbox", "check inbox", "sort inbox", "what's in the inbox", "deal with inbox", "route these files", or after dropping new files into _INBOX/.
+description: "Process files in _INBOX/ — classify each per lib/folder-conventions.md, propose a destination, route on consent. Use when the user says \"process inbox\", \"check inbox\", \"sort inbox\", \"what's in the inbox\", \"deal with inbox\", \"route these files\", or after dropping new files into _INBOX/."
 ---
 
 # Inbox Processor

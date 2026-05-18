@@ -1,7 +1,6 @@
 ---
 name: setup
-description: >
-  Configure credentials, API endpoints, and plugin sources. Use when "set up", "configure", "add credentials", or need to initialize the workspace.
+description: "Configure credentials, API endpoints, and plugin sources. Use when \"set up\", \"configure\", \"add credentials\", or need to initialize the workspace."
 ---
 
 # Setup
