@@ -27,6 +27,7 @@ KEYS_KEY='_runesmith_guardrail_keys'
 read -r -d '' HOOK_BODY <<'HOOK_EOF' || true
 #!/usr/bin/env bash
 # enforce-project-boundary.sh - RuneSmith CC project-boundary hook.
+# Portable across macOS (BSD), Linux (GNU), Git Bash on Windows.
 set -uo pipefail
 LOG_FILE="${HOME}/.claude/hooks/boundary.log"
 mkdir -p "$(dirname "$LOG_FILE")" 2>/dev/null || true
@@ -39,6 +40,20 @@ TOOL=$(echo "$INPUT" | jq -r '.tool_name // empty')
 PROJECT_DIR="${CLAUDE_PROJECT_DIR:-}"
 if [[ -z "$PROJECT_DIR" ]]; then exit 0; fi
 PROJECT_DIR=$(cd "$PROJECT_DIR" 2>/dev/null && pwd -P) || PROJECT_DIR="$PROJECT_DIR"
+
+# Portable realpath: GNU readlink -f, BSD/macOS realpath, or python3 fallback
+resolve_path() {
+  if command -v realpath >/dev/null 2>&1; then
+    realpath "$1" 2>/dev/null || echo "$1"
+  elif readlink -f "$1" >/dev/null 2>&1; then
+    readlink -f "$1"
+  elif command -v python3 >/dev/null 2>&1; then
+    python3 -c "import os, sys; print(os.path.realpath(sys.argv[1]))" "$1" 2>/dev/null || echo "$1"
+  else
+    echo "$1"
+  fi
+}
+
 deny() {
   echo "$(date -u +%Y-%m-%dT%H:%M:%SZ)|DENY|${TOOL}|$1" >> "$LOG_FILE" 2>/dev/null
   echo "Blocked by RuneSmith guardrail: $1" >&2
@@ -71,11 +86,11 @@ case "$TOOL" in
       for tok in $(echo "$CMD" | tr ' ' '\n' | grep -E '^(/|~/)' || true); do
         tok=$(echo "$tok" | tr -d '"' | tr -d "'")
         tok="${tok/#\~/$HOME}"
-        abs=$(readlink -f "$tok" 2>/dev/null || echo "$tok")
+        abs=$(resolve_path "$tok")
         check_sensitive "$abs"
         case "$abs" in
           "$PROJECT_DIR"|"$PROJECT_DIR"/*) : ;;
-          /tmp/*|/var/tmp/*|/dev/null|/dev/stdin|/dev/stdout|/dev/stderr) : ;;
+          /tmp/*|/var/tmp/*|/private/tmp/*|/private/var/folders/*|/dev/null|/dev/stdin|/dev/stdout|/dev/stderr) : ;;
           *) deny "Bash read outside project boundary: $tok (resolved: $abs)" ;;
         esac
       done
@@ -281,16 +296,4 @@ cmd_uninstall() {
   step "Removing $HOOK_SH"
   [[ -f "$HOOK_SH" ]] && rm "$HOOK_SH"
   echo
-  echo "Status: OK — guardrail uninstalled"
-  warn "Claude Code sessions on this machine no longer have a project boundary."
-  warn "Permission rule entries added by the guardrail remain in"
-  warn "  permissions.allow / permissions.deny. They are no-ops without"
-  warn "  the hook, but review manually if you want to clean them."
-}
-
-case "$MODE" in
-  install)   cmd_install ;;
-  verify)    cmd_verify ;;
-  uninstall) cmd_uninstall ;;
-  *) fail "Unknown mode: $MODE (use install | verify | uninstall)"; exit 1 ;;
-esac
+  echo "Status

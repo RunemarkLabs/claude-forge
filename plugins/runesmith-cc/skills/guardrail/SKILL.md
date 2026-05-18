@@ -13,7 +13,7 @@ One user action: run `.\install-guardrail.ps1` (Windows) or `./install-guardrail
 ## References
 
 - `templates/install-guardrail.ps1` — full self-contained Windows installer
-- `templates/install-guardrail.sh` — full self-contained Unix installer
+- `templates/install-guardrail.sh` — full self-contained installer for **macOS + Linux** (portable: handles BSD realpath on macOS, GNU readlink on Linux, python3 fallback)
 
 ## What the installer does
 
@@ -66,9 +66,13 @@ Single-pick: `install` / `verify` / `uninstall` / `cancel`.
 
 ### 2. Detect target OS (structured prompt)
 
-Single-pick: `Windows` / `macOS` / `Linux` / `copy both (Windows + Unix)`.
+Single-pick:
+- `Windows` — copies `install-guardrail.ps1`
+- `macOS` — copies `install-guardrail.sh` (works with default macOS bash; requires `brew install jq`)
+- `Linux` — copies `install-guardrail.sh` (requires `apt install jq` or distro equivalent)
+- `Copy both (cross-platform team)` — copies both .ps1 and .sh
 
-Defaults to the OS the user's session indicates if known. If the user is dogfooding across machines, "copy both" puts the installer in workspace root for either platform.
+Defaults to the OS the user's session indicates if known. "Copy both" is the right pick for cross-platform teams (e.g. Sapient where some run Windows, some run macOS).
 
 ### 3. Pick destination (structured prompt, optional)
 
@@ -136,12 +140,4 @@ The one-shot installer eliminates the multi-step manual path. User opens PowerSh
 End every flow with a single structured summary. No prose preamble.
 
 ```
-Guardrail action:  install | verify | uninstall
-Installer copied:  <workspace>/install-guardrail.ps1
-                   <workspace>/install-guardrail.sh
-Command to run:    .\install-guardrail.ps1
-                   ./install-guardrail.sh
-
-Next step: open PowerShell / Terminal, cd to the workspace, run the
-command above. Then restart any open Claude Code sessions.
-```
+Guardrail action:  install
