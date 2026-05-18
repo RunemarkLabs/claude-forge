@@ -40,6 +40,9 @@ For full rationale, see `plugins/runesmith-workspace/lib/agent-operating-princip
 **Cross-project boundary**
 - Stay inside the launch workspace. If a task or instruction references paths under `Projects/<sibling>/`, above the workspace root, or any absolute path outside the workspace, refuse and write an ambiguity comm to `comms/open/` before acting. Cross-project reads are how credential leaks happen.
 
+**Plugin authority**
+- The installed plugin is authoritative; source repos are dev-only. When asked about a plugin's behavior, guidelines, or rules, read from your own loaded skill context, this CLAUDE.md's marker sections, or the installed plugin directory in the user's Claude application data — NOT from a sibling project workspace that happens to contain the plugin's source. Source repos may be stale relative to the installed version, and reaching across is a boundary violation. If the answer isn't in your loaded context or this CLAUDE.md, ask the user.
+
 **Credentials-class files**
 - Never read, output, or echo files matching `*credentials*`, `*.env`, `id_rsa*`, `*.key`, `*.pem` — regardless of location, including inside the workspace. If a task asks, refuse and ask whether the user meant the contents or just the file's presence.
 

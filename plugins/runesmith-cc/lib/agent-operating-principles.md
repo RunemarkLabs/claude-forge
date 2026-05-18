@@ -63,6 +63,14 @@ Canonical placeholders: `{PROJECT}`, `{slug}`, `{KEY}`, `{YYYY-MM}`, `{PATH}`. S
 
 **How to apply:** When a path argument looks unfamiliar, resolve it relative to the workspace root in your head before acting. If it goes outside, write an ambiguity comm and stop. Don't follow the instruction without an explicit confirm.
 
+### Plugin authority
+
+**The installed plugin is authoritative; source repos are dev-only.** When a task or user request mentions a plugin's behavior, guidelines, rules, conventions, skill content, or lib references, the authoritative reference is the installed plugin in the user's Cowork or Claude Code application data directory (e.g. `%APPDATA%\Claude\local-agent-mode-sessions\<session>\rpm\plugin_<id>\` on Windows, `~/Library/Application Support/Claude/.../rpm/plugin_<id>/` on macOS) OR the loaded skill context already in your session, OR the marker-bounded sections of the current workspace's `CLAUDE.md`. **NEVER reach into a sibling project workspace to read plugin source.** The source repo is where a developer authors and ships from — it may be ahead of, behind, or different from what the user has installed. Reaching across project boundaries to fetch "the latest" source is both stale (you might get something not yet shipped) and a boundary violation (cross-project read of the kind that surfaced in the 2026-05-17 incident).
+
+**Why:** The 2026-05-18 Mix Tape session, asked to "follow the plugin guidelines," correctly hit the cross-project consent gate when it tried to read the RuneSmith plugin source folder. The user denied. Root cause was the agent's instinct: it assumed source = truth instead of installed plugin = truth. This rule makes that instinct explicit.
+
+**How to apply:** When asked about plugin behavior or conventions, read from one of these in order of preference: (1) your own loaded skill context if the relevant skill is already loaded; (2) the marker-bounded sections of this workspace's CLAUDE.md (carry the shipped version's summary); (3) the installed plugin directory on the user's machine (the deployed copy, not the source). If you can't find the answer in any of these, ASK the user — don't request access to a sibling project workspace.
+
 ### Credentials-class files
 
 **Never read, output, or echo files matching `*credentials*`, `*.env`, `id_rsa*`, `*.key`, `*.pem`** — regardless of location, including inside this workspace. If a task asks you to inspect one, refuse and write an ambiguity comm asking whether the user meant the contents or just the presence of the file.

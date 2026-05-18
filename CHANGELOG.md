@@ -10,7 +10,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 - **Guardrail install path.** v0.7.0 shipped the guardrail install logic as a Cowork-side skill, but Cowork's sandbox can't write to `~/.claude/` (user-home, outside the mounted workspace). Install attempts from Cowork silently failed. Refactored: install logic moved to a CC-side skill template at `cc-skill-templates/guardrail/`, deployed by `bootstrap-cc` into `{PROJECT}.cc/.claude/skills/guardrail/`. Users now run `/guardrail install` from inside Claude Code (which has terminal access and can write user-home files). The Cowork-side `/runesmith-cc:guardrail` skill is preserved as a walkthrough/pointer that explains the design and surfaces the CC-side commands with paths substituted for the host's OS.
+- **Plugin authority principle added.** New rule in `agent-operating-principles.md`: the installed plugin is authoritative, source repos are dev-only, agents NEVER reach into a sibling project workspace to read plugin source. Fixes the 2026-05-18 Mix Tape session pattern where an agent asked to "follow the plugin guidelines" tried to read RuneSmith's source folder. The cross-project boundary caught it at the consent gate, but the underlying agent instinct was the bug. New principle makes that instinct explicit. Propagates to every workspace + CC head on next `/runesmith-workspace:reallocate` and `/runesmith-cc:bootstrap-cc` run (marker-bounded section refresh).
 - **Docs updated.** `docs/howto/install-guardrail.md` rewritten to reflect the new install path. `docs/AGENT_PRIMER.md` and `INSTALL.md` updated with the CC-side invocation. Cowork-side and CC-side roles called out explicitly so future maintainers don't repeat the design error.
+
+### Versions
+- `runesmith-workspace` bumped 0.6.0 → 0.7.1 (carries the new agent-operating-principles content + marker template).
+- `runesmith-cc` stays 0.7.1 (refactored in this release).
+- Marketplace stays 0.7.1.
 
 ### Notes
 - Marker key (`_runesmith_guardrail_marker`) is stable across forks for clean uninstall regardless of marketplace branding.
