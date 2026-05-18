@@ -132,10 +132,6 @@ Per `lib/cc-workspace.md`, ensure these exist (do not clobber if user has custom
 | `<name>.cc/.claude/settings.local.json` | empty `{}` (gitignored) |
 | `<name>.cc/.claude/skills/code-tech-debt/SKILL.md` | `../../cc-skill-templates/code-tech-debt/SKILL.md` (plugin-relative) |
 | `<name>.cc/.claude/skills/code-tech-debt/lib/code-analyzers.md` | `../../../lib/code-analyzers.md` (plugin-relative) |
-| `<name>.cc/.claude/skills/guardrail/SKILL.md` | `../../cc-skill-templates/guardrail/skill-template.md` (renamed; plugin-relative) |
-| `<name>.cc/.claude/skills/guardrail/templates/user-settings-block.json` | `../../cc-skill-templates/guardrail/templates/user-settings-block.json` |
-| `<name>.cc/.claude/skills/guardrail/templates/enforce-project-boundary.sh` | `../../cc-skill-templates/guardrail/templates/enforce-project-boundary.sh` |
-| `<name>.cc/.claude/skills/guardrail/templates/enforce-project-boundary.ps1` | `../../cc-skill-templates/guardrail/templates/enforce-project-boundary.ps1` |
 | `<name>.cc/.claude/commands/.gitkeep` | empty |
 | `<name>.cc/.claude/agents/.gitkeep` | empty |
 | `<name>.cc/.claude/hooks/.gitkeep` | empty |
@@ -164,7 +160,7 @@ Every CC head ships with the following CC-side skill templates (callable from in
 
 - **`code-tech-debt`** — repo-level dead-code / unused-export / unused-dep scanner. Per-language analyzers (TS, JS, Node, React, Next.js, Python out of the box; extensible via `code-analyzers.md`). Source: `cc-skill-templates/code-tech-debt/SKILL.md` in this plugin. The skill's lib (`code-analyzers.md`) is also copied into the deployed skill's own `lib/` so it travels with the skill.
 
-- **`guardrail`** — user-level project-boundary install. Runs INSIDE Claude Code because the install target (`~/.claude/settings.json` + `~/.claude/hooks/`) is outside Cowork's sandbox. Source: `cc-skill-templates/guardrail/skill-template.md` in this plugin. Three template files travel with the skill: `user-settings-block.json` (the JSON block merged into user settings), `enforce-project-boundary.sh` (bash hook script), `enforce-project-boundary.ps1` (PowerShell shim for Windows without Git Bash).
+**Note**: As of v0.8.0, the user-level CC project-boundary guardrail is installed via a one-shot installer script copied to the workspace root by `/runesmith-cc:guardrail`. It is no longer deployed as a CC-side skill template — CC's own permission system blocked the install of its own boundary, so the install path moved to a workspace-rooted PowerShell / bash script the user runs once per machine.
 
 Sprint-specific skills (sprint-pull, ticket-document, blocker-write, ticket-done) are NOT deployed by bootstrap-cc — those are deployed by `/runesmith-sprint:enable` and only when the user opts into the Atlassian workflow.
 

@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Claude plugin marketplace covering planning skills, workspace structure, Atlassian (Jira + Confluence) integration, Claude Code monorepo bootstrap, AI Operations documentation deployment, and developer tooling for plugin authors. Plugins compose: install the ones you need, skip the rest. Generic and single-tenant configurable per project \u2014 every tenant detail (Atlassian site, Jira project key, Confluence space, GitHub org) comes from user input or `.credentials` at runtime. Built for both Cowork-side planning sessions and Claude Code-side implementation work, with file-based comms protocol bridging the two.",
-    "version": "0.7.3"
+    "version": "0.8.0"
   },
   "plugins": [
     {

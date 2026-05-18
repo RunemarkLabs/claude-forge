@@ -10,6 +10,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 (See 0.7.3 below — format conversion alone was not the fix.)
 
+## [0.8.0] — 2026-05-18
+
+### Changed (breaking — guardrail install path)
+- **Guardrail install is now one-shot.** `/runesmith-cc:guardrail` in Cowork copies a self-contained installer (`install-guardrail.ps1` on Windows, `install-guardrail.sh` on macOS/Linux) to the workspace root. The user runs it once. The installer detects environment (Git Bash + jq on Windows, jq on Unix), writes user-level `~/.claude/settings.json` permission block + hook scripts, runs synthetic verification, reports. Single command replaces the previous multi-step manual sequence.
+- **CC-side guardrail skill retired.** The previous design deployed an install skill into `{PROJECT}.cc/<repo>/.claude/skills/guardrail/` via bootstrap-cc, with the user running `/guardrail install` from inside CC. This failed because CC's own permission system blocks writes to `~/.claude/` from a CC session (the boundary it doesn't yet have, blocking its own install — chicken-and-egg). The CC-side template at `cc-skill-templates/guardrail/` is removed in this release.
+- **`bootstrap-cc` no longer deploys the guardrail.** Updated to remove the four file-table entries that previously deployed the install skill + templates into each CC head.
+
+### Why
+v0.7.x shipped the guardrail with a CC-side install path. In real use, that path failed: CC's permission boundary blocked the install of its own boundary. Users hit a "manual install fallback" wall — print PowerShell commands, copy-paste into terminal, manage Git Bash / jq / settings.json merge by hand. Long marathon for what should be one command. v0.8.0 collapses it to one command: copy installer to workspace, run, done.
+
+### Versions
+- All 8 plugin.json bumped to 0.8.0.
+- Marketplace 0.8.0.
+
+### Upgrade path
+- Existing workspaces with a deployed CC-side guardrail skill (in `{PROJECT}.cc/<repo>/.claude/skills/guardrail/`) can leave those files in place; they're now vestigial but harmless. Re-running `/runesmith-cc:bootstrap-cc` will NOT redeploy them.
+- To install the guardrail, run `/runesmith-cc:guardrail` in Cowork — it copies the installer to workspace root. Then run `.\install-guardrail.ps1` (or `./install-guardrail.sh`) in PowerShell / Terminal.
+
 ## [0.7.3] — 2026-05-17
 
 ### Fixed
