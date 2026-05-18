@@ -173,4 +173,19 @@ python scripts/build.py path/to/output
 The build performs three transformations:
 
 1. Strips retired/orphan content from `cc-skill-templates/` and removed skills before zipping.
-2. Renames `cc-skill-templ
+2. Renames `cc-skill-templates/<n>/skill-template.md` → `.txt` so Cowork's plugin validator (which scans `**/SKILL.md` and `**/*.md` with skill frontmatter) ignores deploy-time templates.
+3. Zips with forward-slash paths inside the archive (zip spec requirement; bypasses Windows tooling that uses backslash separators).
+
+Run `python scripts/audit.py` before any release — CI enforces it on every push.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Three principles:
+
+1. **Generic, single-tenant configurable.** No company-specific values in plugin source.
+2. **Consent before any write.** See `lib/consent.md`.
+3. **Plugin-relative library references.** Each plugin self-contained.
+
+## License
+
+Apache-2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).

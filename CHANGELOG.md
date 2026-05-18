@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 > **Rename note**: this marketplace was previously named "Claude Forge". Renamed to **RuneSmith** in v0.6.0 to avoid trademark confusion with Anthropic's "Claude" mark and conflict with Atlassian's "Forge" developer platform. Historical changelog entries below have been mechanically updated to reference plugins by their new names (`runesmith-*`) for consistency; the substance of past releases is unchanged.
 
+## [0.7.1] — 2026-05-17
+
+### Fixed
+- **Guardrail install path.** v0.7.0 shipped the guardrail install logic as a Cowork-side skill, but Cowork's sandbox can't write to `~/.claude/` (user-home, outside the mounted workspace). Install attempts from Cowork silently failed. Refactored: install logic moved to a CC-side skill template at `cc-skill-templates/guardrail/`, deployed by `bootstrap-cc` into `{PROJECT}.cc/.claude/skills/guardrail/`. Users now run `/guardrail install` from inside Claude Code (which has terminal access and can write user-home files). The Cowork-side `/runesmith-cc:guardrail` skill is preserved as a walkthrough/pointer that explains the design and surfaces the CC-side commands with paths substituted for the host's OS.
+- **Docs updated.** `docs/howto/install-guardrail.md` rewritten to reflect the new install path. `docs/AGENT_PRIMER.md` and `INSTALL.md` updated with the CC-side invocation. Cowork-side and CC-side roles called out explicitly so future maintainers don't repeat the design error.
+
+### Notes
+- Marker key (`_runesmith_guardrail_marker`) is stable across forks for clean uninstall regardless of marketplace branding.
+- Pre-existing CC sessions still need a restart for the new permissions to take effect after install.
+
 ## [0.7.0] — 2026-05-17
 
 ### Added

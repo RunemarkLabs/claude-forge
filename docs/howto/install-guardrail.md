@@ -4,10 +4,13 @@ The guardrail constrains every Claude Code session on your machine to its launch
 
 Install once per machine. Take this seriously — without it, a misdirected CC session can read `.credentials` from a sibling project and echo plaintext keys into the transcript. That's not theoretical; it's the 2026-05-17 incident that drove this skill into the marketplace.
 
+**The install runs INSIDE Claude Code, not Cowork.** Cowork's sandbox can't write to `~/.claude/` (it's outside the mounted workspace). CC has the right permissions and context to install its own user-level config.
+
 ## Prerequisites
 
 - RuneSmith marketplace installed in Cowork (specifically `runesmith-cc`).
-- Cowork has access to the user-level `~/.claude/` directory (macOS/Linux) or `%USERPROFILE%\.claude\` (Windows).
+- A workspace bootstrapped with `/runesmith-cc:bootstrap-cc` — this deploys the CC-side guardrail skill template into `{PROJECT}.cc/.claude/skills/guardrail/`.
+- A code repo exists at `{PROJECT}.cc/<repo>/` to launch CC from.
 - `jq` installed (for the bash hook variant). Install via `brew install jq` (macOS), `apt install jq` (Debian/Ubuntu), `choco install jq` (Windows).
 
 ## What gets installed
@@ -48,25 +51,58 @@ The `/path` syntax in `Read(/**)` is **project-relative** in Claude Code's permi
 
 ## Install
 
+### Step 1 — Launch Claude Code in a CC-headed repo
+
+From a terminal:
+
+```bash
+cd ~/Projects/<your-project>/<your-project>.cc/<repo>/
+claude
 ```
-/runesmith-cc:guardrail install
+
+Or open Claude Desktop's Code tab and point it at the same folder. The CC session must be inside a folder where `bootstrap-cc` has deployed the guardrail skill template (`<repo>/.claude/skills/guardrail/SKILL.md` exists).
+
+### Step 2 — Run the install
+
+Inside the CC session:
+
 ```
+/guardrail install
+```
+
+(Or invoke by name: "install the guardrail," "set up the project boundary.")
 
 What happens:
 1. Detects OS (macOS / Linux / Windows). Sets target paths accordingly.
 2. Structured prompt: install / cancel.
 3. If `~/.claude/settings.json` doesn't exist, creates it as `{}`. If it does, parses it. Fails loudly on invalid JSON; never overwrites unreadable files.
 4. JSON-aware merge of the guardrail block. User-managed keys outside the block survive.
-5. Writes the hook script. `chmod +x` on Unix.
+5. Writes the hook script to `~/.claude/hooks/enforce-project-boundary.sh` (+ PowerShell variant on Windows). `chmod +x` on Unix.
 6. Verify: pipes a synthetic deny case + allow case through the hook, confirms exit codes are 2 and 0.
 7. Reports settings path, hook script path, what's covered, residual risks, and the next step (restart open CC sessions).
 
 If the file already contains a `_runesmith_guardrail_marker` from a prior install, the skill prompts: `update existing` / `reinstall fresh` / `cancel`.
 
-## Uninstall
+### Step 3 — Restart Cowork and any open CC sessions
+
+The user-level permission rules and hook load at session start. Existing sessions don't pick up the changes until they restart.
+
+## Cowork-side helper
+
+If you don't want to remember the CC-side commands, run from Cowork:
 
 ```
-/runesmith-cc:guardrail uninstall
+/runesmith-cc:guardrail
+```
+
+This Cowork-side skill produces an instructional report with the exact commands for your OS, paths substituted for your host, and a confirmation that bootstrap-cc has been run. It does NOT install — Cowork's sandbox can't reach `~/.claude/`. It just walks you to the CC-side install.
+
+## Uninstall
+
+From inside CC:
+
+```
+/guardrail uninstall
 ```
 
 Removes only the entries the skill added (identified by `_runesmith_guardrail_keys`). User-managed entries in `permissions.allow`, `permissions.deny`, and `hooks.PreToolUse` survive.

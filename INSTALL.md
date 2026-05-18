@@ -103,4 +103,96 @@ Run `/runesmith-core:setup` after install. The skill walks structured prompts fo
 
 ## Install the project-boundary guardrail (one-time per machine)
 
-After install
+The guardrail installs at user level (`~/.claude/settings.json` + `~/.claude/hooks/`). It must run inside **Claude Code**, not Cowork — Cowork's sandbox can't write to `~/.claude/`.
+
+After a workspace has been bootstrapped (`/runesmith-cc:bootstrap-cc`), bootstrap-cc deploys the CC-side guardrail skill template into `{PROJECT}.cc/.claude/skills/guardrail/`. Launch Claude Code in any CC-headed repo and run:
+
+```
+/guardrail install
+```
+
+The skill writes `~/.claude/settings.json` block and the hook script at `~/.claude/hooks/enforce-project-boundary.sh` (PowerShell shim on Windows). Every Claude Code session on this machine is then constrained to its launch project's root.
+
+For the Cowork-side walkthrough (paths + commands for your OS, no install):
+
+```
+/runesmith-cc:guardrail
+```
+
+See `docs/howto/install-guardrail.md` for details and residual risks.
+
+## Set up a project workspace
+
+After install, in any project folder:
+
+```
+/runesmith-workspace:reallocate
+```
+
+Lays down the canonical structure (`_INBOX/`, `plans/active/`, `plans/archive/`, `notes/`, `drafts/`, `research/`, `source-docs/`, `archive/`). Writes `STRUCTURE.md` and the marker-bounded sections in `CLAUDE.md`. Surfaces a Project Instructions text block for you to paste into Cowork's UI.
+
+Then:
+
+```
+/runesmith-cc:bootstrap-cc
+```
+
+Creates the `{PROJECT}.cc/` Claude Code monorepo head with `CLAUDE.md`, `.claude/` scaffolding, `comms/`, marker file, and the deployed `code-tech-debt` CC-side skill. Optionally clones existing GitHub repos or creates new ones via PAT auth.
+
+See `docs/howto/new-workspace.md` for the full walkthrough.
+
+## Optional: enable Atlassian for the project
+
+```
+/runesmith-sprint:enable
+```
+
+Wires Jira + Confluence into the workspace. Walks you through capturing the Jira project key, board id, Confluence space id. Appends the `<!-- runesmith:atlassian-start/end -->` block to both `CLAUDE.md` files. Surfaces a Project Instructions supplement to paste. Drops `.atlassian-enabled` at workspace root.
+
+Disable any time with `/runesmith-sprint:disable`.
+
+See `docs/howto/enable-atlassian.md` for the full walkthrough.
+
+## Optional: bootstrap an AIOPS Confluence space
+
+The space must already exist in Confluence (Cloud's v2 API doesn't expose space creation). Create it in the UI, then:
+
+```
+/runesmith-aiops:bootstrap-aiops
+```
+
+Structured prompts for `{COMPANY}`, `{SITE}`, `{SPACE_KEY}`, `{SPACE_ID}`, `{PROJECT_KEY}`. The skill substitutes those tokens into six template pages (Quick Start, Full Integration, Architecture, Best Practices, FAQ, Reference) and publishes them.
+
+## Verify install
+
+```
+/runesmith-devtools:help
+```
+
+Lists every installed plugin and its skills with natural-language triggers.
+
+```
+/runesmith-jira:project-status
+```
+
+Read-only sanity check that Atlassian credentials work (if you set them).
+
+## Troubleshooting
+
+**`401` on every Atlassian call.** Email and token must match the account that minted the token. The token's owning account email goes in `ATLASSIAN_API_EMAIL`.
+
+**`400` on Confluence page create.** Body must be Confluence storage XHTML, not markdown. The marketplace's `runesmith-confluence` skills handle conversion via `scripts/md-to-storage.py`. If you're calling the API directly, run your markdown through that script first.
+
+**`409` on Confluence page update.** Version conflict — GET the page first, read `version.number`, PUT with `number + 1`. Skills handle this automatically.
+
+**`404` on `/rest/api/3/search`.** Deprecated endpoint. Current Cloud API is `POST /rest/api/3/search/jql`. Skills already use it. If you hit this, you have an outdated plugin — rebuild from `scripts/build.py` and reinstall.
+
+**Plugin not loading after manual install.** Restart Cowork (full quit, not reload). For Claude Code CLI, restart the CLI.
+
+**`/plugin marketplace add` returns "Validation failed".** Two common causes:
+1. `plugin.json` contains a `dependencies` field — Cowork's loader silently rejects plugins with this. The marketplace stripped it in v0.6.1+; rebuild from current.
+2. Angle-bracket placeholders (`<word>`) in SKILL.md frontmatter or plugin.json descriptions. Use `{WORD}` curly braces. `scripts/audit.py` catches this.
+
+**Severity custom field rejected on `runesmith-jira:bug-report`.** Severity is rarely a default Jira field. Either map to `priority` or set `ATLASSIAN_BUG_SEVERITY_FIELD` in `.credentials` to your tenant's custom field id.
+
+**Slash commands return "Unknown command" after install.** Restart your client. Plugins register at session start. If they still don't resolve, check the plugin folder's `.claude-plugin/plugin.json` — name must match the folder name; description must not be truncated mid-sentence.

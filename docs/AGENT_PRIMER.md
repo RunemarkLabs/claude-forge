@@ -147,7 +147,9 @@ Every CC session is constrained to its launch project's root via two layers:
 
 **Layer 2 — harness enforcement.** User-level `~/.claude/settings.json` block (`defaultMode: "dontAsk"` + curated allow/deny rules) plus a `PreToolUse` hook for Bash subprocess containment. Permission system enforces; the agent cannot bypass.
 
-Install once per machine via `/runesmith-cc:guardrail install`. `/runesmith-cc:bootstrap-cc` writes the project-level `<project>/.claude/settings.json` with an empty `additionalDirectories: []` escape hatch — populate it when you need legitimate cross-project access (monorepo siblings, shared configs).
+Install once per machine **from inside Claude Code, not Cowork** — Cowork's sandbox can't write to `~/.claude/`. After bootstrap-cc has deployed the CC-side `guardrail` skill template into `{PROJECT}.cc/.claude/skills/guardrail/`, launch CC in any CC-headed repo and run `/guardrail install`. `/runesmith-cc:bootstrap-cc` also writes the project-level `<project>/.claude/settings.json` with an empty `additionalDirectories: []` escape hatch — populate it when you need legitimate cross-project access (monorepo siblings, shared configs).
+
+The Cowork-side `/runesmith-cc:guardrail` skill is a pointer/walkthrough — it explains the design and shows the exact commands to run in CC for your host's OS, but doesn't perform the install itself.
 
 **Known residual risks (documented, not solved):**
 
