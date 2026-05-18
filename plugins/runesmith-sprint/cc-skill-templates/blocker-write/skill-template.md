@@ -1,6 +1,7 @@
 ---
 name: blocker-write
 description: "Declare a blocker on a Jira ticket — write a comm requesting unblock, tag the ticket cc-blocked. Use when CC is stuck and needs Cowork or the user to act before continuing. Runs in Claude Code."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Blocker Write (CC-side)

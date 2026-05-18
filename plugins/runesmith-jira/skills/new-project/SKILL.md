@@ -1,6 +1,7 @@
 ---
 name: new-project
 description: "Scaffold a new project in Confluence and Jira. Use when the user says \"new project\", \"set up a project\", \"create a project\", \"scaffold\", or wants to initialize Confluence and Jira for a new codebase. Also triggers on \"start a new repo\", \"project setup\", or \"initialize project\"."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # New Project Setup

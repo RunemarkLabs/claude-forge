@@ -2,6 +2,7 @@
 name: sprint-status
 description: "Show the active sprint board state plus any open comms summary. Auto-fires a session-init comm if the active sprint changed since last cache. Use when the user says \"sprint status\", \"what's in the sprint\", \"where are we in the sprint\", \"show me the sprint\", \"sprint update\", \"any blockers in the sprint\"."
 model: haiku
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Sprint Status

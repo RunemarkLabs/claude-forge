@@ -1,6 +1,7 @@
 ---
 name: skill-updater
 description: "Propagate convention changes across skills safely by orchestrating per-skill modifications through Anthropic's skill-creator. Use after a decision changes how the system works — variable renames, workflow changes, lib reference updates, removed features, new conventions. Triggers on: \"update skills\", \"propagate this\", \"skills are stale\", \"sync the change\", \"make sure skills reflect this\", or when a decision contradicts what existing skills describe."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Skill Updater

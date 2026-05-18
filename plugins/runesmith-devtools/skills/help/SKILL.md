@@ -2,6 +2,7 @@
 name: help
 description: "Show all available workspace skills, installed plugins, and what they do. Use when the user says \"help\", \"what can you do\", \"list skills\", \"show commands\", \"what skills are there\", or seems unsure what's available. Also use when the user asks \"how do I...\", \"is there a way to...\", or \"can you...\" about a workflow that might already be covered by a plugin or skill."
 model: haiku
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Workspace Help

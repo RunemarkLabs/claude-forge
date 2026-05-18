@@ -1,6 +1,7 @@
 ---
 name: feature-doc
 description: "Create a feature specification page for Confluence. Template includes overview, goals, scope (in/out), behavior, technical notes, acceptance criteria, and related links. Trigger on \"feature doc\", \"write a feature document\", \"spec this feature\", \"create a feature spec\", or \"document this feature\"."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Feature Specification

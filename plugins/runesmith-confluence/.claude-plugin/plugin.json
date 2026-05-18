@@ -1,21 +1,8 @@
 {
   "name": "runesmith-confluence",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "[RuneSmith] Confluence page authoring with proper storage XHTML conversion. Skills cover feature specs, architecture decision records (ADRs), project overview landing pages, append-only decisions logs, known issues trackers, roadmap pages, and session logs. Drafts in markdown locally, converts and publishes on user consent. Optionally pulls plans/active/ as prefill source.",
   "author": {
     "name": "Runemark Labs"
-  },
-  "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/runemarklabs/runesmith"
-  },
-  "homepage": "https://github.com/runemarklabs/runesmith",
-  "keywords": [
-    "runesmith",
-    "atlassian",
-    "confluence",
-    "documentation",
-    "wiki"
-  ]
+  }
 }

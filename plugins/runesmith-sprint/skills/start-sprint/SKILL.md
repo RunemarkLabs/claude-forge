@@ -1,6 +1,7 @@
 ---
 name: start-sprint
 description: "Hand the active (or specified) sprint to Claude Code via a session-init comm. Use when the user says \"start sprint\", \"begin sprint\", \"start sprint X\", \"kick off sprint\", \"kick off the next sprint\", \"let's start the sprint\", \"time to start sprint X\", or wants to explicitly hand off sprint work to CC."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Start Sprint Handshake

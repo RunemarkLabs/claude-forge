@@ -1,6 +1,7 @@
 ---
 name: ticket-document
 description: "Append a plan, action, or decision as a Jira ticket comment and tag the ticket appropriately. Use when CC starts work, makes a non-obvious decision, or completes a meaningful action on a ticket. Runs in Claude Code."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Ticket Document (CC-side)

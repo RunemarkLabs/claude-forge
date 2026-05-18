@@ -1,6 +1,7 @@
 ---
 name: setup
 description: "Configure credentials, API endpoints, and plugin sources. Use when \"set up\", \"configure\", \"add credentials\", or need to initialize the workspace."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Setup

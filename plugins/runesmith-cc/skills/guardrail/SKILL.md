@@ -1,6 +1,7 @@
 ---
 name: guardrail
 description: "Explain the CC project-boundary guardrail and point the user to the actual install path. The install runs inside Claude Code (not Cowork) because it writes to ~/.claude/ which is outside Cowork's sandbox. Use when the user says \"install the guardrail\", \"set up CC boundaries\", \"lock CC to project root\", \"guardrail install\", \"guardrail verify\", \"uninstall the guardrail\" from a Cowork session."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # CC Project-Boundary Guardrail (Cowork pointer)

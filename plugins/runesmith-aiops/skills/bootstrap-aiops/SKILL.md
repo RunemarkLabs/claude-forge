@@ -1,6 +1,7 @@
 ---
 name: bootstrap-aiops
 description: "Create the full AIOPS documentation space in a new company's Confluence when they fork the bootstrap repo. Use when \"bootstrap AIOPS\", \"create AIOPS space\", \"set up docs for [company]\", or when onboarding a fork org that needs their own AI Operations Confluence space populated."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Bootstrap AIOPS

@@ -1,6 +1,7 @@
 ---
 name: sync
 description: "Sync installed plugins with latest versions and update AIOPS documentation. Use when \"sync plugins\", \"update plugins\", \"pull latest bootstrap\", \"refresh plugins\", or to get the newest skill definitions."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Sync Plugins

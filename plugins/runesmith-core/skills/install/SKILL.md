@@ -1,6 +1,7 @@
 ---
 name: install
 description: "Browse and install plugins from the bootstrap catalog and optional sources. Use when the user says \"install a plugin\", \"what plugins are available\", \"show me plugins\", or wants to add new capabilities."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Install Plugins

@@ -1,6 +1,7 @@
 ---
 name: decisions-log
 description: "Create or update a running decisions log page for Confluence. Template includes date, decision, rationale, participants, and status. Log decisions as they are made. Trigger on \"decisions log\", \"log this decision\", \"record the decision\", \"add to decisions log\", \"update the decisions log\"."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Decisions Log

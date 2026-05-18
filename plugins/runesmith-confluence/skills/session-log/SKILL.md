@@ -1,6 +1,7 @@
 ---
 name: session-log
 description: "Create or update a session log to capture decisions, action items, and progress. Use when the user says \"log this session\", \"session notes\", \"write up what we did\", \"capture this\", or at the end of a planning session. Also triggers on \"session summary\", \"what did we decide\", or \"save our progress\"."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Session Log

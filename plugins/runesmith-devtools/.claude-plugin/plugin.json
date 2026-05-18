@@ -1,20 +1,8 @@
 {
   "name": "runesmith-devtools",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "[RuneSmith] Developer helpers for the marketplace itself. /help lists installed skills and their natural-language triggers, /plugin-builder scaffolds new plugins, /tech-debt scans the workspace for stale or orphaned artifacts, and /skill-updater propagates convention changes across all skills consistently.",
   "author": {
     "name": "Runemark Labs"
-  },
-  "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/runemarklabs/runesmith"
-  },
-  "homepage": "https://github.com/runemarklabs/runesmith",
-  "keywords": [
-    "runesmith",
-    "devtools",
-    "plugin-development",
-    "workspace-audit"
-  ]
+  }
 }

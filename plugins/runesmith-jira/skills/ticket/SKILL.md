@@ -1,6 +1,7 @@
 ---
 name: ticket
 description: "Create, format, and push Jira ticket drafts for any issue type (Task, Story, Bug, Epic). Includes JSON format specification, field guidance per issue type, and the push-to-Jira workflow. Trigger on \"create a ticket\", \"make a Jira ticket\", \"write a ticket for this\", \"draft a ticket\", \"create a task for\", \"make the ticket\"."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Create Jira Ticket

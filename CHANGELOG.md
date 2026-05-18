@@ -6,7 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 > **Rename note**: this marketplace was previously named "Claude Forge". Renamed to **RuneSmith** in v0.6.0 to avoid trademark confusion with Anthropic's "Claude" mark and conflict with Atlassian's "Forge" developer platform. Historical changelog entries below have been mechanically updated to reference plugins by their new names (`runesmith-*`) for consistency; the substance of past releases is unchanged.
 
-## [0.7.2] — 2026-05-17
+## [0.7.2] — 2026-05-17 → superseded by 0.7.3
+
+(See 0.7.3 below — format conversion alone was not the fix.)
+
+## [0.7.3] — 2026-05-17
+
+### Fixed
+- **Plugin.json minimum-fields convention.** Cowork's plugin loader / Skill-tool dispatcher appears to silently reject (for dispatch purposes) plugins whose `plugin.json` includes fields beyond the minimum set the official Anthropic plugins use. Working comparators (e.g. `cowork-plugin-management` v0.2.2) carry only `name`, `version`, `description`, `author`. Stripped `license`, `repository`, `homepage`, `keywords` from all 8 plugin.json files. (`dependencies` was already stripped in 0.7.0+.)
+- **`compatibility` field added to every SKILL.md.** The working `cowork-plugin-customizer` skill declares a `compatibility:` line in its frontmatter; ours did not. Added `compatibility: Requires Cowork desktop app environment.` to all 36 SKILL.md and `cc-skill-templates/*/skill-template.md` files.
+
+### Open verification
+- The 0.7.2 YAML format conversion (folded scalar → single-line quoted) was a red herring — the working `cowork-plugin-customizer` uses the folded scalar form too. Format remains single-line quoted in this release; no plan to revert.
+- Whether the plugin.json strip + `compatibility:` addition fixes Skill-tool dispatch is the open verification gate. Test by invoking `/runesmith-workspace:reallocate` from any RuneSmith-bootstrapped workspace after reinstalling 0.7.3.
+
+### Versions
+- All 8 plugin.json bumped to 0.7.3.
+- Marketplace 0.7.3.
+
+## [0.7.2-original] — 2026-05-17
 
 ### Fixed
 - **Skill description format.** Cowork's Skill-tool dispatcher silently rejected skills whose `SKILL.md` frontmatter used YAML's `description: >` folded block scalar (multi-line indented). Anthropic's own skills (docx, pdf, pptx, xlsx, executive-assistant, skill-creator, etc.) use `description: "single-line"` quoted strings. Converted all 36 skill files (SKILL.md + cc-skill-templates/*/skill-template.md) to the canonical single-line quoted format. Same content; just the YAML serialization differs. Resolves the long-running "skill not callable via Skill tool" pattern that hit guardrail, reallocate, and likely others — agents were falling back to reading SKILL.md directly off disk for those skills instead of dispatching via the tool API. Should also fix slash-command invocation that previously sometimes silently no-op'd.

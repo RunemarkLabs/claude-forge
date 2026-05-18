@@ -1,6 +1,7 @@
 ---
 name: plan-to-tickets
 description: "Convert a plan (or several) in plans/active/ into Jira ticket drafts organized by sprint. Drafts persist as JSON under plans/active/{slug}/tickets/{KEY}.json until push; after push they archive to archive/tickets-pushed/{YYYY-MM}/. Use when the user says \"convert this plan to tickets\", \"make tickets from this plan\", \"break down the plan\", \"plan to tickets\", \"ticket up the plan\", or wants to materialize plan work as Jira issues."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Plan to Tickets

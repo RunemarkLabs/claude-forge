@@ -1,6 +1,7 @@
 ---
 name: architecture-doc
 description: "Create an architecture decision record (ADR) or architecture overview page for Confluence. Template includes context, decision, consequences, alternatives considered, and status. Trigger on \"architecture doc\", \"ADR\", \"document this architecture decision\", \"write an architecture page\", \"architecture record\"."
+compatibility: Requires Cowork desktop app environment.
 ---
 
 # Architecture Documentation
