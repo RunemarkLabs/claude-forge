@@ -234,7 +234,7 @@ cmd_install() {
   if test_hook "$HOOK_SH"; then
     ok "Hook verified."
   else
-    warn "Hook test result unexpected — install completed but verify manually."
+    warn "Hook test result unexpected - install completed but verify manually."
   fi
 
   echo
@@ -274,7 +274,7 @@ cmd_verify() {
     ok "Hook synthetic tests: PASS"
     echo "Status: OK"
   else
-    warn "Hook synthetic tests: FAIL — run install to repair."
+    warn "Hook synthetic tests: FAIL - run install to repair."
     exit 1
   fi
 }
