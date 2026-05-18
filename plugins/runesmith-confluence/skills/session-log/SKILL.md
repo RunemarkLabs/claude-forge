@@ -10,15 +10,15 @@ Capture session outcomes (decisions, action items, next steps) as a Confluence p
 
 ## References
 
-- `agents/page-publisher.md` — subagent for markdown→XHTML→POST/PUT with version-bump
+- `agents/page-publisher.md` - subagent for markdown→XHTML→POST/PUT with version-bump
 
 - `lib/atlassian-rest.md`
 - `lib/confluence-format.md`
 - `lib/credentials.md`
 - `lib/consent.md`
 - `lib/tokens.md`
-- `lib/comms-check.md` — runs first
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/comms-check.md` - runs first
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -61,11 +61,11 @@ Do not use for:
 
 ### 2. Compose markdown
 
-Save to `/drafts/sessions/YYYY-MM-DD-<slug>.md`. Title as `Session — {Date} — {Topic}` for sortable archive.
+Save to `/drafts/sessions/YYYY-MM-DD-<slug>.md`. Title as `Session - {Date} - {Topic}` for sortable archive.
 
 ### 3. Get consent
 
-"Publish session log to {SPACE_KEY}?" — wait for trigger phrase.
+"Publish session log to {SPACE_KEY}?" - wait for trigger phrase.
 
 ### 4. Publish
 
@@ -79,7 +79,7 @@ POST {ATLASSIAN_API_URL}/wiki/api/v2/pages
 
 ```
 ✓ Session logged
-{Topic} — {date}
+{Topic} - {date}
 {decisions} decisions, {actions} actions
 {page_url}
 ```

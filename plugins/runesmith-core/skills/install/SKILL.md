@@ -12,8 +12,8 @@ This skill explains both install paths (marketplace and manual) and routes the u
 
 ## References
 
-- `lib/install-paths.md` — Cowork vs. Claude Code paths, marketplace flow
-- `lib/credentials.md` — `PLUGIN_SOURCES` key
+- `lib/install-paths.md` - Cowork vs. Claude Code paths, marketplace flow
+- `lib/credentials.md` - `PLUGIN_SOURCES` key
 
 ## Pre-Flight Checks
 
@@ -41,10 +41,10 @@ Do not use for:
 Always available in this repo:
 
 ```
-core      — Planning, configuration, plugin management
-atlassian — Jira + Confluence skills
-aiops     — AIOPS space templates and bootstrap
-devtools  — Workspace tooling (help, plugin-builder, tech-debt, ...)
+core      - Planning, configuration, plugin management
+atlassian - Jira + Confluence skills
+aiops     - AIOPS space templates and bootstrap
+devtools  - Workspace tooling (help, plugin-builder, tech-debt, ...)
 ```
 
 ### 2. Show optional catalogs (if `PLUGIN_SOURCES` set)

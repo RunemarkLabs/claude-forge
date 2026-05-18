@@ -6,8 +6,8 @@ Part of the [RuneSmith marketplace](https://github.com/runemarklabs/runesmith).
 
 ## Skills
 
-- **`/runesmith-workspace:reallocate`** — Migrate or initialize the workspace folder structure with auto-snapshot.
-- **`/runesmith-workspace:inbox`** — Classify files in _INBOX/ and route them to plans, drafts, tickets, or notes.
+- **`/runesmith-workspace:reallocate`** - Migrate or initialize the workspace folder structure with auto-snapshot.
+- **`/runesmith-workspace:inbox`** - Classify files in _INBOX/ and route them to plans, drafts, tickets, or notes.
 
 ## Install
 

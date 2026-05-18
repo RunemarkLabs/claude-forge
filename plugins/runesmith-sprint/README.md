@@ -6,12 +6,12 @@ Part of the [RuneSmith marketplace](https://github.com/runemarklabs/runesmith).
 
 ## Skills
 
-- **`/runesmith-sprint:enable`** — Wire Atlassian into a project (CLAUDE.md updates + CC-side skill deploy).
-- **`/runesmith-sprint:disable`** — Strip Atlassian wiring from a project.
-- **`/runesmith-sprint:start-sprint`** — Hand the active sprint to Claude Code via session-init comm.
-- **`/runesmith-sprint:sprint-status`** — Sprint board view + comms summary; auto-fires handshake on sprint change.
-- **`/runesmith-sprint:check-comms`** — Triage open comms in {PROJECT}.cc/comms/open/ and process replies.
-- **`/runesmith-sprint:plan-to-tickets`** — Convert plans/active/ plan.md files into Jira tickets organized by sprint.
+- **`/runesmith-sprint:enable`** - Wire Atlassian into a project (CLAUDE.md updates + CC-side skill deploy).
+- **`/runesmith-sprint:disable`** - Strip Atlassian wiring from a project.
+- **`/runesmith-sprint:start-sprint`** - Hand the active sprint to Claude Code via session-init comm.
+- **`/runesmith-sprint:sprint-status`** - Sprint board view + comms summary; auto-fires handshake on sprint change.
+- **`/runesmith-sprint:check-comms`** - Triage open comms in {PROJECT}.cc/comms/open/ and process replies.
+- **`/runesmith-sprint:plan-to-tickets`** - Convert plans/active/ plan.md files into Jira tickets organized by sprint.
 
 ## Install
 

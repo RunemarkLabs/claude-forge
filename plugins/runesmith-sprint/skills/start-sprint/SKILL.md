@@ -10,12 +10,12 @@ Write a `session-init` comm telling Claude Code which Jira sprint it's working. 
 
 ## References
 
-- `lib/sprint-handshake.md` — comm format
-- `lib/atlassian-enabled.md` — must be enabled
-- `lib/atlassian-rest.md` — sprint endpoints
-- `lib/comms-protocol.md` — comms file shape
-- `lib/comms-check.md` — runs first
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/sprint-handshake.md` - comm format
+- `lib/atlassian-enabled.md` - must be enabled
+- `lib/atlassian-rest.md` - sprint endpoints
+- `lib/comms-protocol.md` - comms file shape
+- `lib/comms-check.md` - runs first
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -62,7 +62,7 @@ GET {SITE_URL}/rest/agile/1.0/board/{BOARD_ID}/sprint?state=active
 If multiple active sprints (parallel boards): list, ask user to pick.
 If none active: list `state=future` sprints, ask user to pick or start one in Jira UI first.
 
-User can override by saying "start sprint 42" — explicit sprint id wins.
+User can override by saying "start sprint 42" - explicit sprint id wins.
 
 Confirm: "Start sprint {SPRINT_ID} ({SPRINT_NAME})?"
 

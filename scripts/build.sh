@@ -35,7 +35,7 @@ PLUGINS=(
 
 for p in "${PLUGINS[@]}"; do
   if [ ! -d "$SRC/$p" ]; then
-    echo "skip $p — $SRC/$p not found" >&2
+    echo "skip $p - $SRC/$p not found" >&2
     continue
   fi
 
@@ -49,7 +49,7 @@ for p in "${PLUGINS[@]}"; do
   rm -rf "$STAGE/$p/skills/verify-separation"
   rm -f  "$STAGE/$p/commands/verify-separation.md"
 
-  # Strip cc-skill-templates/<n>/SKILL.md — these would trip Cowork's skill scanner
+  # Strip cc-skill-templates/<n>/SKILL.md - these would trip Cowork's skill scanner
   # outside of skills/<name>/. The .md content stays under skill-template.md, renamed
   # to .txt below so the validator ignores them.
   find "$STAGE/$p/cc-skill-templates" -type f -name 'SKILL.md' -delete 2>/dev/null || true

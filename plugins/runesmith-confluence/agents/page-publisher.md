@@ -1,6 +1,6 @@
 ---
 name: page-publisher
-description: Publish a single Confluence page from a markdown draft — handles markdown→storage XHTML conversion, POST or PUT (with version-bump), 409 retry, and structured result reporting. Used by every runesmith-confluence publish skill (feature-doc, architecture-doc, project-overview, decisions-log, known-issues, roadmap, session-log) to isolate the publish mechanics from the parent's gather-and-consent flow.
+description: Publish a single Confluence page from a markdown draft - handles markdown→storage XHTML conversion, POST or PUT (with version-bump), 409 retry, and structured result reporting. Used by every runesmith-confluence publish skill (feature-doc, architecture-doc, project-overview, decisions-log, known-issues, roadmap, session-log) to isolate the publish mechanics from the parent's gather-and-consent flow.
 tools: Bash, Read, Write
 ---
 
@@ -107,10 +107,10 @@ On failure:
 - [ ] 409 triggers exactly one re-GET + retry before failing
 - [ ] Credentials never logged or echoed
 - [ ] Structured return value (success/failure with detail) for parent to act on
-- [ ] Never prompts the user — parent owns interaction
+- [ ] Never prompts the user - parent owns interaction
 
 ## Why this is an agent
 
-- Conversion logic + retry logic + auth header construction are mechanical and substantial — keeping them out of the parent skill's main context preserves clarity for the user-facing parts.
+- Conversion logic + retry logic + auth header construction are mechanical and substantial - keeping them out of the parent skill's main context preserves clarity for the user-facing parts.
 - All seven publish skills can reuse this agent identically. Without it, each skill would carry its own copy of the same publish loop.
 - 409 retries and 401 refresh logic stay isolated; failures bubble up cleanly as structured data.

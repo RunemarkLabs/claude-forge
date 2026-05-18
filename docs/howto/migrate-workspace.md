@@ -1,6 +1,6 @@
 # How-to: Migrate an Existing Workspace
 
-You have a project folder that predates RuneSmith — maybe stuff at root, git repos in arbitrary places, notes scattered around. Goal: bring it into the canonical RuneSmith layout without losing any content.
+You have a project folder that predates RuneSmith - maybe stuff at root, git repos in arbitrary places, notes scattered around. Goal: bring it into the canonical RuneSmith layout without losing any content.
 
 For the target layout, see `docs/AGENT_PRIMER.md` ("Workspace structure").
 
@@ -14,7 +14,7 @@ For the target layout, see `docs/AGENT_PRIMER.md` ("Workspace structure").
 
 `/runesmith-workspace:reallocate` is idempotent. On a non-conforming workspace it:
 
-1. **Snapshots first** — copies the entire current root state (minus already-canonical content) to `archive/_pre-migration/<ISO>/` so nothing is destroyed.
+1. **Snapshots first** - copies the entire current root state (minus already-canonical content) to `archive/_pre-migration/<ISO>/` so nothing is destroyed.
 2. **Classifies root content** using the destination map in `plugins/runesmith-workspace/lib/folder-conventions.md`:
    - Loose `.md` files → routed to `notes/`, `drafts/`, or `_INBOX/` based on content shape
    - Loose `.json`/`.txt` files → `_INBOX/` for triage by the inbox skill
@@ -44,7 +44,7 @@ cp -r ~/Projects/my-project ~/backups/my-project-pre-migration-$(date +%Y%m%d)
 /runesmith-workspace:reallocate
 ```
 
-Structured prompt — choose:
+Structured prompt - choose:
 - **Preview diff first** (recommended for first run on a messy workspace). Shows the migration plan without writing.
 - **Apply.** Performs the migration.
 - **Cancel.** Bail out.
@@ -58,9 +58,9 @@ The skill outputs:
 - Snapshot target path
 
 Look for anything weird:
-- Unrecognized files routed to `_INBOX/` — fine, you'll classify with `/runesmith-workspace:inbox` later.
-- Files routed to a wrong canonical home — comment on them in chat; the skill adapts.
-- Git repos detected at root that you DON'T want migrated to CC head — say so; the skill leaves them alone.
+- Unrecognized files routed to `_INBOX/` - fine, you'll classify with `/runesmith-workspace:inbox` later.
+- Files routed to a wrong canonical home - comment on them in chat; the skill adapts.
+- Git repos detected at root that you DON'T want migrated to CC head - say so; the skill leaves them alone.
 
 If the plan looks right, re-run with **Apply**.
 
@@ -69,7 +69,7 @@ If the plan looks right, re-run with **Apply**.
 Re-run with apply. The skill:
 - Creates `archive/_pre-migration/<ISO>/` snapshot.
 - Moves each classified item.
-- Renames the CC head per the canonical naming rule (`<project-name>.cc/` — kebab-case-lowercase).
+- Renames the CC head per the canonical naming rule (`<project-name>.cc/` - kebab-case-lowercase).
 - Writes `STRUCTURE.md`.
 - Refreshes `CLAUDE.md` markers.
 - Emits a final report with the proposed Project Instructions text.
@@ -122,11 +122,11 @@ See `docs/howto/install-guardrail.md`. Protects this project + every other CC se
 
 The canonical layout in `docs/AGENT_PRIMER.md` shows the target. Migration preserves:
 
-- Existing `.git/` directories — repos move into CC head as whole units, history intact.
-- Existing `CLAUDE.md` — content outside the marker blocks is preserved. Skill content between markers is overwritten.
-- Existing canonical folders (`plans/`, `notes/`, etc.) — preserved in place, not snapshotted, not duplicated.
-- `.credentials` — preserved (already at workspace root).
-- `.git/`, `.github/`, `node_modules/`, etc. — not touched by reallocate; those belong to nested repos or build tooling.
+- Existing `.git/` directories - repos move into CC head as whole units, history intact.
+- Existing `CLAUDE.md` - content outside the marker blocks is preserved. Skill content between markers is overwritten.
+- Existing canonical folders (`plans/`, `notes/`, etc.) - preserved in place, not snapshotted, not duplicated.
+- `.credentials` - preserved (already at workspace root).
+- `.git/`, `.github/`, `node_modules/`, etc. - not touched by reallocate; those belong to nested repos or build tooling.
 
 ## What gets moved or renamed
 
@@ -173,18 +173,18 @@ If something went sideways, the snapshot is at `archive/_pre-migration/<ISO>/`. 
 mv archive/_pre-migration/<ISO>/* ./
 ```
 
-(Be careful — this is destructive in the other direction. Manual snapshot in step 1 is your real safety net.)
+(Be careful - this is destructive in the other direction. Manual snapshot in step 1 is your real safety net.)
 
 Once you've verified rollback worked, delete the snapshot to save space.
 
 ## Troubleshooting
 
-**Reallocate refuses to move a file.** The destination is occupied. Resolve manually — either rename the existing file or the incoming one. Re-run reallocate.
+**Reallocate refuses to move a file.** The destination is occupied. Resolve manually - either rename the existing file or the incoming one. Re-run reallocate.
 
-**Git repo migration breaks remote tracking.** It shouldn't — git tracks remotes by `.git/config`, which travels with the repo. Verify: `cd {PROJECT}.cc/<repo>/ && git remote -v`. If empty, the move corrupted `.git/`. Restore from `archive/_pre-migration/<ISO>/<repo>/.git/` manually.
+**Git repo migration breaks remote tracking.** It shouldn't - git tracks remotes by `.git/config`, which travels with the repo. Verify: `cd {PROJECT}.cc/<repo>/ && git remote -v`. If empty, the move corrupted `.git/`. Restore from `archive/_pre-migration/<ISO>/<repo>/.git/` manually.
 
-**CLAUDE.md user content got eaten.** Should never happen — markers are strict. If it did, the file at `archive/_pre-migration/<ISO>/CLAUDE.md` has the pre-migration state. Diff against current, restore the missing pieces, ensure they're outside any marker pair.
+**CLAUDE.md user content got eaten.** Should never happen - markers are strict. If it did, the file at `archive/_pre-migration/<ISO>/CLAUDE.md` has the pre-migration state. Diff against current, restore the missing pieces, ensure they're outside any marker pair.
 
-**`STRUCTURE.md` doesn't reflect my custom layout.** STRUCTURE.md is generated from `plugins/runesmith-workspace/lib/STRUCTURE.template.md` — it documents the canonical layout, not your specific deviations. If you have valid custom folders that aren't in the canonical set, document them outside the marker pair in `CLAUDE.md`.
+**`STRUCTURE.md` doesn't reflect my custom layout.** STRUCTURE.md is generated from `plugins/runesmith-workspace/lib/STRUCTURE.template.md` - it documents the canonical layout, not your specific deviations. If you have valid custom folders that aren't in the canonical set, document them outside the marker pair in `CLAUDE.md`.
 
-**Reallocate ran but didn't migrate a repo I expected.** The skill only auto-migrates folders with a `.git/` directory directly under workspace root. Nested repos (e.g. `subdir/my-repo/.git/`) aren't auto-migrated — move them manually if needed, or use `/runesmith-cc:bootstrap-cc` to clone fresh.
+**Reallocate ran but didn't migrate a repo I expected.** The skill only auto-migrates folders with a `.git/` directory directly under workspace root. Nested repos (e.g. `subdir/my-repo/.git/`) aren't auto-migrated - move them manually if needed, or use `/runesmith-cc:bootstrap-cc` to clone fresh.

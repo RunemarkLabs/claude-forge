@@ -1,19 +1,19 @@
 ---
 name: code-tech-debt
-description: "Scan repos inside this CC head for code-level tech debt — unused exports, dead functions, orphaned files, unused dependencies, leftover scaffolding from refactors. Runs in Claude Code, scoped to the current repo. Use when the user says \"code tech debt\", \"dead code\", \"unused imports\", \"what can I remove from this repo\", or proactively after a refactor. Read-only by default; mutations require explicit consent."
+description: "Scan repos inside this CC head for code-level tech debt - unused exports, dead functions, orphaned files, unused dependencies, leftover scaffolding from refactors. Runs in Claude Code, scoped to the current repo. Use when the user says \"code tech debt\", \"dead code\", \"unused imports\", \"what can I remove from this repo\", or proactively after a refactor. Read-only by default; mutations require explicit consent."
 compatibility: Requires Cowork desktop app environment.
 ---
 
 # Code Tech Debt (CC-side)
 
-Scan repos in `{PROJECT}.cc/<repo>/` for unused code, dead exports, orphaned files, and stale dependencies. Per-language analyzers, extensible via the language registry in `@lib/code-analyzers.md`. Read-only by default — flags findings, proposes removals; user consent required for any deletion.
+Scan repos in `{PROJECT}.cc/<repo>/` for unused code, dead exports, orphaned files, and stale dependencies. Per-language analyzers, extensible via the language registry in `@lib/code-analyzers.md`. Read-only by default - flags findings, proposes removals; user consent required for any deletion.
 
 This skill is deployed to `{PROJECT}.cc/.claude/skills/code-tech-debt/SKILL.md` by `/runesmith-cc:bootstrap-cc` running in Cowork. Do not edit it directly here unless you intend the change to flow to all future bootstraps.
 
 ## References
 
-- `@lib/code-analyzers.md` — per-language analyzer registry (tools, heuristics, fallbacks). Source of truth for adding new language support.
-- `.claude-code-workspace` (marker, in CC root) — for `repos[]` list (which repos to consider in scope)
+- `@lib/code-analyzers.md` - per-language analyzer registry (tools, heuristics, fallbacks). Source of truth for adding new language support.
+- `.claude-code-workspace` (marker, in CC root) - for `repos[]` list (which repos to consider in scope)
 - The repo's own config files (`package.json`, `pyproject.toml`, `tsconfig.json`, etc.) drive per-repo language detection
 
 ## Scope
@@ -30,8 +30,8 @@ For workspace-level tech debt (orphaned plans, unreferenced drafts, stale resear
 ## When to Use
 
 Use for:
-- After a refactor — find leftover dead code
-- Before a release — verify no orphaned files or unused deps
+- After a refactor - find leftover dead code
+- Before a release - verify no orphaned files or unused deps
 - Periodic hygiene per repo
 - When file count seems too high vs. what's actually in use
 
@@ -101,9 +101,9 @@ Cap walk depth and file count to keep runtime bounded. For very large repos, def
 
 Many findings need confirmation that they're truly unused, not just unused at one analyzer's level:
 
-- An "unused export" might be consumed via dynamic import / string-based require — grep for the name as a string before flagging.
-- An "unreferenced file" might be referenced via a glob (e.g. Next.js `pages/`, route auto-discovery) — check framework conventions.
-- An "unused dependency" might be runtime-imported via a config file or string template — grep the package name across the tree.
+- An "unused export" might be consumed via dynamic import / string-based require - grep for the name as a string before flagging.
+- An "unreferenced file" might be referenced via a glob (e.g. Next.js `pages/`, route auto-discovery) - check framework conventions.
+- An "unused dependency" might be runtime-imported via a config file or string template - grep the package name across the tree.
 
 Findings that survive this cross-reference are high-confidence debt. Findings that don't are flagged as **likely-orphan** vs **confirmed-orphan**.
 
@@ -129,7 +129,7 @@ Unreferenced files ({P})
 Unused dependencies ({Q})
   lodash.merge (package.json:14)   not imported anywhere   → npm uninstall?
 
-Likely-orphan (low confidence — review)
+Likely-orphan (low confidence - review)
   src/types/legacy.ts   referenced only by tests, tests may also be orphaned
 
 Total: {total} items
@@ -146,7 +146,7 @@ What do you want to act on?
   [ ] Remove unused imports (auto-fixable)
   [ ] Uninstall unused dependencies
   [ ] Review likely-orphans individually
-  [ ] Preview only — no changes
+  [ ] Preview only - no changes
 ```
 
 For destructive actions (delete file, uninstall dep), require the consent-trigger phrase from `lib/consent.md` ("remove", "delete them", "apply").
@@ -190,8 +190,8 @@ Applied: {k} changes (git-staged)
 Remaining (preview only): {m} items
 
 Recommended tools to install for better coverage:
-  - ts-prune  (TypeScript unused exports — currently using heuristic)
-  - vulture   (Python dead code — currently using heuristic)
+  - ts-prune  (TypeScript unused exports - currently using heuristic)
+  - vulture   (Python dead code - currently using heuristic)
 
 Next: review staged changes with `git diff --staged` and commit when ready.
 ```
@@ -200,9 +200,9 @@ Next: review staged changes with `git diff --staged` and commit when ready.
 
 - [ ] Read-only until user consents per category
 - [ ] Cross-reference confirms unused before high-confidence flag
-- [ ] No auto-install of analyzer tools — only recommends
+- [ ] No auto-install of analyzer tools - only recommends
 - [ ] Cap walk depth + file count; surface --deep option for full scan
-- [ ] Never commits, never pushes — stops at git-staged
+- [ ] Never commits, never pushes - stops at git-staged
 - [ ] Boundary respected: never edits outside the target repo
 - [ ] Comms reply if invoked via task; chat reply if invoked directly
 - [ ] Per-language analyzers governed by `@lib/code-analyzers.md` for extensibility
@@ -224,4 +224,4 @@ To add a language scope, edit `@lib/code-analyzers.md`:
 4. Define which findings categories the analyzer covers
 5. Update this skill's "Build the scan plan" table if a new category emerges
 
-No code change to this SKILL.md required for additive language support — the registry drives it.
+No code change to this SKILL.md required for additive language support - the registry drives it.

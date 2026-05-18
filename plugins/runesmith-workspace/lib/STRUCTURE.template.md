@@ -2,13 +2,13 @@
 
 This file is generated at workspace root by `/runesmith-workspace:reallocate` from the template in `runesmith-workspace/lib/STRUCTURE.template.md`. It documents the canonical workspace layout for any project bootstrapped with this marketplace.
 
-For the destination map and lifecycle rules, see `runesmith-workspace/lib/folder-conventions.md` (the source of truth — this file is the user-facing summary).
+For the destination map and lifecycle rules, see `runesmith-workspace/lib/folder-conventions.md` (the source of truth - this file is the user-facing summary).
 
 ## Layout
 
 ```
 <workspace-root>/
-├── _INBOX/                              drop zone — inbox skill empties it
+├── _INBOX/                              drop zone - inbox skill empties it
 │
 ├── plans/
 │   ├── active/<slug>/                   active plans (claude-readable)
@@ -73,21 +73,21 @@ For the destination map and lifecycle rules, see `runesmith-workspace/lib/folder
 ## Key conventions
 
 - **Root stays clean.** Only the entries above. Anything else at root = inbox-item → run `/runesmith-workspace:inbox`.
-- **`_INBOX/`** — permanent drop zone, transient contents. Inbox skill classifies and routes; reallocate never places files here.
-- **`plans/active/<slug>/`** — every plan is a folder. `plan.md` is the entry point. See `runesmith-workspace/lib/plan-format.md`.
+- **`_INBOX/`** - permanent drop zone, transient contents. Inbox skill classifies and routes; reallocate never places files here.
+- **`plans/active/<slug>/`** - every plan is a folder. `plan.md` is the entry point. See `runesmith-workspace/lib/plan-format.md`.
 - **Tickets** live under their plan in `plans/active/<slug>/tickets/<KEY>.json` pre-push. After push, they move to `archive/tickets-pushed/<YYYY-MM>/`.
 - **Research** lives at `research/<topic>/` when standalone; migrates to `plans/active/<slug>/refs/` once a plan adopts it.
 - **Source-docs** at `source-docs/<topic>/` while content is being consumed; raw files archive to `archive/superseded/<YYYY-MM>/` after.
-- **`comms/`** — Cowork ↔ Claude Code file-based exchange. `open/` is ephemeral; `archive/` is the audit trail. See `runesmith-workspace/lib/comms-protocol.md`.
-- **`{PROJECT}.cc/`** — folder name matches the workspace root folder name with `.cc` suffix. Distinguishes this CC workspace from others.
-- **Atlassian config** — toggled by `/runesmith-sprint:enable` and `/runesmith-sprint:disable`. Marker file `.atlassian-enabled` and CC marker JSON.
+- **`comms/`** - Cowork ↔ Claude Code file-based exchange. `open/` is ephemeral; `archive/` is the audit trail. See `runesmith-workspace/lib/comms-protocol.md`.
+- **`{PROJECT}.cc/`** - folder name matches the workspace root folder name with `.cc` suffix. Distinguishes this CC workspace from others.
+- **Atlassian config** - toggled by `/runesmith-sprint:enable` and `/runesmith-sprint:disable`. Marker file `.atlassian-enabled` and CC marker JSON.
 
 ## Skills that maintain this structure
 
-- `/runesmith-workspace:reallocate` — migrates and normalizes the workspace; refreshes this file
-- `/runesmith-workspace:inbox` — processes `_INBOX/`
-- `/runesmith-core:plan` — writes plans into `plans/active/<slug>/`
-- `/runesmith-cc:bootstrap-cc` — creates `{PROJECT}.cc/`
-- `/runesmith-sprint:enable` — wires Atlassian into the project
-- `/runesmith-sprint:plan-to-tickets` — writes ticket drafts under their plan
-- `/runesmith-sprint:check-comms` — triages `{PROJECT}.cc/comms/open/`
+- `/runesmith-workspace:reallocate` - migrates and normalizes the workspace; refreshes this file
+- `/runesmith-workspace:inbox` - processes `_INBOX/`
+- `/runesmith-core:plan` - writes plans into `plans/active/<slug>/`
+- `/runesmith-cc:bootstrap-cc` - creates `{PROJECT}.cc/`
+- `/runesmith-sprint:enable` - wires Atlassian into the project
+- `/runesmith-sprint:plan-to-tickets` - writes ticket drafts under their plan
+- `/runesmith-sprint:check-comms` - triages `{PROJECT}.cc/comms/open/`

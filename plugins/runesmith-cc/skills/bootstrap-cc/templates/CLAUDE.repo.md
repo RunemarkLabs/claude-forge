@@ -5,7 +5,7 @@ Code workspace.
 
 ## Stack
 
-<one-line description — fill in>
+<one-line description - fill in>
 
 ## Conventions
 

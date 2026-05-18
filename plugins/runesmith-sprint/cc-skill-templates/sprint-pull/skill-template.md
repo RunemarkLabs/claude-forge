@@ -6,15 +6,15 @@ compatibility: Requires Cowork desktop app environment.
 
 # Sprint Pull (CC-side)
 
-Read the active sprint and its tickets via Jira REST. CC's read-only token is in `.credentials`. This skill reads only — never writes Jira.
+Read the active sprint and its tickets via Jira REST. CC's read-only token is in `.credentials`. This skill reads only - never writes Jira.
 
 This skill is deployed to `{PROJECT}.cc/.claude/skills/atlassian/` by `/runesmith-sprint:enable` running in Cowork. Do not edit it directly here unless you intend the change to flow to all future enables.
 
 ## References
 
-- `.claude-code-workspace` (marker, in CC root) — for `atlassian.activeSprintId`, `boardId`, `jiraProjectKey`, `siteUrl`
-- `.credentials` (in CC root) — for auth
-- `@lib/jira-tags.md` — tag taxonomy
+- `.claude-code-workspace` (marker, in CC root) - for `atlassian.activeSprintId`, `boardId`, `jiraProjectKey`, `siteUrl`
+- `.credentials` (in CC root) - for auth
+- `@lib/jira-tags.md` - tag taxonomy
 
 ## Pre-Flight Checks
 
@@ -54,22 +54,22 @@ POST {SITE_URL}/rest/api/3/search/jql
 }
 ```
 
-(`customfield_10014` is the Jira default Epic Link field; may differ — discover via `GET /rest/api/3/field` once per session.)
+(`customfield_10014` is the Jira default Epic Link field; may differ - discover via `GET /rest/api/3/field` once per session.)
 
 ### 3. Filter by current state
 
 Categorize tickets:
-- **Available** — `status: "To Do"` or `status: "Selected for Development"`, NOT `cc-blocked`
-- **In progress** — `status: "In Progress"`, possibly with my prior `cc-plan` / `cc-action` activity
-- **Blocked** — labels include `cc-blocked` (these need human attention via comms; CC should not pick these)
-- **Done** — `status: "Done"`
+- **Available** - `status: "To Do"` or `status: "Selected for Development"`, NOT `cc-blocked`
+- **In progress** - `status: "In Progress"`, possibly with my prior `cc-plan` / `cc-action` activity
+- **Blocked** - labels include `cc-blocked` (these need human attention via comms; CC should not pick these)
+- **Done** - `status: "Done"`
 
 ### 4. Pick next
 
 Default: highest-priority Available ticket. Surface candidates:
 
 ```
-Sprint {SPRINT_ID} — {SPRINT_NAME}
+Sprint {SPRINT_ID} - {SPRINT_NAME}
 
 In progress (n)
   {KEY-1}  {priority}  {summary}    ← resume?
@@ -77,7 +77,7 @@ Available (n)
   {KEY-2}  {priority}  {summary}    ← next
   {KEY-3}  {priority}  {summary}
 Blocked (n)
-  {KEY-X}  cc-blocked   {summary}   (skip — needs Cowork or user)
+  {KEY-X}  cc-blocked   {summary}   (skip - needs Cowork or user)
 Done (n)
   {KEY-Y}  cc-done      {summary}   (awaits transition)
 ```
@@ -86,11 +86,11 @@ Continue with the picked ticket: read full description, acceptance criteria, lin
 
 ## Guard Rails
 
-- [ ] Read-only — never POST/PUT/DELETE to Jira from this skill
+- [ ] Read-only - never POST/PUT/DELETE to Jira from this skill
 - [ ] Marker `activeSprintId` cached and updated when sprint changes
 - [ ] Skip `cc-blocked` tickets (don't compete with comms resolution)
 - [ ] Surface up to first 100 tickets; paginate if more
-- [ ] No company-specific assumptions about field ids — discover via `GET /rest/api/3/field`
+- [ ] No company-specific assumptions about field ids - discover via `GET /rest/api/3/field`
 
 ## Error Cases
 

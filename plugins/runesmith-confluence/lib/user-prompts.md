@@ -1,4 +1,4 @@
-# User Prompts — Standard
+# User Prompts - Standard
 
 Every RuneSmith skill that asks the user a question MUST use the host client's structured input UI, never freeform plain-text questions. This is a marketplace-wide invariant.
 
@@ -18,13 +18,13 @@ Never use plain-text "yes/no", "[y/n]", "Proceed?", "Ready to ...?" or free-form
 ## Why
 
 - **Mobile and screen-reader users** can't type quickly or reliably. Structured forms map to native UI affordances.
-- **Cowork's chat surface treats free-form questions ambiguously** — the user's next message may or may not be a response. Structured prompts have explicit response slots.
-- **Auditability** — structured selections are recorded as discrete choices, not buried in chat scrollback.
-- **Defaults** — structured forms can pre-fill the most-likely answer (e.g. normalized name preview), letting the user accept with a click.
+- **Cowork's chat surface treats free-form questions ambiguously** - the user's next message may or may not be a response. Structured prompts have explicit response slots.
+- **Auditability** - structured selections are recorded as discrete choices, not buried in chat scrollback.
+- **Defaults** - structured forms can pre-fill the most-likely answer (e.g. normalized name preview), letting the user accept with a click.
 
 ## Exception: consent trigger phrases for writes
 
-Per `consent.md`, write skills wait for explicit trigger phrases like "make the ticket" or "publish the page" before mutating Atlassian/Jira state. **This is not a freeform question** — it's a designed wait-for-user-intent gate where the user proactively states intent.
+Per `consent.md`, write skills wait for explicit trigger phrases like "make the ticket" or "publish the page" before mutating Atlassian/Jira state. **This is not a freeform question** - it's a designed wait-for-user-intent gate where the user proactively states intent.
 
 The skill does NOT prompt with a question first. It simply pauses and waits for the trigger phrase, or surfaces a single-pick structured prompt asking "Push this draft now?" with options `Push` / `Edit first` / `Cancel`.
 
@@ -80,7 +80,7 @@ Options:
 When writing a skill that asks the user something, document the prompt as:
 
 ```markdown
-### N. Get user input — structured prompt
+### N. Get user input - structured prompt
 
 Surface a structured single-pick prompt:
 - Question: "..."

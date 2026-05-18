@@ -6,13 +6,13 @@ Part of the [RuneSmith marketplace](https://github.com/runemarklabs/runesmith).
 
 ## Skills
 
-- **`/runesmith-confluence:feature-doc`** — Feature specification page.
-- **`/runesmith-confluence:architecture-doc`** — Architecture decision record (ADR) or overview.
-- **`/runesmith-confluence:project-overview`** — Project space landing page.
-- **`/runesmith-confluence:decisions-log`** — Append-only decisions log page.
-- **`/runesmith-confluence:known-issues`** — Known issues / tech debt tracker page.
-- **`/runesmith-confluence:roadmap`** — Now / Next / Later roadmap page.
-- **`/runesmith-confluence:session-log`** — Session outcomes (decisions, action items) page.
+- **`/runesmith-confluence:feature-doc`** - Feature specification page.
+- **`/runesmith-confluence:architecture-doc`** - Architecture decision record (ADR) or overview.
+- **`/runesmith-confluence:project-overview`** - Project space landing page.
+- **`/runesmith-confluence:decisions-log`** - Append-only decisions log page.
+- **`/runesmith-confluence:known-issues`** - Known issues / tech debt tracker page.
+- **`/runesmith-confluence:roadmap`** - Now / Next / Later roadmap page.
+- **`/runesmith-confluence:session-log`** - Session outcomes (decisions, action items) page.
 
 ## Install
 

@@ -10,16 +10,16 @@ Create an ADR or overview page for Confluence.
 
 ## References
 
-- `agents/page-publisher.md` — subagent for markdown→XHTML→POST/PUT with version-bump
+- `agents/page-publisher.md` - subagent for markdown→XHTML→POST/PUT with version-bump
 
 - `lib/atlassian-rest.md`
 - `lib/confluence-format.md`
 - `lib/credentials.md`
 - `lib/consent.md`
 - `lib/tokens.md`
-- `lib/comms-check.md` — runs first
-- `lib/plan-format.md` — for optional plan prefill
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/comms-check.md` - runs first
+- `lib/plan-format.md` - for optional plan prefill
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -80,16 +80,16 @@ Save to `/drafts/project-docs/adr-<slug>.md`:
 - ...
 
 ## Alternatives Considered
-1. {A} — rejected because ...
-2. {B} — rejected because ...
-3. {Chosen} — selected because ...
+1. {A} - rejected because ...
+2. {B} - rejected because ...
+3. {Chosen} - selected because ...
 
 ## Status
 Accepted
 
 ## References
 
-- `agents/page-publisher.md` — subagent for markdown→XHTML→POST/PUT with version-bump
+- `agents/page-publisher.md` - subagent for markdown→XHTML→POST/PUT with version-bump
 - [Related ADR](url)
 
 Date: {YYYY-MM-DD}
@@ -99,7 +99,7 @@ Show in chat for review.
 
 ### 3. Get consent
 
-"Publish this ADR to {SPACE_KEY}?" — wait for trigger phrase.
+"Publish this ADR to {SPACE_KEY}?" - wait for trigger phrase.
 
 ### 4. Publish
 
@@ -113,7 +113,7 @@ POST {ATLASSIAN_API_URL}/wiki/api/v2/pages
 
 ```
 ✓ ADR published
-{Title} — Status: {status}
+{Title} - Status: {status}
 {page_url}
 ```
 

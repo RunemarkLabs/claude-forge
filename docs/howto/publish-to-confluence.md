@@ -5,21 +5,21 @@ The marketplace's `runesmith-confluence` plugin converts markdown to Confluence 
 ## Prerequisites
 
 - Workspace has Atlassian enabled, OR you have `ATLASSIAN_API_URL`, `ATLASSIAN_API_EMAIL`, `ATLASSIAN_API_TOKEN`, and a target `ATLASSIAN_CONFLUENCE_SPACE_ID` in `.credentials`.
-- The target Confluence space already exists (Confluence Cloud v2 doesn't expose space creation via API — make it via UI first).
+- The target Confluence space already exists (Confluence Cloud v2 doesn't expose space creation via API - make it via UI first).
 
 ## Pick the right skill for the shape of doc
 
 | Skill | Use for |
 |---|---|
-| `/runesmith-confluence:project-overview` | Landing pages — what the project is, who's on it, current phase |
-| `/runesmith-confluence:feature-doc` | Feature specs — what's being built, scope, behavior, acceptance criteria |
-| `/runesmith-confluence:architecture-doc` | ADRs — context, decision, consequences, alternatives |
+| `/runesmith-confluence:project-overview` | Landing pages - what the project is, who's on it, current phase |
+| `/runesmith-confluence:feature-doc` | Feature specs - what's being built, scope, behavior, acceptance criteria |
+| `/runesmith-confluence:architecture-doc` | ADRs - context, decision, consequences, alternatives |
 | `/runesmith-confluence:decisions-log` | Append-only running log of project decisions |
 | `/runesmith-confluence:known-issues` | Known issues tracker with severity, workaround, status |
 | `/runesmith-confluence:roadmap` | Now / Next / Later / Someday phase view |
-| `/runesmith-confluence:session-log` | Session summary — decisions, action items, progress |
+| `/runesmith-confluence:session-log` | Session summary - decisions, action items, progress |
 
-Each skill knows its target page shape (templates pinned in `plugins/runesmith-confluence/lib/`). Don't try to make `feature-doc` produce a roadmap page — pick the right tool.
+Each skill knows its target page shape (templates pinned in `plugins/runesmith-confluence/lib/`). Don't try to make `feature-doc` produce a roadmap page - pick the right tool.
 
 ## The flow
 
@@ -30,7 +30,7 @@ Every Confluence skill follows the same gate:
 3. **Gather details.** Structured prompts for the page's specifics (title, parent page id, content sections).
 4. **Optionally pull from a plan.** If you're publishing a `feature-doc` for a feature that has a plan, the skill offers to pre-fill from `plans/active/<slug>/plan.md`.
 5. **Draft locally to markdown.** Saved to `drafts/project-docs/<slug>/` (or `plans/active/<slug>/refs/` if plan-bound). You review on disk.
-6. **Wait for the consent trigger** — "publish the page", "create the document", "ship the doc".
+6. **Wait for the consent trigger** - "publish the page", "create the document", "ship the doc".
 7. **Convert markdown → Confluence storage XHTML** via `scripts/md-to-storage.py`.
 8. **POST/PUT to Confluence.**
    - New page: `POST /wiki/api/v2/pages` with the storage XHTML body and the resolved space id.
@@ -58,7 +58,7 @@ For the agent primer:
 Structured prompts:
 - Title: "RuneSmith Agent Primer"
 - Parent page id: paste the id from step 1
-- Content source: structured single-pick — "use existing markdown file" / "draft from scratch"
+- Content source: structured single-pick - "use existing markdown file" / "draft from scratch"
 - Pick "use existing markdown file"
 - File path: `docs/AGENT_PRIMER.md`
 
@@ -76,7 +76,7 @@ The skill copies the markdown to `drafts/project-docs/runesmith-agent-primer/` f
 /runesmith-confluence:feature-doc       → docs/howto/publish-to-confluence.md
 ```
 
-Each gets its own Confluence page under the parent. `feature-doc` is the right shape for how-to content — it's not really a feature spec, but the skill's page template fits the how-to shape (context, walkthrough, considerations).
+Each gets its own Confluence page under the parent. `feature-doc` is the right shape for how-to content - it's not really a feature spec, but the skill's page template fits the how-to shape (context, walkthrough, considerations).
 
 ### 4. Verify
 
@@ -91,15 +91,15 @@ In Confluence UI, navigate to the parent page. All published docs appear as chil
 - Horizontal rules
 
 Things that DON'T round-trip cleanly through Confluence storage XHTML:
-- Footnotes — converted to inline links
-- Complex tables (merged cells, multi-line cells) — best-effort
-- Mermaid diagrams — Confluence has its own diagram macro; the marketplace's `md-to-storage.py` doesn't convert Mermaid blocks. Use Confluence's native diagram editor.
+- Footnotes - converted to inline links
+- Complex tables (merged cells, multi-line cells) - best-effort
+- Mermaid diagrams - Confluence has its own diagram macro; the marketplace's `md-to-storage.py` doesn't convert Mermaid blocks. Use Confluence's native diagram editor.
 
 ## Updating an already-published page
 
 Re-run the same skill against the same title (or page id if you saved it). The skill detects the existing page, GETs current state, computes the version bump, PUTs the new body. Confluence's version history retains every prior revision.
 
-If the page title changed, the skill creates a NEW page instead of updating — Confluence identifies pages by id, not title. Use the page id explicitly to update.
+If the page title changed, the skill creates a NEW page instead of updating - Confluence identifies pages by id, not title. Use the page id explicitly to update.
 
 ## Publishing the public Runemark docs vs Sapient mirror docs
 
@@ -124,4 +124,4 @@ The marketplace doesn't enforce the split. `ATLASSIAN_API_URL` and `ATLASSIAN_CO
 
 **Mermaid diagrams don't render.** Expected. Use Confluence's native diagram editor or paste a rendered SVG/PNG. The marketplace's md-to-storage converter intentionally doesn't try to translate Mermaid into a Confluence-specific macro (vendor-specific, brittle).
 
-**Page hierarchy doesn't preserve from markdown links.** Confluence's page tree is built from parent-id relationships, not markdown links. Set parent page id explicitly via structured prompt. Internal markdown links (`[text](other-doc.md)`) convert to Confluence links if you publish all docs and the skill resolves the destination page ids — otherwise they're left as relative-path text.
+**Page hierarchy doesn't preserve from markdown links.** Confluence's page tree is built from parent-id relationships, not markdown links. Set parent page id explicitly via structured prompt. Internal markdown links (`[text](other-doc.md)`) convert to Confluence links if you publish all docs and the skill resolves the destination page ids - otherwise they're left as relative-path text.

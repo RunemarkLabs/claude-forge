@@ -10,16 +10,16 @@ Single Confluence page for project roadmap. Now / Next / Later / Someday framewo
 
 ## References
 
-- `agents/page-publisher.md` — subagent for markdown→XHTML→POST/PUT with version-bump
+- `agents/page-publisher.md` - subagent for markdown→XHTML→POST/PUT with version-bump
 
 - `lib/atlassian-rest.md`
 - `lib/confluence-format.md`
 - `lib/credentials.md`
 - `lib/consent.md`
 - `lib/tokens.md`
-- `lib/comms-check.md` — runs first
-- `lib/plan-format.md` — for optional plan prefill (active plans inform Now / Next phases)
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/comms-check.md` - runs first
+- `lib/plan-format.md` - for optional plan prefill (active plans inform Now / Next phases)
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -68,7 +68,7 @@ Save to `/drafts/project-docs/roadmap.md`. Use a table per phase or grouped sect
 
 ### 3. Get consent
 
-"Publish roadmap to {SPACE_KEY}?" — wait for trigger phrase.
+"Publish roadmap to {SPACE_KEY}?" - wait for trigger phrase.
 
 ### 4. Publish
 

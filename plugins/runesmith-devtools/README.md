@@ -6,10 +6,10 @@ Part of the [RuneSmith marketplace](https://github.com/runemarklabs/runesmith).
 
 ## Skills
 
-- **`/runesmith-devtools:help`** — List installed plugins and their skills with natural-language triggers.
-- **`/runesmith-devtools:plugin-builder`** — Scaffold a new Claude plugin.
-- **`/runesmith-devtools:tech-debt`** — Scan workspace for stale or orphaned artifacts.
-- **`/runesmith-devtools:skill-updater`** — Propagate convention changes across all skills.
+- **`/runesmith-devtools:help`** - List installed plugins and their skills with natural-language triggers.
+- **`/runesmith-devtools:plugin-builder`** - Scaffold a new Claude plugin.
+- **`/runesmith-devtools:tech-debt`** - Scan workspace for stale or orphaned artifacts.
+- **`/runesmith-devtools:skill-updater`** - Propagate convention changes across all skills.
 
 ## Install
 

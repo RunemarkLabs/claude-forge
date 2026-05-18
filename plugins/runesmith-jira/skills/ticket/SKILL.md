@@ -12,12 +12,12 @@ Supports Task, Story, Bug, Epic with issue-type-specific fields and acceptance c
 
 ## References
 
-- `lib/atlassian-rest.md` — endpoints + ADF body
-- `lib/credentials.md` — auth resolution
-- `lib/consent.md` — trigger phrases for push
-- `lib/tokens.md` — `{PROJECT_KEY}`, `{LEAD_ACCOUNT_ID}`
-- `lib/comms-check.md` — runs first
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/atlassian-rest.md` - endpoints + ADF body
+- `lib/credentials.md` - auth resolution
+- `lib/consent.md` - trigger phrases for push
+- `lib/tokens.md` - `{PROJECT_KEY}`, `{LEAD_ACCOUNT_ID}`
+- `lib/comms-check.md` - runs first
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -59,7 +59,7 @@ For all types:
 
 For Task/Story:
 - Acceptance criteria (numbered)
-- Story points (optional, custom field id varies — discover via `/rest/api/3/field`)
+- Story points (optional, custom field id varies - discover via `/rest/api/3/field`)
 
 For Bug:
 - Environment (OS, version, browser)

@@ -1,4 +1,4 @@
-# {PROJECT} — Claude Code Workspace
+# {PROJECT} - Claude Code Workspace
 
 This is the Claude Code workspace for the **{PROJECT}** project.
 
@@ -8,10 +8,10 @@ executes.
 
 ## What lives here
 
-- `CLAUDE.md` — monorepo-level rules (always loaded by Claude Code)
-- `.claude/` — skills, commands, agents, hooks scoped to this workspace
-- `comms/` — file-based exchange with Cowork (open/ is ephemeral, archive/ is committed)
-- `<repo>/` — actual code repositories
+- `CLAUDE.md` - monorepo-level rules (always loaded by Claude Code)
+- `.claude/` - skills, commands, agents, hooks scoped to this workspace
+- `comms/` - file-based exchange with Cowork (open/ is ephemeral, archive/ is committed)
+- `<repo>/` - actual code repositories
 
 ## How Cowork ↔ Claude Code communicate
 

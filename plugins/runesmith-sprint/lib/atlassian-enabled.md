@@ -53,12 +53,12 @@ These are the **user's** project values, gathered by `atlassian:enable` at run t
 
 | Skill | Branches on enabled? |
 |---|---|
-| `core:plan` | No — runs same in both configs |
-| `atlassian:plan-to-tickets` | Yes — only available when enabled |
-| `atlassian:start-sprint` / `sprint-status` | Yes — only available when enabled |
-| `atlassian:check-comms` | No — works in both configs |
-| Existing 6 publish skills | No — work standalone, optionally read plans/active/ in both configs |
-| CC-side skill templates | Yes — only deployed by `enable`, only present when enabled |
+| `core:plan` | No - runs same in both configs |
+| `atlassian:plan-to-tickets` | Yes - only available when enabled |
+| `atlassian:start-sprint` / `sprint-status` | Yes - only available when enabled |
+| `atlassian:check-comms` | No - works in both configs |
+| Existing 6 publish skills | No - work standalone, optionally read plans/active/ in both configs |
+| CC-side skill templates | Yes - only deployed by `enable`, only present when enabled |
 
 ## Disable behavior
 

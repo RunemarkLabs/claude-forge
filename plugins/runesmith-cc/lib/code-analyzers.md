@@ -39,9 +39,9 @@ For each `export` statement in `.ts` / `.tsx` files, grep for the exported name 
 **Categories:** unused-export, unused-import (with eslint), unreferenced-file
 
 **Cross-reference checks:**
-- Dynamic imports: `import(...)` with template strings — grep for the file basename as a string
-- Re-exports through barrel `index.ts` files — trace the re-export chain before flagging
-- Type-only exports used in `.d.ts` consumers — verify against declaration files
+- Dynamic imports: `import(...)` with template strings - grep for the file basename as a string
+- Re-exports through barrel `index.ts` files - trace the re-export chain before flagging
+- Type-only exports used in `.d.ts` consumers - verify against declaration files
 
 ---
 
@@ -68,8 +68,8 @@ npx eslint --rule '{"no-unused-vars":"warn"}' --no-eslintrc .
 **Categories:** unused-dep, unused-import, unused-export (via eslint plugins), unreferenced-file
 
 **Cross-reference checks:**
-- `package.json` `scripts` may reference binaries from deps (e.g. `webpack`, `prettier`) — those deps are alive even without imports
-- Runtime requires via dynamic strings — grep for the package name as a string in non-code config (`.env`, `webpack.config.js`)
+- `package.json` `scripts` may reference binaries from deps (e.g. `webpack`, `prettier`) - those deps are alive even without imports
+- Runtime requires via dynamic strings - grep for the package name as a string in non-code config (`.env`, `webpack.config.js`)
 
 ---
 
@@ -88,7 +88,7 @@ npx eslint --rule '{"no-unused-vars":"warn"}' --no-eslintrc .
 **Categories:** unused-component, unused-prop, unreferenced-component-file
 
 **Cross-reference checks:**
-- Components rendered dynamically via `React.createElement(ComponentMap[type], ...)` — grep for the component name as an object value
+- Components rendered dynamically via `React.createElement(ComponentMap[type], ...)` - grep for the component name as an object value
 - Components passed as props (`<Parent renderItem={MyComponent} />`)
 - Components exported from a barrel `index.ts` and consumed via `import { Foo } from './components'`
 
@@ -113,8 +113,8 @@ npx eslint --rule '{"no-unused-vars":"warn"}' --no-eslintrc .
 
 **Cross-reference checks:**
 - A `_app.tsx` / `_document.tsx` / `_error.tsx` is always alive (framework conventions)
-- Files in `public/` are static assets, not code — skip
-- `middleware.ts` matchers may reference paths not in the routing tree — surface as informational
+- Files in `public/` are static assets, not code - skip
+- `middleware.ts` matchers may reference paths not in the routing tree - surface as informational
 
 ---
 
@@ -139,10 +139,10 @@ Reports unused functions, classes, variables, and unreachable code.
 **Categories:** unused-function, unused-class, unused-import, unreachable-module, unused-dep
 
 **Cross-reference checks:**
-- Decorators like `@app.route(...)` mark functions alive even if no direct call exists — recognize common framework decorators (Flask, FastAPI, Django views, Click commands)
-- Dunder methods (`__init__`, `__str__`, etc.) are framework-called — don't flag
-- Entry points declared in `pyproject.toml` `[project.scripts]` — those functions are alive
-- Test discovery patterns (`test_*.py`, `*_test.py`) — pytest auto-discovers; functions starting with `test_` are alive
+- Decorators like `@app.route(...)` mark functions alive even if no direct call exists - recognize common framework decorators (Flask, FastAPI, Django views, Click commands)
+- Dunder methods (`__init__`, `__str__`, etc.) are framework-called - don't flag
+- Entry points declared in `pyproject.toml` `[project.scripts]` - those functions are alive
+- Test discovery patterns (`test_*.py`, `*_test.py`) - pytest auto-discovers; functions starting with `test_` are alive
 
 ---
 
@@ -150,11 +150,11 @@ Reports unused functions, classes, variables, and unreachable code.
 
 To register a new language (e.g. Go, Rust, Java, Ruby):
 
-1. **Detection** — list the signals (config files, manifest entries, file extensions)
-2. **Preferred tool** — name the analyzer, install command, invocation
-3. **Fallback heuristic** — describe the grep/AST pattern for when tool missing
-4. **Categories** — declare which findings categories the language supports
-5. **Cross-reference checks** — list framework-specific aliveness patterns
+1. **Detection** - list the signals (config files, manifest entries, file extensions)
+2. **Preferred tool** - name the analyzer, install command, invocation
+3. **Fallback heuristic** - describe the grep/AST pattern for when tool missing
+4. **Categories** - declare which findings categories the language supports
+5. **Cross-reference checks** - list framework-specific aliveness patterns
 
 Each new entry follows the same template. The `code-tech-debt` skill reads this registry on every run; no code change to the skill itself is needed for additive language support.
 
@@ -162,23 +162,23 @@ Each new entry follows the same template. The `code-tech-debt` skill reads this 
 
 - **Flagging without cross-reference.** Always run the per-language cross-reference checks before high-confidence flags. Framework conventions (Next.js routing, Flask decorators, Django settings) make many "unused" exports actually alive.
 - **Auto-installing analyzers.** Recommend; never install. The user owns their environment.
-- **Touching git history.** Stage deletions (`git rm`) — never commit, never push. The user decides when to commit.
+- **Touching git history.** Stage deletions (`git rm`) - never commit, never push. The user decides when to commit.
 - **Whole-tree scans on big repos.** Default to entry-point graph; surface `--deep` as an opt-in.
 - **Treating absence of import as proof of unused.** Dynamic loaders (React lazy, Next.js dynamic, Python importlib) defeat static analysis. Always cross-reference before high-confidence flags.
 
 ## Findings categories (canonical names)
 
-- `unused-export` — exported symbol with no importers
-- `unused-import` — imported symbol unused in the file
-- `unreferenced-file` — file with no incoming references
-- `unused-dep` — package in manifest, no imports
-- `dead-branch` — code after `return` / unreachable conditional
-- `unused-component` — React component with no usages
-- `unused-prop` — defined prop never read in component
-- `unreferenced-page` — Next.js page outside the routing graph
-- `unused-api-route` — Next.js API handler unreferenced
-- `unused-function` — Python function with no callers
-- `unused-class` — Python class never instantiated or imported
-- `unreachable-module` — Python module no other module imports
+- `unused-export` - exported symbol with no importers
+- `unused-import` - imported symbol unused in the file
+- `unreferenced-file` - file with no incoming references
+- `unused-dep` - package in manifest, no imports
+- `dead-branch` - code after `return` / unreachable conditional
+- `unused-component` - React component with no usages
+- `unused-prop` - defined prop never read in component
+- `unreferenced-page` - Next.js page outside the routing graph
+- `unused-api-route` - Next.js API handler unreferenced
+- `unused-function` - Python function with no callers
+- `unused-class` - Python class never instantiated or imported
+- `unreachable-module` - Python module no other module imports
 
 Use these names consistently across analyzers so the skill's report format stays stable.

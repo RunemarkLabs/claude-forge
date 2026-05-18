@@ -1,6 +1,6 @@
 ---
 name: disable
-description: "Turn off the Atlassian interconnect for this project — strip applied CLAUDE.md sections, remove markers, remove deployed CC skills. Use when the user says \"disable atlassian\", \"turn off atlassian\", \"unwire Jira\", \"remove atlassian from this project\"."
+description: "Turn off the Atlassian interconnect for this project - strip applied CLAUDE.md sections, remove markers, remove deployed CC skills. Use when the user says \"disable atlassian\", \"turn off atlassian\", \"unwire Jira\", \"remove atlassian from this project\"."
 compatibility: Requires Cowork desktop app environment.
 ---
 
@@ -12,10 +12,10 @@ Comms history (archive) is preserved. CC `.credentials` and any user-edited cont
 
 ## References
 
-- `lib/atlassian-enabled.md` — marker semantics
-- `lib/jira-apply.md` — what gets stripped
-- `lib/comms-check.md` — runs first
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/atlassian-enabled.md` - marker semantics
+- `lib/jira-apply.md` - what gets stripped
+- `lib/comms-check.md` - runs first
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -90,7 +90,7 @@ rm <workspace-root>/.atlassian-enabled
 
 Delete `{PROJECT}.cc/.claude/skills/atlassian/` directory.
 
-### 7a. Emit Project Instructions removal note (CRITICAL — don't skip)
+### 7a. Emit Project Instructions removal note (CRITICAL - don't skip)
 
 Cowork's Project Instructions UI field is invisible to the agent. Disable cannot edit it directly. It MUST surface a removal instruction for the user.
 
@@ -98,7 +98,7 @@ The Atlassian supplement was wrapped in HTML-comment markers when sprint:enable 
 
 ```
 ─────────────────────────────────────────────────────────────
-PROJECT INSTRUCTIONS — atlassian supplement removal
+PROJECT INSTRUCTIONS - atlassian supplement removal
 
 Open Cowork's UI (app sidebar → project settings → Instructions)
 and delete the entire block from:

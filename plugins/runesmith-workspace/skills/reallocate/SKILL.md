@@ -10,16 +10,16 @@ Move the workspace to the canonical structure. Detect current state, propose a m
 
 ## References
 
-- `lib/folder-conventions.md` — **single source of truth** for canonical layout, root keep-list, destination map, lifecycle rules. Reallocate is the writer; this file is the spec.
-- `lib/claude-md-section.md` — marker-bounded folder-conventions section template written into workspace CLAUDE.md
-- `lib/claude-md-agent-ops-section.md` — marker-bounded agent-ops section template written into workspace CLAUDE.md
-- `lib/agent-operating-principles.md` — full rationale for the agent-ops section
-- `lib/project-instructions.md` — two-tier project context model (`CLAUDE.md` vs Cowork UI Project Instructions field). Reallocate emits proposed Project Instructions text for the user to paste.
-- `lib/STRUCTURE.template.md` — template for the `STRUCTURE.md` written at workspace root
-- `lib/cc-workspace.md` — CC head structure spec
-- `lib/plan-format.md` — `plans/active/<slug>/` schema
-- `lib/comms-check.md` — runs before mutation
-- `lib/naming.md` — kebab-case-lowercase normalization rule
+- `lib/folder-conventions.md` - **single source of truth** for canonical layout, root keep-list, destination map, lifecycle rules. Reallocate is the writer; this file is the spec.
+- `lib/claude-md-section.md` - marker-bounded folder-conventions section template written into workspace CLAUDE.md
+- `lib/claude-md-agent-ops-section.md` - marker-bounded agent-ops section template written into workspace CLAUDE.md
+- `lib/agent-operating-principles.md` - full rationale for the agent-ops section
+- `lib/project-instructions.md` - two-tier project context model (`CLAUDE.md` vs Cowork UI Project Instructions field). Reallocate emits proposed Project Instructions text for the user to paste.
+- `lib/STRUCTURE.template.md` - template for the `STRUCTURE.md` written at workspace root
+- `lib/cc-workspace.md` - CC head structure spec
+- `lib/plan-format.md` - `plans/active/<slug>/` schema
+- `lib/comms-check.md` - runs before mutation
+- `lib/naming.md` - kebab-case-lowercase normalization rule
 
 ## User input rules (CRITICAL)
 
@@ -40,14 +40,14 @@ Resolve workspace root (cwd or `BOOTSTRAP_WORKSPACE` env). Show in the upcoming 
 ## When to Use
 
 Use for:
-- Fresh workspace — initialize the canonical structure
-- Workspace from a prior version of this marketplace — normalize to current layout
-- Unknown structure — detect what's there, propose mapping, ask only when ambiguous
+- Fresh workspace - initialize the canonical structure
+- Workspace from a prior version of this marketplace - normalize to current layout
+- Unknown structure - detect what's there, propose mapping, ask only when ambiguous
 
 Do not use for:
 - Mid-session ad-hoc moves (do those manually)
-- **Anything inside `{PROJECT}.cc/`** beyond the head's own scaffold (CLAUDE.md, marker, comms, .claude/). Reallocate has a HARD BOUNDARY at the `{PROJECT}.cc/<repo>/` level — it never enters source repos. Repo internals are CC's territory; use `/runesmith-cc:code-tech-debt` (deployed by `bootstrap-cc`) for repo-level cleanup.
-- Routing inbox content (use `runesmith-workspace:inbox` — reallocate routes only ambiguous loose-root files; inbox handles all `_INBOX/` content)
+- **Anything inside `{PROJECT}.cc/`** beyond the head's own scaffold (CLAUDE.md, marker, comms, .claude/). Reallocate has a HARD BOUNDARY at the `{PROJECT}.cc/<repo>/` level - it never enters source repos. Repo internals are CC's territory; use `/runesmith-cc:code-tech-debt` (deployed by `bootstrap-cc`) for repo-level cleanup.
+- Routing inbox content (use `runesmith-workspace:inbox` - reallocate routes only ambiguous loose-root files; inbox handles all `_INBOX/` content)
 
 ## Workflow
 
@@ -55,12 +55,12 @@ Do not use for:
 
 Scan workspace root for known entries. Bucket each against the keep-list in `lib/folder-conventions.md`:
 
-- **Canonical dir** — appears on the required-dir list. Keep in place.
-- **Canonical file** — appears on the root keep-list (marketplace docs, workspace config, generated files). Keep in place.
-- **Git repo** — any subdir containing `.git/`. **These auto-migrate into the CC head without asking.** Their folder name (normalized per `lib/naming.md`) is the primary candidate for the CC head name.
-- **CC head candidate** — `claude-code/` (legacy name) or `<name>.cc/` (canonical) at workspace root.
-- **Unknown at root** — anything not on the keep-list and not a git repo. Surface to the user as inbox-items via a structured prompt (route to `_INBOX/` for inbox-skill classification, or specify another canonical home directly).
-- **Already in a canonical home** — files inside `plans/`, `notes/`, `drafts/`, `research/`, `source-docs/`, `tickets/` (legacy root dir), `archive/`. Touch only if explicitly part of a migration (e.g. legacy `tickets/` at root → into plans).
+- **Canonical dir** - appears on the required-dir list. Keep in place.
+- **Canonical file** - appears on the root keep-list (marketplace docs, workspace config, generated files). Keep in place.
+- **Git repo** - any subdir containing `.git/`. **These auto-migrate into the CC head without asking.** Their folder name (normalized per `lib/naming.md`) is the primary candidate for the CC head name.
+- **CC head candidate** - `claude-code/` (legacy name) or `<name>.cc/` (canonical) at workspace root.
+- **Unknown at root** - anything not on the keep-list and not a git repo. Surface to the user as inbox-items via a structured prompt (route to `_INBOX/` for inbox-skill classification, or specify another canonical home directly).
+- **Already in a canonical home** - files inside `plans/`, `notes/`, `drafts/`, `research/`, `source-docs/`, `tickets/` (legacy root dir), `archive/`. Touch only if explicitly part of a migration (e.g. legacy `tickets/` at root → into plans).
 
 ### 2. Derive CC head name
 
@@ -100,17 +100,17 @@ archive/_pre-migration/<ISO timestamp>/
 
 CC head migration uses a separate snapshot at `archive/_pre-cc-bootstrap/<ISO>/`.
 
-### 5. Get consent (structured — MANDATORY)
+### 5. Get consent (structured - MANDATORY)
 
-Surface a **single structured confirmation prompt** using the host client's structured-input tool (in Cowork: `AskUserQuestion`). Do NOT ask in chat with a freeform "should I proceed?" — that's a protocol violation against the user-input rules in this skill's frontmatter.
+Surface a **single structured confirmation prompt** using the host client's structured-input tool (in Cowork: `AskUserQuestion`). Do NOT ask in chat with a freeform "should I proceed?" - that's a protocol violation against the user-input rules in this skill's frontmatter.
 
 The prompt MUST be a single-pick form with the migration plan summary visible above it. Options:
 
 - **Apply migration** (default)
-- **Preview only — don't move anything**
+- **Preview only - don't move anything**
 - **Cancel**
 
-If you find yourself typing "want me to proceed?" or "ready to execute?" in chat, STOP. Load the structured-input tool first (via ToolSearch if not already loaded), then use it. This rule applies to every consent gate in this skill — migration consent, per-item ambiguous routing, conflict resolution, Project Instructions merge mode.
+If you find yourself typing "want me to proceed?" or "ready to execute?" in chat, STOP. Load the structured-input tool first (via ToolSearch if not already loaded), then use it. This rule applies to every consent gate in this skill - migration consent, per-item ambiguous routing, conflict resolution, Project Instructions merge mode.
 
 ### 6. CC head migration sub-step
 
@@ -139,18 +139,18 @@ Ensure these exist per `lib/folder-conventions.md` (empty with `.gitkeep` is fin
 - `source-docs/`
 - `archive/superseded/`, `archive/tickets-pushed/`
 
-Do not create a root-level `tickets/` — tickets live under their plan now.
+Do not create a root-level `tickets/` - tickets live under their plan now.
 
 ### 9. Generate STRUCTURE.md
 
-Read `lib/STRUCTURE.template.md`. Write it to workspace root as `STRUCTURE.md`. No substitutions — paths in the template are conventional and don't require workspace-specific values.
+Read `lib/STRUCTURE.template.md`. Write it to workspace root as `STRUCTURE.md`. No substitutions - paths in the template are conventional and don't require workspace-specific values.
 
 ### 10. Apply folder-conventions + agent-ops sections to CLAUDE.md
 
 Two marker-bounded sections to manage in workspace root `CLAUDE.md`, in this order:
 
-1. `<!-- folder-conventions:start -->` ... `<!-- folder-conventions:end -->` — per `lib/claude-md-section.md`
-2. `<!-- agent-ops:start -->` ... `<!-- agent-ops:end -->` — per `lib/claude-md-agent-ops-section.md`
+1. `<!-- folder-conventions:start -->` ... `<!-- folder-conventions:end -->` - per `lib/claude-md-section.md`
+2. `<!-- agent-ops:start -->` ... `<!-- agent-ops:end -->` - per `lib/claude-md-agent-ops-section.md`
 
 For each section:
 - Read workspace root `CLAUDE.md`.
@@ -170,9 +170,9 @@ Ensure these patterns are gitignored:
 - `{PROJECT}.cc/comms/open/*` (CC's open comms; archive is committed)
 - `.credentials`
 
-### 12. Emit Project Instructions text (CRITICAL — don't skip)
+### 12. Emit Project Instructions text (CRITICAL - don't skip)
 
-Per `lib/project-instructions.md`: Cowork has TWO project-context surfaces. `CLAUDE.md` is the on-disk **structural** context (folder layout, file paths, conventions that change as the project grows). **Project Instructions** is a separate Cowork UI field carrying **behavioral** context (project mission, Cowork's role, permanent rules) — invisible to the agent, edited only via Cowork's app UI.
+Per `lib/project-instructions.md`: Cowork has TWO project-context surfaces. `CLAUDE.md` is the on-disk **structural** context (folder layout, file paths, conventions that change as the project grows). **Project Instructions** is a separate Cowork UI field carrying **behavioral** context (project mission, Cowork's role, permanent rules) - invisible to the agent, edited only via Cowork's app UI.
 
 The hard rule: **Project Instructions is behavioral; CLAUDE.md is structural.** They must NOT bleed into each other.
 
@@ -182,9 +182,9 @@ For every reallocate run:
 
 1. Detect the project name (workspace root folder, normalized per `lib/naming.md`).
 2. Render the canonical Project Instructions template from `lib/project-instructions.md`, substituting `{PROJECT_NAME}` only.
-3. Surface in the final report inside a clearly-labelled code block — the user copies and pastes into Cowork → project settings → Instructions field.
+3. Surface in the final report inside a clearly-labelled code block - the user copies and pastes into Cowork → project settings → Instructions field.
 
-**Do NOT emit Atlassian content.** Reallocate produces the BASE Project Instructions only. Atlassian-specific rules are appended separately by `runesmith-sprint:enable` (marker-bounded so they can be added/removed independently). If you detect `.atlassian-enabled` at workspace root, surface a note in the report: "Atlassian is enabled for this project — your existing Project Instructions likely has an `<!-- runesmith:atlassian-start/end -->` block from `/runesmith-sprint:enable`. Preserve that block when pasting; the base template below replaces only the non-Atlassian portion."
+**Do NOT emit Atlassian content.** Reallocate produces the BASE Project Instructions only. Atlassian-specific rules are appended separately by `runesmith-sprint:enable` (marker-bounded so they can be added/removed independently). If you detect `.atlassian-enabled` at workspace root, surface a note in the report: "Atlassian is enabled for this project - your existing Project Instructions likely has an `<!-- runesmith:atlassian-start/end -->` block from `/runesmith-sprint:enable`. Preserve that block when pasting; the base template below replaces only the non-Atlassian portion."
 
 Likewise: do not emit content for any other opt-in feature plugin (future extensions). Each skill owns its own Project Instructions supplement.
 
@@ -194,7 +194,7 @@ Likewise: do not emit content for any other opt-in feature plugin (future extens
 - Version numbers or commands referencing files
 - Anything that would need to be re-edited when the workspace is restructured
 
-If any of those appear in the text, you've written the wrong content for this field — move them to CLAUDE.md instead.
+If any of those appear in the text, you've written the wrong content for this field - move them to CLAUDE.md instead.
 
 **Auto-written sections** (reallocate generates these verbatim per the template):
 - `## ROLE`
@@ -203,13 +203,13 @@ If any of those appear in the text, you've written the wrong content for this fi
 - `## ATLASSIAN` (only if atlassian-enabled)
 
 **User-filled section** (reallocate leaves a clear TODO placeholder):
-- `## PROJECT` — one to three sentences describing what the project IS. Reallocate does NOT auto-write this; it doesn't know what the user's project is about. Leave a placeholder like `{Fill in: what is this project? Why does it exist? What's the goal?}`.
+- `## PROJECT` - one to three sentences describing what the project IS. Reallocate does NOT auto-write this; it doesn't know what the user's project is about. Leave a placeholder like `{Fill in: what is this project? Why does it exist? What's the goal?}`.
 
 Format in the report (use this exact preamble so the user knows what to do):
 
 ```
 ─────────────────────────────────────────────────────────────
-PROJECT INSTRUCTIONS — paste into Cowork's UI
+PROJECT INSTRUCTIONS - paste into Cowork's UI
 
 Cowork's Project Instructions field (app sidebar → project
 settings → Instructions) carries the project's PERMANENT
@@ -219,7 +219,7 @@ edited from here.
 
 Open Cowork's UI and paste the block below into the
 Instructions field. Fill in the PROJECT section with what
-your project IS — that's the only part you need to author.
+your project IS - that's the only part you need to author.
 ─────────────────────────────────────────────────────────────
 
 # {PROJECT_NAME}
@@ -227,12 +227,12 @@ your project IS — that's the only part you need to author.
 ... (rendered template from lib/project-instructions.md) ...
 ```
 
-If the workspace already had Project Instructions set (no programmatic way to know — ask the user via structured prompt: "Do you already have Cowork Project Instructions set for this project? — Yes, replace / Yes, merge / No, paste fresh"), surface guidance accordingly:
+If the workspace already had Project Instructions set (no programmatic way to know - ask the user via structured prompt: "Do you already have Cowork Project Instructions set for this project? - Yes, replace / Yes, merge / No, paste fresh"), surface guidance accordingly:
 - Replace → paste over existing
 - Merge → keep their PROJECT section, replace ROLE/RULES/HOW WE WORK with the new template (they're skill-managed)
 - Fresh → first-time bootstrap
 
-Do NOT skip this step. The user has no other signal that the Project Instructions field needs to exist or be updated. If you skip it, the workspace ends up half-configured — folder structure correct, role context missing or stale.
+Do NOT skip this step. The user has no other signal that the Project Instructions field needs to exist or be updated. If you skip it, the workspace ends up half-configured - folder structure correct, role context missing or stale.
 
 ### 13. Surface security warnings
 
@@ -267,8 +267,8 @@ CLAUDE.md: folder-conventions section refreshed
 STRUCTURE.md: regenerated
 
 Next:
-  /runesmith-workspace:inbox  — process anything sitting in _INBOX/
-  /runesmith-core:plan        — capture a plan
+  /runesmith-workspace:inbox  - process anything sitting in _INBOX/
+  /runesmith-core:plan        - capture a plan
 ```
 
 ## Idempotent re-run
@@ -280,7 +280,7 @@ If the workspace is already in canonical shape:
 - Verify required dirs exist; create any missing.
 - Verify `.gitignore` patterns; add any missing.
 - Refresh `STRUCTURE.md` from current template.
-- Refresh marker-bounded section in `CLAUDE.md` (idempotent — replaces with current template).
+- Refresh marker-bounded section in `CLAUDE.md` (idempotent - replaces with current template).
 - Report "Already canonical."
 
 ## Guard Rails
@@ -303,7 +303,7 @@ If the workspace is already in canonical shape:
 - [ ] Marker-bounded agent-ops section written into `CLAUDE.md` per `lib/claude-md-agent-ops-section.md`
 - [ ] Content outside marker pairs in `CLAUDE.md` untouched
 - [ ] `.gitignore` patterns added
-- [ ] **Project Instructions text emitted at the end of the report** (Cowork UI field; agent can't write directly — user pastes). Skipping this leaves the workspace half-configured. See `lib/project-instructions.md`.
+- [ ] **Project Instructions text emitted at the end of the report** (Cowork UI field; agent can't write directly - user pastes). Skipping this leaves the workspace half-configured. See `lib/project-instructions.md`.
 - [ ] Atlassian section markers preserved (suggest re-run if detected)
 - [ ] Security warnings surfaced (PAT in remote URL, leaked secrets in moved repos)
 - [ ] Idempotent on re-run
@@ -312,7 +312,7 @@ If the workspace is already in canonical shape:
 
 **Empty workspace, nothing to migrate:** Initialize canonical dirs from scratch, write STRUCTURE.md, apply CLAUDE.md section (bootstrap form), report.
 **Permission errors during move:** Surface the file, abort the run, suggest user fix permissions and re-run.
-**Conflict — destination exists with different content:** Surface a **structured choice** (single-pick): keep existing / overwrite from source / skip / abort.
+**Conflict - destination exists with different content:** Surface a **structured choice** (single-pick): keep existing / overwrite from source / skip / abort.
 **Multiple `*.cc/` candidates:** Surface a **structured choice** listing each, single-pick which is active.
 **`{PROJECT}.cc/` exists but no marker file:** Treat as legacy CC head; run normalization to add marker + missing structural files.
 **Legacy `tickets/` at root with JSONs:** For each JSON, surface a structured prompt asking which plan slug it belongs to. If no plan exists, offer "create a plan now" or "route to `archive/superseded/<YYYY-MM>/tickets-orphan/`".

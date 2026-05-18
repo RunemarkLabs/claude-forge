@@ -1,6 +1,6 @@
 ---
 name: enable
-description: "Wire Atlassian into this project — collect Jira project + Confluence space details, apply workflow rules into both CLAUDE.md files, deploy CC-side skills, and write the .atlassian-enabled marker. Use when the user says \"enable atlassian\", \"wire up Jira\", \"connect Atlassian to this project\", \"turn on atlassian\", \"set up sprint workflow\", or \"make this project use Jira\"."
+description: "Wire Atlassian into this project - collect Jira project + Confluence space details, apply workflow rules into both CLAUDE.md files, deploy CC-side skills, and write the .atlassian-enabled marker. Use when the user says \"enable atlassian\", \"wire up Jira\", \"connect Atlassian to this project\", \"turn on atlassian\", \"set up sprint workflow\", or \"make this project use Jira\"."
 compatibility: Requires Cowork desktop app environment.
 ---
 
@@ -12,14 +12,14 @@ Idempotent. Re-running refreshes applied sections in place without duplicating.
 
 ## References
 
-- `lib/atlassian-rest.md` — endpoints
-- `lib/credentials.md` — auth
-- `lib/comms-check.md` — runs first
-- `lib/atlassian-enabled.md` — marker semantics
-- `lib/jira-apply.md` — exact applied content
-- `lib/sprint-handshake.md` — first-sprint comm flow
-- `lib/jira-tags.md` — tag taxonomy
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/atlassian-rest.md` - endpoints
+- `lib/credentials.md` - auth
+- `lib/comms-check.md` - runs first
+- `lib/atlassian-enabled.md` - marker semantics
+- `lib/jira-apply.md` - exact applied content
+- `lib/sprint-handshake.md` - first-sprint comm flow
+- `lib/jira-tags.md` - tag taxonomy
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -51,7 +51,7 @@ Use for:
 
 Do not use for:
 - Disabling → `/atlassian:disable`
-- Changing only one field — re-run is fine, asks every value
+- Changing only one field - re-run is fine, asks every value
 
 ## Workflow
 
@@ -59,18 +59,18 @@ Do not use for:
 
 Prompt user for the **user's** Atlassian configuration (not the marketplace's):
 
-- **Site URL** — e.g. `https://acme.atlassian.net`. Default from `ATLASSIAN_API_URL` in `.credentials`.
-- **Jira project key** — e.g. `ACME`. Default from `ATLASSIAN_JIRA_PROJECT_KEY` if set.
-- **Jira project id** — auto-discover via `GET {site}/rest/api/3/project/{key}` (capture `id`).
-- **Board id** — list user's boards via `GET {site}/rest/agile/1.0/board?projectKeyOrId={key}` and let them pick. Capture `id`.
-- **Confluence space key** — e.g. `ACME`. Default from `ATLASSIAN_CONFLUENCE_SPACE_ID` if set.
-- **Confluence space id** — auto-discover via `GET {site}/wiki/api/v2/spaces?keys={key}`.
+- **Site URL** - e.g. `https://acme.atlassian.net`. Default from `ATLASSIAN_API_URL` in `.credentials`.
+- **Jira project key** - e.g. `ACME`. Default from `ATLASSIAN_JIRA_PROJECT_KEY` if set.
+- **Jira project id** - auto-discover via `GET {site}/rest/api/3/project/{key}` (capture `id`).
+- **Board id** - list user's boards via `GET {site}/rest/agile/1.0/board?projectKeyOrId={key}` and let them pick. Capture `id`.
+- **Confluence space key** - e.g. `ACME`. Default from `ATLASSIAN_CONFLUENCE_SPACE_ID` if set.
+- **Confluence space id** - auto-discover via `GET {site}/wiki/api/v2/spaces?keys={key}`.
 
 ### 2. Read-only Jira PAT for CC
 
 Ask user to provide a separate **read-only Jira API token** for CC's `.credentials`. Open <https://id.atlassian.com/manage-profile/security/api-tokens> in instructions. Recommend a scoped token with read-only Jira access if Atlassian Cloud supports scoped tokens for the user's plan.
 
-If the user prefers, they can re-use the Cowork token (security trade-off — flag clearly).
+If the user prefers, they can re-use the Cowork token (security trade-off - flag clearly).
 
 ### 3. Show application plan
 
@@ -119,7 +119,7 @@ Substitute tokens (`{SITE_URL}`, `{JIRA_PROJECT_KEY}`, `{CONFLUENCE_SPACE_KEY}`,
 <workspace-root>/.atlassian-enabled
 ```
 
-Contents (informational only — presence of file is the signal):
+Contents (informational only - presence of file is the signal):
 
 ```
 Atlassian interconnect enabled for this project.
@@ -174,22 +174,22 @@ Ask user: "Start the active sprint now? (Cowork will write a session-init comm t
 
 If yes: hand off to `/atlassian:start-sprint` with `sprintId = current-active`. If no: skip; user can run `/atlassian:start-sprint` later.
 
-### 11a. Emit Project Instructions supplement (CRITICAL — don't skip)
+### 11a. Emit Project Instructions supplement (CRITICAL - don't skip)
 
 Cowork's Project Instructions UI field is invisible to the agent. Enable cannot edit it directly. It MUST surface text for the user to paste.
 
-Reallocate emits the BASE Project Instructions (no Atlassian content — see `runesmith-workspace/lib/project-instructions.md`). Sprint:enable adds the Atlassian supplement, wrapped in HTML-comment markers so disable can identify and remove it later.
+Reallocate emits the BASE Project Instructions (no Atlassian content - see `runesmith-workspace/lib/project-instructions.md`). Sprint:enable adds the Atlassian supplement, wrapped in HTML-comment markers so disable can identify and remove it later.
 
 Surface in the final report inside a clearly-labelled code block:
 
 ```
 ─────────────────────────────────────────────────────────────
-PROJECT INSTRUCTIONS — atlassian supplement
+PROJECT INSTRUCTIONS - atlassian supplement
 
 Cowork's Project Instructions field (app sidebar → project
 settings → Instructions) does not get edited automatically.
 Append the block below to your existing Project Instructions
-in Cowork's UI — the markers let /runesmith-sprint:disable
+in Cowork's UI - the markers let /runesmith-sprint:disable
 remove it cleanly later.
 ─────────────────────────────────────────────────────────────
 
@@ -208,7 +208,7 @@ Confluence pages.
 <!-- runesmith:atlassian-end -->
 ```
 
-Substitute no tokens — the block is generic across Atlassian-enabled projects.
+Substitute no tokens - the block is generic across Atlassian-enabled projects.
 
 ### 12. Report
 
@@ -228,8 +228,8 @@ Deployed CC skills:
 Snapshot: archive/_pre-atlassian-enable/<ISO>/
 
 Next:
-  /atlassian:start-sprint   — hand the active sprint to CC
-  /atlassian:plan-to-tickets — convert plans to Jira tickets
+  /atlassian:start-sprint   - hand the active sprint to CC
+  /atlassian:plan-to-tickets - convert plans to Jira tickets
 ```
 
 ## Idempotent re-run
@@ -253,7 +253,7 @@ Next:
 - [ ] Marker file + JSON updated atomically
 - [ ] CC `.credentials` mode 0600
 - [ ] CC `.gitignore` includes `.credentials`
-- [ ] No company-specific defaults — every value comes from user input or `.credentials`
+- [ ] No company-specific defaults - every value comes from user input or `.credentials`
 - [ ] No Atlassian writes attempted in this skill (only reads for project/board/space discovery)
 
 ## Error Cases

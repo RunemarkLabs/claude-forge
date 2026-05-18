@@ -24,7 +24,7 @@ Chat-first. Cowork asks about the problem, walks Decision / Why now / Scope. Wri
 Iterate. Re-running the skill on an existing plan refreshes it (the skill detects the slug if you reference it). When you're ready to execute:
 
 - Set `status: building` in the plan frontmatter (manually, or ask Cowork).
-- If atlassian-enabled: `/runesmith-sprint:plan-to-tickets`. Drafts Jira ticket JSONs to `plans/active/<slug>/tickets/`. Review on disk. Say "push the tickets" when ready — drafts POST to Jira, archive locally.
+- If atlassian-enabled: `/runesmith-sprint:plan-to-tickets`. Drafts Jira ticket JSONs to `plans/active/<slug>/tickets/`. Review on disk. Say "push the tickets" when ready - drafts POST to Jira, archive locally.
 - Cowork writes a hand-off brief to `{PROJECT}.cc/comms/open/<iso>-<slug>-task.md` if CC will execute.
 
 ### Mode 2: Document something
@@ -42,7 +42,7 @@ Pick the right Confluence skill based on shape:
 ```
 
 Every doc skill follows the same gate:
-1. Drafts the page in markdown locally first — to `drafts/project-docs/<slug>/` (general drafts) or `plans/active/<slug>/refs/` (plan-bound).
+1. Drafts the page in markdown locally first - to `drafts/project-docs/<slug>/` (general drafts) or `plans/active/<slug>/refs/` (plan-bound).
 2. Surfaces the draft for review.
 3. When you say "publish the page" / "create the document," converts markdown to Confluence storage XHTML and POSTs.
 4. Reports the published URL.
@@ -77,9 +77,9 @@ After CC ran (or while CC is asleep):
 
 Scans `{PROJECT}.cc/comms/open/`. Categorizes:
 
-- `to: user` — questions for you. Cowork drafts a reply for your review, archives the pair to `comms/archive/<YYYY-MM>/` on send.
-- `to: cowork` — CC sent a result or blocker, doesn't need user input. Cowork acknowledges, archives.
-- Ambiguity items — surfaced as structured prompts. You answer; Cowork replies to CC.
+- `to: user` - questions for you. Cowork drafts a reply for your review, archives the pair to `comms/archive/<YYYY-MM>/` on send.
+- `to: cowork` - CC sent a result or blocker, doesn't need user input. Cowork acknowledges, archives.
+- Ambiguity items - surfaced as structured prompts. You answer; Cowork replies to CC.
 
 This is also the check-on-entry pattern: every planning skill invokes `check-comms` first so user-facing items don't get buried.
 
@@ -183,4 +183,4 @@ End of day:
 
 **Comms folder fills up.** `/runesmith-sprint:check-comms` triages and archives resolved pairs to `comms/archive/<YYYY-MM>/`.
 
-**External writes feel slow.** Every mutation has the explicit-consent gate by design. If you find yourself fighting the gate, that's a sign the request might not be as well-formed as it feels — refine in chat first, then trigger.
+**External writes feel slow.** Every mutation has the explicit-consent gate by design. If you find yourself fighting the gate, that's a sign the request might not be as well-formed as it feels - refine in chat first, then trigger.

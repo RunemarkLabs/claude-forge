@@ -10,15 +10,15 @@ Single Confluence page tracking known bugs, tech debt, and workarounds.
 
 ## References
 
-- `agents/page-publisher.md` — subagent for markdown→XHTML→POST/PUT with version-bump
+- `agents/page-publisher.md` - subagent for markdown→XHTML→POST/PUT with version-bump
 
 - `lib/atlassian-rest.md`
 - `lib/confluence-format.md`
 - `lib/credentials.md`
 - `lib/consent.md`
 - `lib/tokens.md`
-- `lib/comms-check.md` — runs first
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/comms-check.md` - runs first
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -82,7 +82,7 @@ Plus detail block appended below the table:
 
 ### 3. Get consent
 
-"Append to Known Issues in {SPACE_KEY}?" — wait for trigger phrase.
+"Append to Known Issues in {SPACE_KEY}?" - wait for trigger phrase.
 
 ### 4. Publish
 
@@ -97,7 +97,7 @@ Per `confluence-format.md`. Convert markdown → storage XHTML.
 
 ```
 ✓ Issue logged
-{issue title} — {severity} — {status}
+{issue title} - {severity} - {status}
 Known Issues: {page_url}
 Jira: {ticket_url}
 ```

@@ -1,6 +1,6 @@
 ---
 name: ticket-done
-description: "Mark a ticket complete from CC's side — write a comm requesting Cowork to transition the ticket to Done, tag with cc-done. Use when CC has finished implementation and verified the work meets acceptance criteria. Runs in Claude Code."
+description: "Mark a ticket complete from CC's side - write a comm requesting Cowork to transition the ticket to Done, tag with cc-done. Use when CC has finished implementation and verified the work meets acceptance criteria. Runs in Claude Code."
 compatibility: Requires Cowork desktop app environment.
 ---
 
@@ -28,7 +28,7 @@ Re-read the ticket description and acceptance criteria. Confirm:
 - All known tests pass.
 - Required documentation is in place.
 
-If anything fails, write a `cc-blocked` comm instead — don't request Done.
+If anything fails, write a `cc-blocked` comm instead - don't request Done.
 
 ### 2. Add `cc-done` label
 
@@ -64,7 +64,7 @@ also-remove-labels: [cc-blocked]     # in case ticket was previously blocked the
 
 ## Body
 Implementation complete. Acceptance criteria verified:
-1. <criterion> — satisfied by <evidence: commit / test / file>
+1. <criterion> - satisfied by <evidence: commit / test / file>
 2. ...
 
 Last commit: <sha>
@@ -78,7 +78,7 @@ transition succeeded.
 
 ### 4. Append `cc-action` comment with completion summary
 
-Use `ticket-document` skill with `type: action` — body summarizing what was done. This becomes the audit trail on the ticket itself.
+Use `ticket-document` skill with `type: action` - body summarizing what was done. This becomes the audit trail on the ticket itself.
 
 ### 5. Move on
 

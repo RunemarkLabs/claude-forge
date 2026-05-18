@@ -19,7 +19,7 @@ Open an issue describing:
 
 ### Proposing changes
 
-Small fixes — open a PR directly. Larger changes — open an issue first to discuss scope.
+Small fixes - open a PR directly. Larger changes - open an issue first to discuss scope.
 
 PRs that change cross-plugin conventions (token names, comms protocol, REST endpoint patterns) should:
 - Update the relevant lib doc first (in the plugin owning the convention)
@@ -86,13 +86,13 @@ Show the normalized form to the user in structured prompts before committing.
 ### Token references
 
 - **Substitution tokens** use `{TOKEN}` syntax (uppercase inside curly braces). Example: `{PROJECT}.cc/`, `{COMPANY}`, `{SPACE_KEY}`.
-- **No angle-bracket placeholders.** Patterns like `<placeholder>` trip Cowork's upload scanner (it treats them as unknown HTML tags). The literal token `<project>` is the most common offender — always use `{PROJECT}` instead.
+- **No angle-bracket placeholders.** Patterns like `<placeholder>` trip Cowork's upload scanner (it treats them as unknown HTML tags). The literal token `<project>` is the most common offender - always use `{PROJECT}` instead.
 
 ### Lib references
 
 Cite libs with plugin-relative paths: `` `lib/credentials.md` ``. Not `` `core/lib/credentials.md` ``. Each plugin is self-contained and carries its own copies of the libs it uses.
 
-When adding a new lib doc, copy it into every plugin that cites it. Yes, this duplicates content — that's the tradeoff for plugin self-containment.
+When adding a new lib doc, copy it into every plugin that cites it. Yes, this duplicates content - that's the tradeoff for plugin self-containment.
 
 ### Forbidden vocabulary
 

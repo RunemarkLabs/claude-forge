@@ -10,16 +10,16 @@ Create a feature spec page for Confluence with goals, scope, and acceptance crit
 
 ## References
 
-- `agents/page-publisher.md` — subagent for markdown→XHTML→POST/PUT with version-bump
+- `agents/page-publisher.md` - subagent for markdown→XHTML→POST/PUT with version-bump
 
 - `lib/atlassian-rest.md`
 - `lib/confluence-format.md`
 - `lib/credentials.md`
 - `lib/consent.md`
 - `lib/tokens.md`
-- `lib/comms-check.md` — runs first
-- `lib/plan-format.md` — for optional plan prefill
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/comms-check.md` - runs first
+- `lib/plan-format.md` - for optional plan prefill
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -111,7 +111,7 @@ Show in chat for review.
 
 ### 3. Get consent
 
-"Publish this feature spec to {SPACE_KEY}?" — wait for trigger phrase.
+"Publish this feature spec to {SPACE_KEY}?" - wait for trigger phrase.
 
 ### 4. Publish
 
@@ -144,7 +144,7 @@ Body: `spaceId`, `title`, optional `parentId`, `body.representation=storage`, `b
 
 ## Error Cases
 
-**400 — body malformed:** Validate XHTML, retry.
-**403 — no create permission:** Abort.
-**404 — space/parent not found:** Verify ids.
+**400 - body malformed:** Validate XHTML, retry.
+**403 - no create permission:** Abort.
+**404 - space/parent not found:** Verify ids.
 **No consent:** Hold draft.

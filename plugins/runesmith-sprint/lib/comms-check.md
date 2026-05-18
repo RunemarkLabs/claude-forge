@@ -34,9 +34,9 @@ Skip files where `status: resolved` (shouldn't normally be in `open/`, but toler
 ### 3. Group by audience
 
 Bucket open comms by `to:`:
-- `to: user` — surface to the user FIRST. These are blockers / user-actions / handshakes that need human attention.
-- `to: cowork` — surface to the user as informational, then handle programmatically.
-- `to: cc` — these are messages waiting for CC to read. Inform user that CC has pending work.
+- `to: user` - surface to the user FIRST. These are blockers / user-actions / handshakes that need human attention.
+- `to: cowork` - surface to the user as informational, then handle programmatically.
+- `to: cc` - these are messages waiting for CC to read. Inform user that CC has pending work.
 
 ### 4. Surface to user
 
@@ -63,8 +63,8 @@ Wait for user choice. On choice 1, hand off to `atlassian:check-comms` workflow.
 ### 5. Handle `to: cowork` items
 
 For each `to: cowork` item:
-- If `type: ticket-transition` (atlassian-only) and the parent skill has Jira access — execute the transition via Cowork's MCP and write a `type: answer` reply.
-- Otherwise — surface to user as "Cowork-bound: <slug>" and let the user decide whether to handle inline or defer.
+- If `type: ticket-transition` (atlassian-only) and the parent skill has Jira access - execute the transition via Cowork's MCP and write a `type: answer` reply.
+- Otherwise - surface to user as "Cowork-bound: <slug>" and let the user decide whether to handle inline or defer.
 
 ### 6. Continue parent workflow
 
@@ -72,7 +72,7 @@ After handling (or deferring all), continue with the parent skill's actual job. 
 
 ## Performance
 
-The check is cheap (read directory, parse frontmatter). Skip cases (no `{PROJECT}.cc/`, no comms/open/) exit in microseconds. Real cost only when there are many open comms — which is itself a signal worth surfacing.
+The check is cheap (read directory, parse frontmatter). Skip cases (no `{PROJECT}.cc/`, no comms/open/) exit in microseconds. Real cost only when there are many open comms - which is itself a signal worth surfacing.
 
 ## Implementation note
 

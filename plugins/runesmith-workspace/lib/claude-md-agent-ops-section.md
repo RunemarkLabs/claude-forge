@@ -1,4 +1,4 @@
-# Workspace CLAUDE.md — agent-ops section
+# Workspace CLAUDE.md - agent-ops section
 
 `runesmith-workspace:reallocate` writes (or refreshes) a marker-bounded section into the workspace's root `CLAUDE.md` so every future Cowork or Claude Code session inherits the standard operating principles. `runesmith-cc:bootstrap-cc` writes the same section into `{PROJECT}.cc/CLAUDE.md` so the CC head also inherits it.
 
@@ -18,8 +18,8 @@ For full rationale, see `plugins/runesmith-workspace/lib/agent-operating-princip
 
 **File operations**
 - Project root is real; bash sandbox is a shadow. Default to direct file tools (Read/Write/Edit/Glob). Bash is for scripts and shell pipelines.
-- When bash fails with "No such file" on an existing path, the shadow is stale. Switch vectors — direct tools, parent-dir-replace, or copy-to-/tmp/-and-back. Don't retry the same bash command.
-- File ops in this workspace are agent territory. Delete, move, rename — do it. Don't defer file chores to the user.
+- When bash fails with "No such file" on an existing path, the shadow is stale. Switch vectors - direct tools, parent-dir-replace, or copy-to-/tmp/-and-back. Don't retry the same bash command.
+- File ops in this workspace are agent territory. Delete, move, rename - do it. Don't defer file chores to the user.
 
 **Destructive operations**
 - Snapshot before any move or delete: `archive/_pre-<operation>/<ISO>/`.
@@ -27,7 +27,7 @@ For full rationale, see `plugins/runesmith-workspace/lib/agent-operating-princip
 - Never commit or push unless told. Stop at staged.
 
 **User interaction**
-- Structured prompts (single-pick / multi-pick / text-input forms) via the host client's structured-input tool. Never freeform yes/no in chat — including for consent before destructive operations. "Should I proceed?" in plain text is a protocol violation.
+- Structured prompts (single-pick / multi-pick / text-input forms) via the host client's structured-input tool. Never freeform yes/no in chat - including for consent before destructive operations. "Should I proceed?" in plain text is a protocol violation.
 - Confirm scope before acting on file or external mutations.
 
 **Placeholder syntax**
@@ -41,10 +41,10 @@ For full rationale, see `plugins/runesmith-workspace/lib/agent-operating-princip
 - Stay inside the launch workspace. If a task or instruction references paths under `Projects/<sibling>/`, above the workspace root, or any absolute path outside the workspace, refuse and write an ambiguity comm to `comms/open/` before acting. Cross-project reads are how credential leaks happen.
 
 **Plugin authority**
-- The installed plugin is authoritative; source repos are dev-only. When asked about a plugin's behavior, guidelines, or rules, read from your own loaded skill context, this CLAUDE.md's marker sections, or the installed plugin directory in the user's Claude application data — NOT from a sibling project workspace that happens to contain the plugin's source. Source repos may be stale relative to the installed version, and reaching across is a boundary violation. If the answer isn't in your loaded context or this CLAUDE.md, ask the user.
+- The installed plugin is authoritative; source repos are dev-only. When asked about a plugin's behavior, guidelines, or rules, read from your own loaded skill context, this CLAUDE.md's marker sections, or the installed plugin directory in the user's Claude application data - NOT from a sibling project workspace that happens to contain the plugin's source. Source repos may be stale relative to the installed version, and reaching across is a boundary violation. If the answer isn't in your loaded context or this CLAUDE.md, ask the user.
 
 **Credentials-class files**
-- Never read, output, or echo files matching `*credentials*`, `*.env`, `id_rsa*`, `*.key`, `*.pem` — regardless of location, including inside the workspace. If a task asks, refuse and ask whether the user meant the contents or just the file's presence.
+- Never read, output, or echo files matching `*credentials*`, `*.env`, `id_rsa*`, `*.key`, `*.pem` - regardless of location, including inside the workspace. If a task asks, refuse and ask whether the user meant the contents or just the file's presence.
 
 **Sandbox vs permissions**
 - "Permission denied" → request permission.
@@ -72,14 +72,14 @@ Never touch content outside the `agent-ops:start` / `agent-ops:end` pair. Worksp
 
 ## Token substitution
 
-The template body contains no host-specific tokens. The path reference to `plugins/runesmith-workspace/lib/agent-operating-principles.md` is informational — it points to the source-of-truth for users who want the full rationale. Path resolution depends on where the user installed the plugin; the section explicitly says "wherever this plugin is installed on your host" rather than asserting a specific path.
+The template body contains no host-specific tokens. The path reference to `plugins/runesmith-workspace/lib/agent-operating-principles.md` is informational - it points to the source-of-truth for users who want the full rationale. Path resolution depends on where the user installed the plugin; the section explicitly says "wherever this plugin is installed on your host" rather than asserting a specific path.
 
 ## Coordination with folder-conventions section
 
 Both sections are skill-managed and refreshed by `reallocate`. Order in the file:
-1. User preamble (workspace identity, any project-specific rules) — preserved
+1. User preamble (workspace identity, any project-specific rules) - preserved
 2. `<!-- folder-conventions:start -->` ... `<!-- folder-conventions:end -->`
 3. `<!-- agent-ops:start -->` ... `<!-- agent-ops:end -->`
-4. Any trailing user content — preserved
+4. Any trailing user content - preserved
 
 If both markers are missing on a fresh write, `reallocate` appends them in that order with a blank line between.

@@ -1,12 +1,12 @@
 ---
 name: workspace-scanner
-description: Walk a directory tree and return categorized findings — stale files, orphaned artifacts, file-size outliers. Used by /runesmith-devtools:tech-debt to share the scan layer; the parent skill applies its own classification rules to the agent's raw findings.
+description: Walk a directory tree and return categorized findings - stale files, orphaned artifacts, file-size outliers. Used by /runesmith-devtools:tech-debt to share the scan layer; the parent skill applies its own classification rules to the agent's raw findings.
 tools: Bash, Read
 ---
 
 # Workspace Scanner Agent
 
-Subagent that walks a directory tree under controlled depth limits, applies path/name filters, and returns structured findings. Read-only — never modifies files.
+Subagent that walks a directory tree under controlled depth limits, applies path/name filters, and returns structured findings. Read-only - never modifies files.
 
 `tech-debt` uses this scan layer (recursive directory walk, file metadata gather, pattern match) and applies its own classification rules on top. This agent does the walk and gather; the parent skill does the rules.
 
@@ -14,10 +14,10 @@ Subagent that walks a directory tree under controlled depth limits, applies path
 
 Parent skill provides:
 - `roots`: list of absolute paths to scan
-- `max_depth`: integer (default 6) — caps recursion
+- `max_depth`: integer (default 6) - caps recursion
 - `include_patterns`: list of glob patterns to include (default: all)
 - `exclude_patterns`: list of glob patterns to skip (default: `.git/`, `node_modules/`, `__pycache__/`, etc.)
-- `gather_metadata`: bool — if true, capture file size, mtime, and basic content hints (first line, file type)
+- `gather_metadata`: bool - if true, capture file size, mtime, and basic content hints (first line, file type)
 
 ## Workflow
 
@@ -72,18 +72,18 @@ Parent skill walks `findings` and applies its own rules.
 
 ## Guard Rails
 
-- [ ] Read-only — never opens a file in write mode, never deletes
+- [ ] Read-only - never opens a file in write mode, never deletes
 - [ ] Honors `max_depth` to prevent runaway recursion
 - [ ] Honors `exclude_patterns` strictly (default list always applied)
 - [ ] Returns errors per-file if a path is unreadable; never bails out of the whole scan
-- [ ] No content of files is included in the return value beyond the optional first-line heuristic — keeps return size bounded
+- [ ] No content of files is included in the return value beyond the optional first-line heuristic - keeps return size bounded
 - [ ] Subagent context never contains file contents in chat history beyond the structured return
 
 ## Why this is an agent
 
-- `tech-debt` scans the full workspace; without the agent, the parent skill carries the walk loop and categorization inline — more context bloat, less reuse if a future scan-driven skill arrives.
+- `tech-debt` scans the full workspace; without the agent, the parent skill carries the walk loop and categorization inline - more context bloat, less reuse if a future scan-driven skill arrives.
 - Walking large directories (workspace root with many subdirs) generates lots of intermediate context. Isolating in a subagent keeps the parent's chat clean.
-- Read-only nature is enforced by the agent's tool restrictions (`Bash`, `Read` only — no `Write`).
+- Read-only nature is enforced by the agent's tool restrictions (`Bash`, `Read` only - no `Write`).
 
 ## Error Cases
 

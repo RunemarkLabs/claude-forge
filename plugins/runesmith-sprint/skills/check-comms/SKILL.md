@@ -1,6 +1,6 @@
 ---
 name: check-comms
-description: "Triage open comms in {PROJECT}.cc/comms/open/ — surface to-user items, draft replies, archive resolved pairs. Use when the user says \"check comms\", \"any messages from CC\", \"what does CC need\", \"check messages\", \"is CC blocked\", \"triage comms\", or wants to clear out CC's open comms."
+description: "Triage open comms in {PROJECT}.cc/comms/open/ - surface to-user items, draft replies, archive resolved pairs. Use when the user says \"check comms\", \"any messages from CC\", \"what does CC need\", \"check messages\", \"is CC blocked\", \"triage comms\", or wants to clear out CC's open comms."
 compatibility: Requires Cowork desktop app environment.
 ---
 
@@ -8,17 +8,17 @@ compatibility: Requires Cowork desktop app environment.
 
 Read every `*.md` in `{PROJECT}.cc/comms/open/`. Surface `to: user` items first. Let user reply or defer. Resolve pairs and move to archive.
 
-Works in both base config and atlassian-enabled config. In atlassian config, comms may carry `ticket: <KEY>` and `type: ticket-transition` — this skill executes the Jira mutation when that's the request, via the workspace's MCP-connected Atlassian tools.
+Works in both base config and atlassian-enabled config. In atlassian config, comms may carry `ticket: <KEY>` and `type: ticket-transition` - this skill executes the Jira mutation when that's the request, via the workspace's MCP-connected Atlassian tools.
 
 ## References
 
-- `agents/comms-triager.md` — subagent for per-comm parsing and action
+- `agents/comms-triager.md` - subagent for per-comm parsing and action
 
-- `lib/comms-protocol.md` — file format and lifecycle
-- `lib/comms-check.md` — same-named lib doc, but DIFFERENT thing (lib is the on-entry helper; this is the standalone triage skill)
+- `lib/comms-protocol.md` - file format and lifecycle
+- `lib/comms-check.md` - same-named lib doc, but DIFFERENT thing (lib is the on-entry helper; this is the standalone triage skill)
 - `lib/atlassian-enabled.md`
-- `lib/jira-tags.md` — tags to add/remove on resolution
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/jira-tags.md` - tags to add/remove on resolution
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -38,7 +38,7 @@ Read marker. Used to decide whether to handle `type: ticket-transition` items in
 ## When to Use
 
 Use for:
-- After CC has been working — "what's CC need from me / Cowork?"
+- After CC has been working - "what's CC need from me / Cowork?"
 - Before kicking off another planning skill (the on-entry lib does a quick version of this; this skill is the deep version)
 - Closing the loop on resolved comms (archive)
 
@@ -67,9 +67,9 @@ created: <ISO>
 body: <first 5 lines>
 
 What do you want to do?
-  [r]eply  — write an answer comm
-  [d]efer  — leave open, move on
-  [s]how   — print full comm
+  [r]eply  - write an answer comm
+  [d]efer  - leave open, move on
+  [s]how   - print full comm
 ```
 
 On `[r]eply`: prompt user for answer text. Write a new comm in `open/` with `from: user, to: cc, parent: <id>, type: answer`. Flip the original's `status: resolved` (in-place edit). On next iteration, both will archive.
@@ -101,7 +101,7 @@ On approve:
 4. On 200: write reply comm `from: cowork, to: cc, type: answer, parent: <id>`, status: resolved. Add `cowork-transition` label to the ticket. Remove `cc-done` label per `jira-tags.md`.
 5. Flip both files to resolved, archive.
 
-On deny: write reply with reason. Don't archive yet — let user re-engage later.
+On deny: write reply with reason. Don't archive yet - let user re-engage later.
 
 #### type: ambiguity / blocker / user-action where to: cowork (rather than user)
 
@@ -152,7 +152,7 @@ Open comms by audience:
 
 ## Error Cases
 
-**Malformed frontmatter:** Surface filename + parse error; ask user — fix manually, delete (with consent), or skip.
+**Malformed frontmatter:** Surface filename + parse error; ask user - fix manually, delete (with consent), or skip.
 **Transition fails (Jira 400/403):** Show error; reply comm captures the failure; ticket stays in current state. User can retry after fixing the cause.
 **Comms folder doesn't exist:** Either CC head doesn't exist (suggest `/devtools:bootstrap-cc`) or user is in the wrong workspace.
 **User wants to bulk-defer:** Provide a `[d]efer all` shortcut that skips through.

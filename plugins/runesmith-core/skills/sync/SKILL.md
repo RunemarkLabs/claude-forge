@@ -12,7 +12,7 @@ Pull latest plugin versions from the marketplace repo and (optionally) refresh A
 
 - `lib/credentials.md`
 - `lib/install-paths.md`
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules

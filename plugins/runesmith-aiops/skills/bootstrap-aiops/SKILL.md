@@ -10,7 +10,7 @@ Populate an AIOPS Confluence space with the marketplace's six template pages, wi
 
 ## References
 
-- `agents/template-applier.md` — subagent for per-template substitution + publish
+- `agents/template-applier.md` - subagent for per-template substitution + publish
 
 - `lib/atlassian-rest.md`
 - `lib/confluence-format.md`
@@ -18,7 +18,7 @@ Populate an AIOPS Confluence space with the marketplace's six template pages, wi
 - `lib/consent.md`
 - `lib/tokens.md`
 - Templates at `aiops/templates/*.xhtml` (already in storage XHTML)
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -50,12 +50,12 @@ Do not use for:
 ### 1. Gather token values
 
 Ask user (or pull from `.credentials`):
-- `{COMPANY}` — organization display name
-- `{SITE}` — confluence site host (e.g. `acme.atlassian.net`)
-- `{ATLASSIAN_API_URL}` — `https://{SITE}` (auto-derived)
-- `{SPACE_KEY}` — AIOPS space key (e.g. `AIOPS`)
-- `{SPACE_ID}` — numeric space id
-- `{PROJECT_KEY}` — Jira project key for Jira integrations (optional, default `(none)`)
+- `{COMPANY}` - organization display name
+- `{SITE}` - confluence site host (e.g. `acme.atlassian.net`)
+- `{ATLASSIAN_API_URL}` - `https://{SITE}` (auto-derived)
+- `{SPACE_KEY}` - AIOPS space key (e.g. `AIOPS`)
+- `{SPACE_ID}` - numeric space id
+- `{PROJECT_KEY}` - Jira project key for Jira integrations (optional, default `(none)`)
 
 ### 2. Load templates
 
@@ -73,7 +73,7 @@ Each is already in storage XHTML. No markdown conversion needed.
 
 For each template body, replace every occurrence of `{COMPANY}`, `{SITE}`, `{ATLASSIAN_API_URL}`, `{SPACE_KEY}`, `{SPACE_ID}`, `{PROJECT_KEY}` with the user-provided values.
 
-After substitution, scan body for any remaining `{...}` matches. If any unresolved token remains, abort and report which one — never publish a page with placeholder tokens.
+After substitution, scan body for any remaining `{...}` matches. If any unresolved token remains, abort and report which one - never publish a page with placeholder tokens.
 
 ### 4. Get consent
 
@@ -98,7 +98,7 @@ POST {ATLASSIAN_API_URL}/wiki/api/v2/pages
 }
 ```
 
-Capture page id for each. After Quick Start (page 1) is created, set its id as `parentId` on pages 2–6 to nest them.
+Capture page id for each. After Quick Start (page 1) is created, set its id as `parentId` on pages 2-6 to nest them.
 
 If any page already exists in space (lookup by title with `space-id`), ask user: replace via PUT (with version bump) or skip.
 
@@ -134,5 +134,5 @@ Pages:
 **Space not found (404):** "AIOPS space `{SPACE_KEY}` doesn't exist. Create it in Confluence UI, then retry."
 **403 on page create:** "Account lacks page-create permission in {SPACE_KEY}."
 **Unresolved token after substitution:** Print the token name and template file, abort.
-**Page already exists:** Ask user — replace (PUT with version+1) or skip.
+**Page already exists:** Ask user - replace (PUT with version+1) or skip.
 **Partial failure:** Report which pages succeeded; user can re-run for the rest.

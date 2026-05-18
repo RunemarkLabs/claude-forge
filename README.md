@@ -1,6 +1,6 @@
 # RuneSmith
 
-Claude plugin marketplace for planning, Atlassian (Jira + Confluence) integration, Claude Code workspace bootstrap, AI Operations documentation, and development tooling. Generic and single-tenant configurable per project — every tenant detail comes from user input or `.credentials` at runtime.
+Claude plugin marketplace for planning, Atlassian (Jira + Confluence) integration, Claude Code workspace bootstrap, AI Operations documentation, and development tooling. Generic and single-tenant configurable per project - every tenant detail comes from user input or `.credentials` at runtime.
 
 Built and maintained by [Runemark Labs](https://github.com/runemarklabs). Apache-2.0 licensed.
 
@@ -21,12 +21,12 @@ Eight plugins, ~30 skills total, ~30 commands. Install only what you need.
 
 ## Two configurations
 
-- **Base config** — plans drive work. Cowork plans, writes tasks to `comms/`, Claude Code executes. No Atlassian dependency.
-- **Atlassian-enabled** — plans become Jira tickets in sprints. Claude Code reads sprints (read-only token); mutations route through Cowork via MCP. Toggle with `/runesmith-sprint:enable` and `/runesmith-sprint:disable`.
+- **Base config** - plans drive work. Cowork plans, writes tasks to `comms/`, Claude Code executes. No Atlassian dependency.
+- **Atlassian-enabled** - plans become Jira tickets in sprints. Claude Code reads sprints (read-only token); mutations route through Cowork via MCP. Toggle with `/runesmith-sprint:enable` and `/runesmith-sprint:disable`.
 
 ## Install
 
-### Marketplace (Claude Code / Teams) — recommended
+### Marketplace (Claude Code / Teams) - recommended
 
 ```
 /plugin marketplace add runemarklabs/runesmith
@@ -44,8 +44,8 @@ After install, run `/runesmith-core:setup` to configure credentials. See [INSTAL
 
 ## Documentation
 
-- [Agent Primer](docs/AGENT_PRIMER.md) — how the system works end to end. Read this first.
-- [How-to guides](docs/howto/) — workflow-keyed recipes:
+- [Agent Primer](docs/AGENT_PRIMER.md) - how the system works end to end. Read this first.
+- [How-to guides](docs/howto/) - workflow-keyed recipes:
   - [Set up a new project workspace](docs/howto/new-workspace.md)
   - [Migrate an existing workspace](docs/howto/migrate-workspace.md)
   - [Add a repo to a CC head](docs/howto/add-repo.md)
@@ -56,7 +56,7 @@ After install, run `/runesmith-core:setup` to configure credentials. See [INSTAL
 
 ### Manual `.plugin` files (Cowork desktop)
 
-`.plugin` zips are not committed to this repo — they're generated on demand. Build them first:
+`.plugin` zips are not committed to this repo - they're generated on demand. Build them first:
 
 ```
 python scripts/build.py        # cross-platform; recommended on Windows
@@ -76,7 +76,7 @@ python scripts/build.py path/to/output/
 
 Every write skill follows the same gate:
 
-1. **Comms-check on entry** — surface any open `to: user` items first.
+1. **Comms-check on entry** - surface any open `to: user` items first.
 2. **Resolve `.credentials`** and project values.
 3. **Gather details**, draft locally to `/drafts/`, `/plans/active/`, or chat.
 4. **Wait for explicit consent trigger** ("make the ticket", "publish the page", "do it").
@@ -88,9 +88,9 @@ No write happens without the trigger. No skill talks to deprecated endpoints. No
 
 ## Comms protocol
 
-Cowork ↔ Claude Code communicate via files in `{PROJECT}.cc/comms/`. CC writes ambiguity, blockers, or user-action requests to `comms/open/`; Cowork triages on `/runesmith-sprint:check-comms` or any planning interaction (check-on-entry pattern). User is reached only through Cowork — CC never asks the user directly.
+Cowork ↔ Claude Code communicate via files in `{PROJECT}.cc/comms/`. CC writes ambiguity, blockers, or user-action requests to `comms/open/`; Cowork triages on `/runesmith-sprint:check-comms` or any planning interaction (check-on-entry pattern). User is reached only through Cowork - CC never asks the user directly.
 
-Comms is a local accelerator only. Persistent records live in plans (`plans/active/<slug>/`) and on Jira tickets (with canonical tags — see `plugins/runesmith-sprint/lib/jira-tags.md`).
+Comms is a local accelerator only. Persistent records live in plans (`plans/active/<slug>/`) and on Jira tickets (with canonical tags - see `plugins/runesmith-sprint/lib/jira-tags.md`).
 
 ## Repo layout
 
@@ -176,7 +176,7 @@ The build performs three transformations:
 2. Renames `cc-skill-templates/<n>/skill-template.md` → `.txt` so Cowork's plugin validator (which scans `**/SKILL.md` and `**/*.md` with skill frontmatter) ignores deploy-time templates.
 3. Zips with forward-slash paths inside the archive (zip spec requirement; bypasses Windows tooling that uses backslash separators).
 
-Run `python scripts/audit.py` before any release — CI enforces it on every push.
+Run `python scripts/audit.py` before any release - CI enforces it on every push.
 
 ## Contributing
 

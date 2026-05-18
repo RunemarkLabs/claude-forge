@@ -1,6 +1,6 @@
 ---
 name: bug-report
-description: "Report a bug — document it, publish to Confluence, create a Jira ticket. Use when the user says \"there's a bug\", \"something broke\", \"this isn't working\", \"found an issue\", \"report a bug\", or describes unexpected behavior. Also triggers on \"file a bug\", \"bug report\", or \"this is broken\"."
+description: "Report a bug - document it, publish to Confluence, create a Jira ticket. Use when the user says \"there's a bug\", \"something broke\", \"this isn't working\", \"found an issue\", \"report a bug\", or describes unexpected behavior. Also triggers on \"file a bug\", \"bug report\", or \"this is broken\"."
 compatibility: Requires Cowork desktop app environment.
 ---
 
@@ -12,14 +12,14 @@ One workflow: capture issue → draft Confluence page → publish → create lin
 
 ## References
 
-- `lib/atlassian-rest.md` — endpoints
-- `lib/confluence-format.md` — markdown→storage conversion
-- `lib/credentials.md` — auth
-- `lib/consent.md` — trigger phrases
-- `lib/tokens.md` — `{SPACE_ID}`, `{PROJECT_KEY}`
-- `lib/comms-check.md` — runs first
-- Sibling skill `ticket` — Jira create flow
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/atlassian-rest.md` - endpoints
+- `lib/confluence-format.md` - markdown→storage conversion
+- `lib/credentials.md` - auth
+- `lib/consent.md` - trigger phrases
+- `lib/tokens.md` - `{SPACE_ID}`, `{PROJECT_KEY}`
+- `lib/comms-check.md` - runs first
+- Sibling skill `ticket` - Jira create flow
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -130,6 +130,6 @@ Jira: {ATLASSIAN_API_URL}/browse/{KEY}
 
 **Confluence 400:** Storage XHTML malformed. Validate against `confluence-format.md` mappings, retry.
 **Confluence 403:** No create permission in space. Abort, do not attempt Jira.
-**Jira 400 — severity:** Severity is custom field. Set `ATLASSIAN_BUG_SEVERITY_FIELD` or fall back to `priority`.
+**Jira 400 - severity:** Severity is custom field. Set `ATLASSIAN_BUG_SEVERITY_FIELD` or fall back to `priority`.
 **Backlink 409:** Re-GET page version, retry PUT once.
 **No consent:** Hold drafts, surface "Say 'make the ticket' or 'publish the page' to proceed."

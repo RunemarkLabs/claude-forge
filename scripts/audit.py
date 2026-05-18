@@ -183,7 +183,7 @@ def check_references(fails):
 def check_command_descriptions(fails):
     """Command descriptions get registered as Cowork slash-command tooltips.
     A description truncated mid-sentence (e.g. ending with '{PROJECT}.' or 'CLAUDE.')
-    causes Cowork to silently skip command registration — the slash command then
+    causes Cowork to silently skip command registration - the slash command then
     returns 'Unknown command'. Reject descriptions shorter than 30 chars or that
     appear truncated at a placeholder boundary."""
     truncated_re = re.compile(r"(\{[A-Z_]+\}|CLAUDE)\.\s*$")
@@ -200,7 +200,7 @@ def check_command_descriptions(fails):
             continue
         desc = (fm.get("description") or "").strip()
         if len(desc) < 30:
-            fail(f"{cmd_md}: description too short ({len(desc)} chars) — likely truncated", fails)
+            fail(f"{cmd_md}: description too short ({len(desc)} chars) - likely truncated", fails)
             continue
         if truncated_re.search(desc):
             fail(f"{cmd_md}: description appears truncated at placeholder boundary: '{desc[-40:]}'", fails)
@@ -208,7 +208,7 @@ def check_command_descriptions(fails):
 
 def check_frontmatter_placeholders(fails):
     """Cowork's upload validator rejects <word> patterns in SKILL.md frontmatter.
-    Canonical placeholder syntax is {WORD} (curly braces). Body content is exempt —
+    Canonical placeholder syntax is {WORD} (curly braces). Body content is exempt -
     it can legitimately contain HTML/XML examples in code blocks."""
     angle_re = re.compile(r"<[a-zA-Z][a-zA-Z0-9_-]*>")
     for sk_md in Path("plugins").rglob("SKILL.md"):
@@ -220,7 +220,7 @@ def check_frontmatter_placeholders(fails):
         for m in angle_re.finditer(frontmatter):
             line = frontmatter[: m.start()].count("\n") + 2  # +2 for opening ---
             fail(
-                f"{sk_md}:{line}: angle-bracket placeholder '{m.group()}' in frontmatter — use {{WORD}} (curly braces). Cowork rejects <word> as unsubstituted templating syntax.",
+                f"{sk_md}:{line}: angle-bracket placeholder '{m.group()}' in frontmatter - use {{WORD}} (curly braces). Cowork rejects <word> as unsubstituted templating syntax.",
                 fails,
             )
     # Also check plugin.json description fields (Cowork's metadata scanner reads these)
@@ -232,7 +232,7 @@ def check_frontmatter_placeholders(fails):
         desc = d.get("description", "")
         for m in angle_re.finditer(desc):
             fail(
-                f"{pj}: angle-bracket placeholder '{m.group()}' in description — use {{WORD}}.",
+                f"{pj}: angle-bracket placeholder '{m.group()}' in description - use {{WORD}}.",
                 fails,
             )
 
@@ -253,32 +253,19 @@ def check_forbidden_plugin_fields(fails):
         for key in FORBIDDEN:
             if key in d:
                 fail(
-                    f"{pj}: forbidden field '{key}' — Cowork's plugin loader rejects plugins carrying this. Remove the field.",
+                    f"{pj}: forbidden field '{key}' - Cowork's plugin loader rejects plugins carrying this. Remove the field.",
                     fails,
                 )
 
 
-def main():
-    fails = []
-    m = check_marketplace_json(fails)
-    plugin_names, plugin_deps = check_plugin_manifests(fails)
-    check_dependency_dag(plugin_names, plugin_deps, fails)
-    check_skill_frontmatter(fails)
-    check_forbidden_patterns(fails)
-    check_frontmatter_placeholders(fails)
-    check_command_descriptions(fails)
-    check_forbidden_plugin_fields(fails)
-    check_references(fails)
-
-    print(f"Plugins: {len(plugin_names)}")
-    print(f"Audit fails: {len(fails)}")
-    if fails:
-        for f in fails:
-            print(f"  FAIL: {f}")
-        return 1
-    print("OK: all checks pass.")
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+def check_no_emdashes(fails):
+    """Em-dashes (U+2014) and en-dashes (U+2013) are banned across all generated
+    content in this marketplace. Two reasons: (1) project style preference,
+    (2) em-dashes are multi-byte UTF-8 (E2 80 94) and PowerShell on Windows
+    defaults to reading .ps1 files as Windows-1252, which misinterprets those
+    bytes and breaks string parsing. Use ASCII hyphens or restructure prose.
+    Audit catches any em/en-dash that slips into tracked files (excluding
+    LICENSE and NOTICE which are upstream Apache content)."""
+    EMDASH = '—'
+    ENDASH = '–'
+    SCAN_SUFFIXES = {'.md', '.json', '.ps1', '.sh', '.py', '.txt', '.xhtml', '.yml',

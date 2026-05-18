@@ -17,9 +17,9 @@ Note: project and space creation require Atlassian admin permissions. Without ad
 - `lib/credentials.md`
 - `lib/consent.md`
 - `lib/tokens.md`
-- `lib/comms-check.md` — runs first
+- `lib/comms-check.md` - runs first
 - Sibling skills: `project-overview`, `roadmap`, `known-issues`, `architecture-doc`
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -53,7 +53,7 @@ Do not use for:
 ### 1. Gather details
 
 - Project / product name
-- Project key (3–10 uppercase chars; Jira validates)
+- Project key (3-10 uppercase chars; Jira validates)
 - Space key (typically same as project key)
 - Description
 - Project lead email → resolve to `{LEAD_ACCOUNT_ID}` via `GET /rest/api/3/user/search?query=<email>`
@@ -62,7 +62,7 @@ Do not use for:
 
 ### 2. Get consent
 
-"Create Jira project {PROJECT_KEY} and Confluence space {SPACE_KEY}?" — wait for trigger phrase.
+"Create Jira project {PROJECT_KEY} and Confluence space {SPACE_KEY}?" - wait for trigger phrase.
 
 ### 3a. Create Jira project (admin only)
 
@@ -120,7 +120,7 @@ Pages: Project Overview, Roadmap, Known Issues, Architecture Overview
 ## Guard Rails
 
 - [ ] Permissions check before write attempts
-- [ ] Project key 3–10 uppercase, unique
+- [ ] Project key 3-10 uppercase, unique
 - [ ] Lead resolved to `accountId`
 - [ ] Consent trigger received
 - [ ] Both creates succeed before page init
@@ -130,7 +130,7 @@ Pages: Project Overview, Roadmap, Known Issues, Architecture Overview
 ## Error Cases
 
 **Jira 403:** "Need Jira admin to create projects. Switch to existing-project mode?"
-**Jira 400 — key in use:** "Project key {PROJECT_KEY} already exists. Pick another."
+**Jira 400 - key in use:** "Project key {PROJECT_KEY} already exists. Pick another."
 **Confluence 403 on space create:** Same as above for Confluence admin.
 **Lead lookup empty:** "No user found for that email. Use a different email or set `ATLASSIAN_DEFAULT_ASSIGNEE_ACCOUNT_ID`."
 **Partial failure (Jira created, Confluence failed):** Report what succeeded, prompt to retry Confluence or roll back Jira manually.

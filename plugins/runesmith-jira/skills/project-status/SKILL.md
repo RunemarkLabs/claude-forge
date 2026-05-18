@@ -7,16 +7,16 @@ compatibility: Requires Cowork desktop app environment.
 
 # Project Status
 
-Quick status check from Jira — what's in progress, done, blocked, backlog.
+Quick status check from Jira - what's in progress, done, blocked, backlog.
 
 Read-only. No consent gate required.
 
 ## References
 
-- `lib/atlassian-rest.md` — `/search/jql` POST
+- `lib/atlassian-rest.md` - `/search/jql` POST
 - `lib/credentials.md`
 - `lib/tokens.md`
-- `lib/comms-check.md` — runs first
+- `lib/comms-check.md` - runs first
 - See also `atlassian:sprint-status` for atlassian-enabled sprint-aware view
 
 ## Pre-Flight Checks
@@ -68,8 +68,8 @@ By `status.name`:
 {PROJECT_KEY} status
 
 In Progress (n)
-- KEY-1 summary — assignee
-- KEY-2 summary — assignee
+- KEY-1 summary - assignee
+- KEY-2 summary - assignee
 
 Blockers (n)
 - KEY-3 summary

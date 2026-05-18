@@ -19,7 +19,7 @@ Do not introduce: `{ORG}`, `{ORGANIZATION}`, `{TEAM}`, `{COMPANY_NAME}`, `{TENAN
 
 ## Page title tokens
 
-When a page title needs the company name, embed it inline: `"{COMPANY} — Quick Start"`. Do not introduce `{TITLE_PREFIX}`.
+When a page title needs the company name, embed it inline: `"{COMPANY} - Quick Start"`. Do not introduce `{TITLE_PREFIX}`.
 
 ## Replacement is case-sensitive
 

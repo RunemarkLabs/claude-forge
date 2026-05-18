@@ -1,6 +1,6 @@
 # Project Instructions vs CLAUDE.md
 
-Cowork has **two distinct project-context surfaces**. They look similar but carry fundamentally different content. Skills in this marketplace must address both — and must NOT mix the two.
+Cowork has **two distinct project-context surfaces**. They look similar but carry fundamentally different content. Skills in this marketplace must address both - and must NOT mix the two.
 
 ## The distinction (HARD RULE)
 
@@ -26,7 +26,7 @@ Why this matters: if behavior bleeds into CLAUDE.md, the role drifts whenever th
 - Plugin names / counts
 - Folder layouts
 - Version numbers
-- Command names with file refs (e.g. "run `python scripts/audit.py`" — the path could change)
+- Command names with file refs (e.g. "run `python scripts/audit.py`" - the path could change)
 - Anything that would have to be re-edited when the workspace is restructured
 
 If you find yourself writing a path or a file detail, it belongs in CLAUDE.md.
@@ -42,7 +42,7 @@ If you find yourself writing a path or a file detail, it belongs in CLAUDE.md.
 
 ## What CLAUDE.md handles
 
-Everything structural — folder layout, where files live, marker-bounded skill-managed sections (folder-conventions, agent-ops), workspace state. It changes as the project grows. Skill operations like `reallocate`, `bootstrap-cc`, etc. all edit CLAUDE.md.
+Everything structural - folder layout, where files live, marker-bounded skill-managed sections (folder-conventions, agent-ops), workspace state. It changes as the project grows. Skill operations like `reallocate`, `bootstrap-cc`, etc. all edit CLAUDE.md.
 
 ## Agent access
 
@@ -52,7 +52,7 @@ Everything structural — folder layout, where files live, marker-bounded skill-
 ## Why agents forget this distinction
 
 The agent sees only files. The UI field is invisible. Without an explicit reminder, the agent:
-- Treats CLAUDE.md as the only project context (it isn't — the role lives elsewhere)
+- Treats CLAUDE.md as the only project context (it isn't - the role lives elsewhere)
 - Misses that the user has separate UI instructions
 - Conflates the two when refactoring project context
 - Writes structural details into the Project Instructions text it generates (bug: those details belong in CLAUDE.md, not Project Instructions)
@@ -60,7 +60,7 @@ The agent sees only files. The UI field is invisible. Without an explicit remind
 ## Why agents forget this distinction
 
 The agent only sees files. The UI field is invisible to it. Without an explicit reminder, the agent will:
-- Assume CLAUDE.md carries everything (it doesn't — it can't carry the role/persona effectively because it's also describing folder state)
+- Assume CLAUDE.md carries everything (it doesn't - it can't carry the role/persona effectively because it's also describing folder state)
 - Miss that the user has separate UI instructions
 - Conflate the two when refactoring project context
 
@@ -70,11 +70,11 @@ Any skill that mutates project-level context (`reallocate`, `bootstrap-cc`, `ena
 
 1. **Edit `CLAUDE.md`** for folder/state changes (marker sections, structure references)
 2. **Produce Project Instructions text** for the user to paste into Cowork's UI when the project's role/mission has shifted (or on first bootstrap)
-3. **Surface the proposed text explicitly** — don't bury it. The user has to manually paste, so the text should be in a single copy-friendly code block at the end of the skill's output.
+3. **Surface the proposed text explicitly** - don't bury it. The user has to manually paste, so the text should be in a single copy-friendly code block at the end of the skill's output.
 
 ## Template: Project Instructions for a RuneSmith-bootstrapped workspace
 
-This is the canonical template. It is PURELY behavioral — no file paths, no folder layouts, no version numbers. Everything structural lives in CLAUDE.md and is referenced via `@CLAUDE.md`.
+This is the canonical template. It is PURELY behavioral - no file paths, no folder layouts, no version numbers. Everything structural lives in CLAUDE.md and is referenced via `@CLAUDE.md`.
 
 When reallocate emits this for a user, it substitutes only `{PROJECT_NAME}` (workspace folder name) and leaves the rest verbatim. If atlassian is enabled (`.atlassian-enabled` marker present), append the atlassian block at the bottom.
 
@@ -84,17 +84,17 @@ When reallocate emits this for a user, it substitutes only `{PROJECT_NAME}` (wor
 ## PROJECT
 {One- to three-sentence description of the project. Reallocate leaves this as
 a TODO placeholder; the user fills in their project's mission. Reallocate must
-NOT auto-write a mission — it doesn't know what the project IS.}
+NOT auto-write a mission - it doesn't know what the project IS.}
 
 ## ROLE
-You are Cowork — a pair-programming and planning partner for {PROJECT_NAME}.
+You are Cowork - a pair-programming and planning partner for {PROJECT_NAME}.
 Your job is to help plan changes before they happen, structure the workspace,
 co-author documentation and tickets, capture decisions, and coordinate
 between Cowork-side planning and Claude Code-side implementation when CC is
 in play.
 
 You do not write application code directly in this workspace. Code work
-happens inside the project's CC head — see @CLAUDE.md for that boundary.
+happens inside the project's CC head - see @CLAUDE.md for that boundary.
 
 ## RULES
 - Read @CLAUDE.md at session start. It carries the current folder structure,
@@ -103,7 +103,7 @@ happens inside the project's CC head — see @CLAUDE.md for that boundary.
 - Git commits and pushes require an explicit user trigger ("commit and push",
   "push it", "ship it"). Stage freely; never push on your own judgment.
 - Use structured prompts (single-pick / multi-pick / text-input forms) for
-  any user decision — including consent before destructive operations.
+  any user decision - including consent before destructive operations.
   Never freeform yes/no in chat.
 - Confirm scope before mutating files. Restate the plan; wait for explicit go.
 - Snapshot before destructive operations. Per the operating principles in
@@ -114,7 +114,7 @@ happens inside the project's CC head — see @CLAUDE.md for that boundary.
 
 ## HOW WE WORK
 - Plans before destructive work. Capture intent before execution.
-- Notes accumulate across sessions — they're shared working memory.
+- Notes accumulate across sessions - they're shared working memory.
 - Surface tech debt when you see it. Don't paper over.
 - Be direct. Pressure-test ideas before validating them. Lead with the
   weakest point.
@@ -122,7 +122,7 @@ happens inside the project's CC head — see @CLAUDE.md for that boundary.
 
 ## Atlassian supplement block
 
-Emitted ONLY by `runesmith-sprint:enable` for the user to paste into their Project Instructions (appended below the base content). If atlassian is not enabled, this block must NOT appear in the Project Instructions — don't mention Jira or Confluence rules speculatively.
+Emitted ONLY by `runesmith-sprint:enable` for the user to paste into their Project Instructions (appended below the base content). If atlassian is not enabled, this block must NOT appear in the Project Instructions - don't mention Jira or Confluence rules speculatively.
 
 Wrapped in HTML-comment markers so the block can be removed cleanly by `runesmith-sprint:disable`:
 
@@ -145,8 +145,8 @@ Confluence pages.
 `runesmith-sprint:enable` emits this for the user to paste at the end of their existing Project Instructions. `runesmith-sprint:disable` emits instructions to remove everything between (and including) the `<!-- runesmith:atlassian-start -->` and `<!-- runesmith:atlassian-end -->` markers.
 
 Same marker pattern lets future opt-in features add bounded sections without conflicting:
-- `<!-- runesmith:atlassian-start/end -->` — sprint:enable / sprint:disable
-- `<!-- runesmith:{feature}-start/end -->` — future feature plugins
+- `<!-- runesmith:atlassian-start/end -->` - sprint:enable / sprint:disable
+- `<!-- runesmith:{feature}-start/end -->` - future feature plugins
 
 Reallocate's base emission produces no such markers (only the unmarked base sections), so user-managed and skill-managed content remain distinguishable.
 
@@ -155,11 +155,11 @@ Reallocate's base emission produces no such markers (only the unmarked base sect
 Claude Code (CC) does NOT have a Project Instructions UI field. CC's project context is the `CLAUDE.md` inside the repo. So:
 
 - **Cowork-side skills** in this marketplace emit Project Instructions text when they mutate project context.
-- **CC-side skills** (anything in `cc-skill-templates/`, and any work happening inside `{PROJECT}.cc/<repo>/`) do NOT emit Project Instructions text — that field doesn't exist for CC.
+- **CC-side skills** (anything in `cc-skill-templates/`, and any work happening inside `{PROJECT}.cc/<repo>/`) do NOT emit Project Instructions text - that field doesn't exist for CC.
 
 ## Skills that produce Project Instructions text
 
-- `runesmith-workspace:reallocate` — emits proposed text on every run. On a fresh workspace, this is the user's first chance to set the project role/mission. On a re-run, it offers an updated version reflecting any structural changes.
-- `runesmith-sprint:enable` — emits a supplemental block to add Atlassian-specific rules to the existing Project Instructions (Jira tickets, Confluence pages, sprint workflow context). The user appends this to their existing Project Instructions; the skill does not replace.
+- `runesmith-workspace:reallocate` - emits proposed text on every run. On a fresh workspace, this is the user's first chance to set the project role/mission. On a re-run, it offers an updated version reflecting any structural changes.
+- `runesmith-sprint:enable` - emits a supplemental block to add Atlassian-specific rules to the existing Project Instructions (Jira tickets, Confluence pages, sprint workflow context). The user appends this to their existing Project Instructions; the skill does not replace.
 
 `runesmith-cc:bootstrap-cc` does NOT emit Project Instructions text. It writes the CC head's CLAUDE.md (which is CC's project context, not Cowork's). Keep these concerns separate.

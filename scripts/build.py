@@ -23,9 +23,9 @@ What the build does per plugin:
   5. Zip the staged plugin folder (forward slashes via zipfile) to <output>/<name>.plugin
 
 Exit codes:
-  0 — built all plugins successfully
-  1 — at least one plugin failed to build (others may have succeeded)
-  2 — invalid invocation
+  0 - built all plugins successfully
+  1 - at least one plugin failed to build (others may have succeeded)
+  2 - invalid invocation
 """
 
 import os
@@ -67,7 +67,7 @@ def build_one(plugin: str, src_dir: Path, out_path: Path, stage_root: Path) -> i
         elif r.exists():
             r.unlink()
 
-    # Handle cc-skill-templates — deploy-time templates, not active plugin skills
+    # Handle cc-skill-templates - deploy-time templates, not active plugin skills
     cct = stage / "cc-skill-templates"
     if cct.is_dir():
         for sk in cct.rglob("SKILL.md"):
@@ -122,9 +122,9 @@ def main() -> int:
 
     print()
     if failures:
-        print(f"done — {failures} failure(s)")
+        print(f"done - {failures} failure(s)")
         return 1
-    print(f"done — {len(PLUGINS)} plugins built")
+    print(f"done - {len(PLUGINS)} plugins built")
     return 0
 
 

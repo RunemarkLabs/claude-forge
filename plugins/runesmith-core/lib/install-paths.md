@@ -14,7 +14,7 @@ Inside a Cowork shell session this is mounted at:
 /sessions/<session>/mnt/.remote-plugins/plugin_*/
 ```
 
-Read-only from inside the session. Per-session, per-workspace. Manual install via drag-drop of `.plugin` zip into the Cowork sidebar — Cowork writes to the host `rpm/` directory, then the session sees it on next restart.
+Read-only from inside the session. Per-session, per-workspace. Manual install via drag-drop of `.plugin` zip into the Cowork sidebar - Cowork writes to the host `rpm/` directory, then the session sees it on next restart.
 
 ## Claude Code (CLI)
 

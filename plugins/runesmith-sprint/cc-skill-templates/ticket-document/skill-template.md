@@ -6,7 +6,7 @@ compatibility: Requires Cowork desktop app environment.
 
 # Ticket Document (CC-side)
 
-Write to Jira ticket comments + labels via REST. CC's token is read-only by design — but commenting on a ticket is a "write" that requires permissions beyond pure read.
+Write to Jira ticket comments + labels via REST. CC's token is read-only by design - but commenting on a ticket is a "write" that requires permissions beyond pure read.
 
 **Important:** if CC's token does NOT have comment permission (typical for true read-only scoped tokens), this skill writes a comm of `type: ticket-transition` requesting Cowork to add the comment + label, instead of attempting the write itself.
 
@@ -34,7 +34,7 @@ This skill detects which capability tier is available and routes accordingly.
 
 - Ticket key (`KEY-123`)
 - Type: `plan` | `action` | `decision`
-- Body markdown — what to record
+- Body markdown - what to record
 
 Convert markdown → ADF for Jira comment body (per `@lib/atlassian-rest.md`).
 
@@ -87,7 +87,7 @@ Body specifies "Add comment + label `cc-plan`". Cowork's `check-comms` will exec
 ```
 Documented {KEY}:
   type: plan
-  via: direct (or "via: comms — awaiting Cowork")
+  via: direct (or "via: comms - awaiting Cowork")
 ```
 
 ## Guard Rails
@@ -101,7 +101,7 @@ Documented {KEY}:
 ## Error Cases
 
 **Comment 400 (ADF invalid):** Validate ADF structure, retry once, then surface.
-**Comment 403:** Capability tier wrong — re-probe. If still 403, switch to comms route.
+**Comment 403:** Capability tier wrong - re-probe. If still 403, switch to comms route.
 **Label add 403:** Comms route for label.
 **Ticket 404:** Wrong key. Surface to user via comm.
 

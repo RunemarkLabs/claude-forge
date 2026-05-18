@@ -23,7 +23,7 @@ Launch Cowork desktop, point it at the empty (or near-empty) project folder. Cow
 ```
 
 What happens:
-- Cowork prompts via structured input — apply / preview diff / cancel.
+- Cowork prompts via structured input - apply / preview diff / cancel.
 - On apply: snapshots existing root files to `archive/_pre-migration/<ISO>/`, then creates the canonical dirs (`_INBOX/`, `plans/active/`, `plans/archive/`, `notes/`, `drafts/`, `research/`, `source-docs/`, `archive/`).
 - Writes `STRUCTURE.md` and the `<!-- folder-conventions -->` + `<!-- agent-ops -->` marker blocks in `CLAUDE.md`.
 - Surfaces a proposed Project Instructions text block for you to paste into Cowork's Project Instructions UI field.
@@ -47,7 +47,7 @@ What happens:
 - Optionally: prompts to clone an existing GitHub repo or create a new one via PAT auth (uses `GITHUB_PAT` from `.credentials`).
 - Surfaces a nudge to run `/runesmith-cc:guardrail install` if it's not installed at user-level yet.
 
-The CC head folder is gitignored from the workspace dev repo — it's its own git repo (or repos plural, if you migrated multiple).
+The CC head folder is gitignored from the workspace dev repo - it's its own git repo (or repos plural, if you migrated multiple).
 
 ### 5. Install the user-level guardrail (one-time per machine)
 
@@ -115,4 +115,4 @@ Workspace folder should look like:
 
 **Atlassian enable fails.** Verify `.credentials` has `ATLASSIAN_API_URL`, `ATLASSIAN_API_EMAIL`, and `ATLASSIAN_API_TOKEN` set. Run `/runesmith-core:setup` to populate.
 
-**Project Instructions block not appearing.** Re-run reallocate — the proposed text is emitted in the final report on every run. Look for the copy-friendly code block at the end of the output.
+**Project Instructions block not appearing.** Re-run reallocate - the proposed text is emitted in the final report on every run. Look for the copy-friendly code block at the end of the output.

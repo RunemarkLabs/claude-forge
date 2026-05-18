@@ -12,14 +12,14 @@ Atlassian-enabled only.
 
 ## References
 
-- `lib/folder-conventions.md` — canonical home for ticket drafts (`plans/active/<slug>/tickets/`) and post-push archive (`archive/tickets-pushed/<YYYY-MM>/`)
-- `lib/plan-format.md` — how to read plans; directory shape includes `tickets/` subfolder
-- `lib/atlassian-rest.md` — endpoints
-- `lib/comms-check.md` — runs first
+- `lib/folder-conventions.md` - canonical home for ticket drafts (`plans/active/<slug>/tickets/`) and post-push archive (`archive/tickets-pushed/<YYYY-MM>/`)
+- `lib/plan-format.md` - how to read plans; directory shape includes `tickets/` subfolder
+- `lib/atlassian-rest.md` - endpoints
+- `lib/comms-check.md` - runs first
 - `lib/atlassian-enabled.md`
-- `lib/jira-tags.md` — apply `cowork-planned`, `bootstrap`
+- `lib/jira-tags.md` - apply `cowork-planned`, `bootstrap`
 - Sibling: `runesmith-jira:ticket` (push flow)
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -59,8 +59,8 @@ For each selected plan, propose a ticket breakdown. Strategy:
 
 - **Plan summary → Epic** (if `status: building` and >5 child tickets, or user opts in).
 - **Plan acceptance criteria → Stories** (one ticket per criterion, when criteria are well-formed).
-- **Implementation tasks** — derive from plan body (Decision section + any "Implementation" section if the user added one). One Task per discrete work item.
-- **Bugs** — only if the plan explicitly identifies known bugs to fix.
+- **Implementation tasks** - derive from plan body (Decision section + any "Implementation" section if the user added one). One Task per discrete work item.
+- **Bugs** - only if the plan explicitly identifies known bugs to fix.
 
 Show proposed tickets in a table. For each: Type (Epic / Story / Task / Bug), Summary, Description excerpt, target Sprint (default: backlog; user can pick active sprint).
 

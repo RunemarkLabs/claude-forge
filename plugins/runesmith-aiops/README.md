@@ -6,7 +6,7 @@ Part of the [RuneSmith marketplace](https://github.com/runemarklabs/runesmith).
 
 ## Skills
 
-- **`/runesmith-aiops:bootstrap-aiops`** — Substitute tokens and publish Quick Start / Full Integration / Architecture / Best Practices / FAQ / Reference.
+- **`/runesmith-aiops:bootstrap-aiops`** - Substitute tokens and publish Quick Start / Full Integration / Architecture / Best Practices / FAQ / Reference.
 
 ## Install
 

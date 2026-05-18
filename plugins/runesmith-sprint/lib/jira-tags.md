@@ -1,6 +1,6 @@
 # Jira Tag Taxonomy
 
-Canonical labels both Cowork and Claude Code apply to tickets. Generic, project-agnostic — works for any user's Jira instance.
+Canonical labels both Cowork and Claude Code apply to tickets. Generic, project-agnostic - works for any user's Jira instance.
 
 Tags are Jira **labels**, not custom fields. No special configuration needed in the user's Atlassian site beyond standard label support.
 
@@ -39,12 +39,12 @@ Tags are Jira **labels**, not custom fields. No special configuration needed in 
 
 | Skill | Tags it writes | Tags it removes |
 |---|---|---|
-| `atlassian:plan-to-tickets` | `cowork-planned`, `bootstrap` | — |
+| `atlassian:plan-to-tickets` | `cowork-planned`, `bootstrap` | - |
 | `atlassian:check-comms` | `cowork-resolved` (on blocker resolution) | `cc-blocked`, `needs-user` (when resolving) |
-| `atlassian:sprint-status` | — | — (read-only) |
-| CC `ticket-document` | `cc-plan` / `cc-action` / `cc-decision` (per type) | — |
-| CC `blocker-write` | `cc-blocked`, `needs-user` (if user-only) | — |
-| CC `ticket-done` | `cc-done` | — (Cowork removes `cc-blocked` etc. when transitioning) |
+| `atlassian:sprint-status` | - | - (read-only) |
+| CC `ticket-document` | `cc-plan` / `cc-action` / `cc-decision` (per type) | - |
+| CC `blocker-write` | `cc-blocked`, `needs-user` (if user-only) | - |
+| CC `ticket-done` | `cc-done` | - (Cowork removes `cc-blocked` etc. when transitioning) |
 | Cowork transition (response to `ticket-transition` comm) | `cowork-transition` | `cc-done` after successful transition |
 
 ## Audit views (suggested for the user)

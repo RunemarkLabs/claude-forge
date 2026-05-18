@@ -1,10 +1,10 @@
-# Workspace CLAUDE.md — folder-conventions section
+# Workspace CLAUDE.md - folder-conventions section
 
 `runesmith-workspace:reallocate` writes (or refreshes) a marker-bounded section into the workspace's root `CLAUDE.md` so every future Cowork session in this workspace knows the canonical folder layout.
 
 ## Why
 
-Cowork loads `CLAUDE.md` at session start. If the folder convention isn't pinned there, subsequent sessions drift — files get parked at root, transients accumulate, _INBOX never gets emptied. Pinning the section keeps the workspace coherent across sessions and across users.
+Cowork loads `CLAUDE.md` at session start. If the folder convention isn't pinned there, subsequent sessions drift - files get parked at root, transients accumulate, _INBOX never gets emptied. Pinning the section keeps the workspace coherent across sessions and across users.
 
 ## Marker pattern
 
@@ -47,11 +47,11 @@ To migrate a workspace into this layout or refresh `STRUCTURE.md`, run `/runesmi
 
 ## How disable / removal works
 
-If a user wants to remove the section (e.g. uninstalling `runesmith-workspace`), they delete everything from `<!-- folder-conventions:start -->` through `<!-- folder-conventions:end -->` inclusive. No skill currently writes a "disable" — reallocate is idempotent, so re-running it overwrites the section, and not running it leaves the section in place.
+If a user wants to remove the section (e.g. uninstalling `runesmith-workspace`), they delete everything from `<!-- folder-conventions:start -->` through `<!-- folder-conventions:end -->` inclusive. No skill currently writes a "disable" - reallocate is idempotent, so re-running it overwrites the section, and not running it leaves the section in place.
 
 ## Token substitution
 
-The template above contains `{WORKSPACE-NAME}` only in the bootstrap case (CLAUDE.md doesn't yet exist). Reallocate substitutes the workspace root folder name. The section body contains no tokens — paths are absolute relative to workspace root and don't need substitution.
+The template above contains `{WORKSPACE-NAME}` only in the bootstrap case (CLAUDE.md doesn't yet exist). Reallocate substitutes the workspace root folder name. The section body contains no tokens - paths are absolute relative to workspace root and don't need substitution.
 
 ## Surrounding content preservation
 

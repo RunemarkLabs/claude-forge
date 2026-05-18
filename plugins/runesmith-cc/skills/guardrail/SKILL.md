@@ -1,39 +1,39 @@
 ---
 name: guardrail
-description: "Install, verify, or uninstall the CC project-boundary guardrail with a single command. Copies a self-contained PowerShell (Windows) or bash (macOS/Linux) installer to the workspace root that handles the entire user-level setup — writes ~/.claude/settings.json permission block, hook scripts, runs synthetic verification. Constrains every Claude Code session on the machine to its launch project's root. Run once per machine. Use when the user says \"install the guardrail\", \"set up CC boundaries\", \"lock CC to project root\", \"guardrail install\", \"guardrail verify\", \"uninstall the guardrail\"."
+description: "Install, verify, or uninstall the CC project-boundary guardrail with a single command. Copies a self-contained PowerShell (Windows) or bash (macOS/Linux) installer to the workspace root that handles the entire user-level setup - writes ~/.claude/settings.json permission block, hook scripts, runs synthetic verification. Constrains every Claude Code session on the machine to its launch project's root. Run once per machine. Use when the user says \"install the guardrail\", \"set up CC boundaries\", \"lock CC to project root\", \"guardrail install\", \"guardrail verify\", \"uninstall the guardrail\"."
 compatibility: Requires Cowork desktop app environment.
 ---
 
 # CC Project-Boundary Guardrail (one-shot installer)
 
-The guardrail is **user-level config** (`~/.claude/settings.json` permission rules + `PreToolUse` hook). Cowork's sandbox can't write to user-home. CC's own session can't either (its own permissions block the install of its own boundary — chicken-and-egg). So this skill takes a different approach: **copy a self-contained installer script to the workspace root and tell the user to run it once.**
+The guardrail is **user-level config** (`~/.claude/settings.json` permission rules + `PreToolUse` hook). Cowork's sandbox can't write to user-home. CC's own session can't either (its own permissions block the install of its own boundary - chicken-and-egg). So this skill takes a different approach: **copy a self-contained installer script to the workspace root and tell the user to run it once.**
 
 One user action: run `.\install-guardrail.ps1` (Windows) or `./install-guardrail.sh` (macOS/Linux). The script does everything.
 
 ## References
 
-- `templates/install-guardrail.ps1` — full self-contained Windows installer
-- `templates/install-guardrail.sh` — full self-contained installer for **macOS + Linux** (portable: handles BSD realpath on macOS, GNU readlink on Linux, python3 fallback)
+- `templates/install-guardrail.ps1` - full self-contained Windows installer
+- `templates/install-guardrail.sh` - full self-contained installer for **macOS + Linux** (portable: handles BSD realpath on macOS, GNU readlink on Linux, python3 fallback)
 
 ## What the installer does
 
 When the user runs the copied installer:
 
-1. **Detects environment** — Git Bash + jq on Windows (chooses hook variant), or `jq` on Unix (required).
+1. **Detects environment** - Git Bash + jq on Windows (chooses hook variant), or `jq` on Unix (required).
 2. **Creates `~/.claude/hooks/`** if absent.
-3. **Writes the hook script** — `enforce-project-boundary.sh` (and `.ps1` on Windows). The hook body is embedded in the installer; no extra files to copy.
+3. **Writes the hook script** - `enforce-project-boundary.sh` (and `.ps1` on Windows). The hook body is embedded in the installer; no extra files to copy.
 4. **Reads existing `~/.claude/settings.json`** if present. Fails loudly on invalid JSON; never overwrites unreadable files.
-5. **Merges the guardrail block** — marker key, `permissions.defaultMode: "dontAsk"`, curated allow/deny arrays (union with any user-managed entries), `hooks.PreToolUse` matcher. User-managed keys outside the guardrail block survive.
-6. **Synthetic-tests the hook** — pipes one allow case and one deny case through, confirms exit codes (0 / 2).
-7. **Reports** — paths, status, known residual risks, restart-CC reminder.
+5. **Merges the guardrail block** - marker key, `permissions.defaultMode: "dontAsk"`, curated allow/deny arrays (union with any user-managed entries), `hooks.PreToolUse` matcher. User-managed keys outside the guardrail block survive.
+6. **Synthetic-tests the hook** - pipes one allow case and one deny case through, confirms exit codes (0 / 2).
+7. **Reports** - paths, status, known residual risks, restart-CC reminder.
 
 ## What this skill does (Cowork-side, one shot)
 
 When invoked from Cowork, this skill:
 
 1. **Comms check on entry** (per `lib/comms-check.md`).
-2. **OS detection** — structured prompt: Windows / macOS / Linux / "auto-detect both."
-3. **Confirms action** — structured prompt: install / verify / uninstall / cancel.
+2. **OS detection** - structured prompt: Windows / macOS / Linux / "auto-detect both."
+3. **Confirms action** - structured prompt: install / verify / uninstall / cancel.
 4. **Copies the appropriate installer** from this skill's `templates/` folder to the user's workspace root:
    - Windows: `install-guardrail.ps1`
    - macOS/Linux: `install-guardrail.sh` (with `chmod +x`)
@@ -67,10 +67,10 @@ Single-pick: `install` / `verify` / `uninstall` / `cancel`.
 ### 2. Detect target OS (structured prompt)
 
 Single-pick:
-- `Windows` — copies `install-guardrail.ps1`
-- `macOS` — copies `install-guardrail.sh` (works with default macOS bash; requires `brew install jq`)
-- `Linux` — copies `install-guardrail.sh` (requires `apt install jq` or distro equivalent)
-- `Copy both (cross-platform team)` — copies both .ps1 and .sh
+- `Windows` - copies `install-guardrail.ps1`
+- `macOS` - copies `install-guardrail.sh` (works with default macOS bash; requires `brew install jq`)
+- `Linux` - copies `install-guardrail.sh` (requires `apt install jq` or distro equivalent)
+- `Copy both (cross-platform team)` - copies both .ps1 and .sh
 
 Defaults to the OS the user's session indicates if known. "Copy both" is the right pick for cross-platform teams (e.g. Sapient where some run Windows, some run macOS).
 
@@ -101,7 +101,7 @@ Default: workspace root. Alternative: `_INBOX/` if the workspace's root keep-lis
    Once it completes successfully, restart any open Claude Code sessions.
    ```
 
-No structured-prompt consent for the copy step itself — the consent for the install action already happened in step 1 of pre-flight. Copying a file to workspace root is trivially reversible and doesn't touch user-home.
+No structured-prompt consent for the copy step itself - the consent for the install action already happened in step 1 of pre-flight. Copying a file to workspace root is trivially reversible and doesn't touch user-home.
 
 ## Verify flow
 
@@ -131,7 +131,7 @@ The installer removes its marker keys from settings.json, removes the hook scrip
 
 ## Why this design (and what changed)
 
-Earlier versions tried to install the guardrail from inside Claude Code. That failed because CC's own permission system blocks writes to `~/.claude/` from a CC session (it's enforcing the boundary it doesn't yet have, against itself). The previous CC-side install skill (`cc-skill-templates/guardrail/skill-template.md`) is retained for reference but no longer the recommended path — it falls back to printing manual install commands, which is the same content but multi-step.
+Earlier versions tried to install the guardrail from inside Claude Code. That failed because CC's own permission system blocks writes to `~/.claude/` from a CC session (it's enforcing the boundary it doesn't yet have, against itself). The previous CC-side install skill (`cc-skill-templates/guardrail/skill-template.md`) is retained for reference but no longer the recommended path - it falls back to printing manual install commands, which is the same content but multi-step.
 
 The one-shot installer eliminates the multi-step manual path. User opens PowerShell or Terminal, runs one command, done.
 

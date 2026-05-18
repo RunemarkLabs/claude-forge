@@ -13,10 +13,10 @@ Subagent invoked once per AIOPS template. The bootstrap-aiops skill calls this a
 Parent skill provides:
 - `template_path`: path to the storage-XHTML template, e.g. `templates/01-quick-start.xhtml`
 - `target_title`: page title for Confluence, already token-substituted
-- `parent_page_id`: optional — the Quick Start page's id (for nesting pages 2-6 under it)
+- `parent_page_id`: optional - the Quick Start page's id (for nesting pages 2-6 under it)
 - `tokens`: dict of {COMPANY, SITE, ATLASSIAN_API_URL, SPACE_KEY, SPACE_ID, PROJECT_KEY} resolved values
 - `space_id`: Confluence space numeric id (target)
-- `replace_existing`: bool — if a page with the same title already exists, replace via PUT instead of erroring
+- `replace_existing`: bool - if a page with the same title already exists, replace via PUT instead of erroring
 - `credentials`: ATLASSIAN_API_URL, ATLASSIAN_API_EMAIL, ATLASSIAN_API_TOKEN
 
 ## Workflow
@@ -43,8 +43,8 @@ GET {ATLASSIAN_API_URL}/wiki/api/v2/pages?space-id={space_id}&title=<URL-encoded
 ```
 
 If exists:
-- If `replace_existing: true` — capture `id` and `version.number`, prepare for PUT
-- If `replace_existing: false` — return failure: `{ "success": false, "error": "page_exists", "page_id": "..." }`
+- If `replace_existing: true` - capture `id` and `version.number`, prepare for PUT
+- If `replace_existing: false` - return failure: `{ "success": false, "error": "page_exists", "page_id": "..." }`
 
 If not exists:
 - Prepare for POST
@@ -100,14 +100,14 @@ On failure: structured error with status code, response body, and which step fai
 - [ ] No unresolved `{...}` placeholders in published body
 - [ ] Existence check uses space-scoped query (`space-id` param)
 - [ ] PUT path: GET version → bump → PUT (handled inline; on 409 retry once with fresh GET)
-- [ ] One template = one HTTP request (no batch — keeps failures isolated)
-- [ ] Subagent is idempotent — re-running with same inputs and `replace_existing: true` produces consistent results
+- [ ] One template = one HTTP request (no batch - keeps failures isolated)
+- [ ] Subagent is idempotent - re-running with same inputs and `replace_existing: true` produces consistent results
 
 ## Why this is an agent
 
 - `bootstrap-aiops` iterates over 6 templates. Doing each inline keeps the parent context filled with HTTP details and substitution diffs.
 - Failure of template #4 (e.g. one token unresolved) shouldn't abort templates #5 and #6 from being published. Parent sees per-template result and decides batch behavior.
-- Each agent invocation is small and focused — easier to debug than a single mega-skill that does all six in sequence.
+- Each agent invocation is small and focused - easier to debug than a single mega-skill that does all six in sequence.
 
 ## Error Cases
 

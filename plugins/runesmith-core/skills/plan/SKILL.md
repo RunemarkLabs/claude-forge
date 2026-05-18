@@ -1,20 +1,20 @@
 ---
 name: plan
-description: "Plan a change before executing — capture problem, decision, why-now, scope, trade-offs to a clean markdown file under plans/active/. Use when the user says \"plan this\", \"let's plan\", \"draft a plan for\", \"spec this out\", \"I want to plan\", or wants to think through a substantial change before any writes happen. Chat-first, file-last workflow."
+description: "Plan a change before executing - capture problem, decision, why-now, scope, trade-offs to a clean markdown file under plans/active/. Use when the user says \"plan this\", \"let's plan\", \"draft a plan for\", \"spec this out\", \"I want to plan\", or wants to think through a substantial change before any writes happen. Chat-first, file-last workflow."
 compatibility: Requires Cowork desktop app environment.
 ---
 
 # Plan a Change
 
-Capture a project plan as `plans/active/<slug>/plan.md` — clean, claude-readable markdown that serves as the source of truth for project intent. Both Cowork and Claude Code read from `plans/active/`.
+Capture a project plan as `plans/active/<slug>/plan.md` - clean, claude-readable markdown that serves as the source of truth for project intent. Both Cowork and Claude Code read from `plans/active/`.
 
 This skill performs no API calls. It writes one local file (plus optional decisions log + refs dir).
 
 ## References
 
-- `lib/plan-format.md` — canonical plan.md schema
-- `lib/comms-check.md` — check-on-entry pattern
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/plan-format.md` - canonical plan.md schema
+- `lib/comms-check.md` - check-on-entry pattern
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -104,7 +104,7 @@ plans/active/<slug>/
 
 Append-only log of decisions made under this plan.
 
-## YYYY-MM-DD — <decision title>
+## YYYY-MM-DD - <decision title>
 **What:** ...
 **Why:** ...
 **Participants:** ...

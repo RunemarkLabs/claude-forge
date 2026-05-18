@@ -1,22 +1,22 @@
 ---
 name: inbox
-description: "Process files in _INBOX/ — classify each per lib/folder-conventions.md, propose a destination, route on consent. Use when the user says \"process inbox\", \"check inbox\", \"sort inbox\", \"what's in the inbox\", \"deal with inbox\", \"route these files\", or after dropping new files into _INBOX/."
+description: "Process files in _INBOX/ - classify each per lib/folder-conventions.md, propose a destination, route on consent. Use when the user says \"process inbox\", \"check inbox\", \"sort inbox\", \"what's in the inbox\", \"deal with inbox\", \"route these files\", or after dropping new files into _INBOX/."
 compatibility: Requires Cowork desktop app environment.
 ---
 
 # Inbox Processor
 
-`_INBOX/` is the workspace drop zone — a permanent feature of the canonical structure where the user places files for the inbox skill to classify and route. The skill reads each file, identifies its category via filename + content + frontmatter, proposes a target per the destination map in `lib/folder-conventions.md`, and moves on consent.
+`_INBOX/` is the workspace drop zone - a permanent feature of the canonical structure where the user places files for the inbox skill to classify and route. The skill reads each file, identifies its category via filename + content + frontmatter, proposes a target per the destination map in `lib/folder-conventions.md`, and moves on consent.
 
 After every run, `_INBOX/` ends empty except for items the user explicitly opted to leave (`unclassifiable` + user passes).
 
 ## References
 
-- `lib/folder-conventions.md` — **single source of truth** for the destination map. Inbox is the executor.
-- `lib/plan-format.md` — for routing plan-bound content into `plans/active/<slug>/`
-- `lib/comms-check.md` — runs first
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
-- `lib/consent.md` — consent-trigger phrases for sensitive routes
+- `lib/folder-conventions.md` - **single source of truth** for the destination map. Inbox is the executor.
+- `lib/plan-format.md` - for routing plan-bound content into `plans/active/<slug>/`
+- `lib/comms-check.md` - runs first
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
+- `lib/consent.md` - consent-trigger phrases for sensitive routes
 
 ## User input rules
 
@@ -42,8 +42,8 @@ Use for:
 - Onboarding a batch of supporting documents into active plans
 
 Do not use for:
-- Files already inside `plans/`, `drafts/`, etc. — those are already routed
-- Bulk auto-archive of canonical-home contents (different concern — see `runesmith-devtools:tech-debt`)
+- Files already inside `plans/`, `drafts/`, etc. - those are already routed
+- Bulk auto-archive of canonical-home contents (different concern - see `runesmith-devtools:tech-debt`)
 
 ## Workflow
 
@@ -59,14 +59,14 @@ For each file, determine category by filename + content sniff + frontmatter. Ord
 |---|---|
 | Filename starts with `<YYYY-MM-DD>-handoff-` OR content describes a session-bridge state (status / what's done / what's next) | `handoff` |
 | Frontmatter has `slug:` + `status:` + Problem/Decision sections (matches `lib/plan-format.md`) | `plan-proposal` |
-| Filename matches `decisions*.md` or content has `## YYYY-MM-DD —` decision-log headers | `decision-record` |
+| Filename matches `decisions*.md` or content has `## YYYY-MM-DD -` decision-log headers | `decision-record` |
 | Frontmatter has `from:` + `to:` + `type:` matching comms types | `misplaced-comm` |
 | JSON with Jira issue fields (`fields.summary`, `fields.issuetype`, etc.) | `ticket-draft` |
 | Markdown matching feature/bug/architecture template structure (Confluence draft) | `draft-feature` / `draft-bug` / `draft-project-doc` |
 | Markdown content reads as analysis / comparison / evaluation (no plan frontmatter) | `research` |
-| PDF, DOCX, XLSX, audio, raw transcript, vendor doc — external source | `source-doc` |
+| PDF, DOCX, XLSX, audio, raw transcript, vendor doc - external source | `source-doc` |
 | Image (PNG/JPG/SVG), screenshot | `image` |
-| Plain markdown — no other category fits | `note` |
+| Plain markdown - no other category fits | `note` |
 | Anything else | `unclassifiable` |
 
 ### 3. Propose route
@@ -125,7 +125,7 @@ Per row:
 Append to `notes/<YYYY-MM-DD>-inbox.md` (one log file per day, append across runs):
 
 ```markdown
-## <ISO timestamp> — inbox run
+## <ISO timestamp> - inbox run
 
 - moved {N} files
 - left {M} unclassifiable
@@ -161,12 +161,12 @@ Next: /runesmith-core:plan, /runesmith-workspace:reallocate, or run inbox again 
 - [ ] No file overwritten without explicit consent
 - [ ] Unclassifiable files left in place, never deleted
 - [ ] Audit log appended for every run
-- [ ] No file deletion ever — only moves
+- [ ] No file deletion ever - only moves
 
 ## Error Cases
 
 **Inbox empty:** "Nothing to process." Exit clean.
-**Plan slug doesn't exist for a routing target:** Structured prompt — pick existing plan / create new plan via `/runesmith-core:plan` / route to `research/<topic>/` if research / route to `archive/superseded/<YYYY-MM>/` if stale.
+**Plan slug doesn't exist for a routing target:** Structured prompt - pick existing plan / create new plan via `/runesmith-core:plan` / route to `research/<topic>/` if research / route to `archive/superseded/<YYYY-MM>/` if stale.
 **Filename collision at destination:** Show diff if both are text; structured prompt: keep existing / replace / rename.
 **File appears to be a comm:** "This file looks like a comms message. It belongs in `{PROJECT}.cc/comms/open/`. Move there or treat as note?" Structured single-pick.
 **Permission error on move:** Skip that file, log, continue with the rest, report skipped at end.

@@ -1,6 +1,6 @@
 ---
 name: project-overview
-description: "Create a project overview page for Confluence — the landing page for a project space. Template includes project name, description, team, tech stack, architecture summary, current phase, and links. Trigger on \"project overview\", \"create the overview page\", \"set up the project page\", \"overview page\", \"landing page for the project\"."
+description: "Create a project overview page for Confluence - the landing page for a project space. Template includes project name, description, team, tech stack, architecture summary, current phase, and links. Trigger on \"project overview\", \"create the overview page\", \"set up the project page\", \"overview page\", \"landing page for the project\"."
 compatibility: Requires Cowork desktop app environment.
 ---
 
@@ -10,16 +10,16 @@ Create the landing page for a project's Confluence space.
 
 ## References
 
-- `agents/page-publisher.md` — subagent for markdown→XHTML→POST/PUT with version-bump
+- `agents/page-publisher.md` - subagent for markdown→XHTML→POST/PUT with version-bump
 
 - `lib/atlassian-rest.md`
 - `lib/confluence-format.md`
 - `lib/credentials.md`
 - `lib/consent.md`
 - `lib/tokens.md`
-- `lib/comms-check.md` — runs first
-- `lib/plan-format.md` — for optional plan prefill
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/comms-check.md` - runs first
+- `lib/plan-format.md` - for optional plan prefill
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -60,7 +60,7 @@ Do not use for:
 - One-line description
 - Team members (names, roles)
 - Tech stack
-- Architecture summary (1–2 paragraphs)
+- Architecture summary (1-2 paragraphs)
 - Current phase (Discovery | Planning | Building | Launched | Maintenance)
 - Key links (repo, board, roadmap, ADR index)
 
@@ -70,7 +70,7 @@ Save to `/drafts/project-docs/overview.md`. Use `{COMPANY}` if part of title.
 
 ### 3. Get consent
 
-"Publish project overview to {SPACE_KEY}?" — wait for trigger.
+"Publish project overview to {SPACE_KEY}?" - wait for trigger.
 
 ### 4. Publish or update
 

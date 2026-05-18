@@ -1,4 +1,4 @@
-<h1>{COMPANY} — Full Integration Guide</h1>
+<h1>{COMPANY} - Full Integration Guide</h1>
 
 <p>End-to-end setup for the AIOPS skills against <strong>{COMPANY}</strong>'s Atlassian site at <code>{SITE}</code>.</p>
 
@@ -6,7 +6,7 @@
 <ol>
   <li>API token: <a href="https://id.atlassian.com/manage-profile/security/api-tokens">id.atlassian.com/manage-profile/security/api-tokens</a></li>
   <li>Note the email address tied to the token (must be the user's account email).</li>
-  <li>GitHub PAT (for plugin sync): <a href="https://github.com/settings/tokens">github.com/settings/tokens</a> — needs <code>repo</code> scope.</li>
+  <li>GitHub PAT (for plugin sync): <a href="https://github.com/settings/tokens">github.com/settings/tokens</a> - needs <code>repo</code> scope.</li>
 </ol>
 
 <h2>2. Configure local <code>.credentials</code></h2>
@@ -25,13 +25,13 @@ ATLASSIAN_JIRA_PROJECT_KEY={PROJECT_KEY}
 
 <h2>3. Verify connectivity</h2>
 <ol>
-  <li>Run <code>/core:setup</code> — performs health checks against Confluence, Jira, GitHub.</li>
-  <li>Run <code>/atlassian:project-status</code> — read-only Jira call to confirm project access.</li>
+  <li>Run <code>/core:setup</code> - performs health checks against Confluence, Jira, GitHub.</li>
+  <li>Run <code>/atlassian:project-status</code> - read-only Jira call to confirm project access.</li>
 </ol>
 
 <h2>4. First write</h2>
 <ol>
-  <li>Run <code>/atlassian:session-log</code> — creates a Confluence page from a draft.</li>
+  <li>Run <code>/atlassian:session-log</code> - creates a Confluence page from a draft.</li>
   <li>Confirm the published page has full storage formatting (headings, code, tables).</li>
 </ol>
 

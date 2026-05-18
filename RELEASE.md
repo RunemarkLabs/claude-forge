@@ -1,4 +1,4 @@
-# Release process — Runemark internal
+# Release process - Runemark internal
 
 This document describes how to ship a release of RuneSmith from this private development workspace to the public marketplace repo.
 
@@ -97,16 +97,16 @@ The public never sees:
 
 Anyone (Sapient, third parties, anyone who finds the repo) can fork the public marketplace and modify for their own use. Runemark does not maintain forks. Sapient-specific or other tenant-specific customizations live in their own forks, not in this dev workspace and not in the public marketplace.
 
-The public marketplace is **generic and single-tenant configurable per project** — that's a design invariant enforced by `scripts/audit.py`. Forks may override that for internal use.
+The public marketplace is **generic and single-tenant configurable per project** - that's a design invariant enforced by `scripts/audit.py`. Forks may override that for internal use.
 
 ## Version policy
 
 Single version across the marketplace (`marketplace.json` `metadata.version` + every plugin.json `version`). Bump together on each release. Semver:
-- **MAJOR** — breaking changes to lib conventions, skill names, or marketplace structure
-- **MINOR** — new skills, new plugins, new agent files
-- **PATCH** — fixes, doc updates, internal refactors
+- **MAJOR** - breaking changes to lib conventions, skill names, or marketplace structure
+- **MINOR** - new skills, new plugins, new agent files
+- **PATCH** - fixes, doc updates, internal refactors
 
-Update `CHANGELOG.md` under `## [<version>] — <date>` with the change list before running release.
+Update `CHANGELOG.md` under `## [<version>] - <date>` with the change list before running release.
 
 ## Common workflow patterns
 
@@ -122,11 +122,11 @@ Update `CHANGELOG.md` under `## [<version>] — <date>` with the change list bef
 **Add a new plugin:**
 1. Develop under `plugins/<new-plugin>/`
 2. Add entry to `marketplace.json` `plugins[]`
-3. Add new plugin to `PUBLIC.manifest.txt`? — already covered (`plugins/` is a recursive copy)
-4. Update `dist/build.sh` PLUGINS array? — yes, add to the array
+3. Add new plugin to `PUBLIC.manifest.txt`? - already covered (`plugins/` is a recursive copy)
+4. Update `dist/build.sh` PLUGINS array? - yes, add to the array
 5. Bump MINOR version everywhere
 6. Audit, rebuild, release
 
 **Working session that should stay private:**
 1. Use this private workspace freely. Write notes, drafts, plans. None of it ships.
-2. When ready to publish, run `scripts/release.sh` — only the public subset goes.
+2. When ready to publish, run `scripts/release.sh` - only the public subset goes.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-md-to-storage.py — reference markdown → Confluence storage XHTML converter.
+md-to-storage.py - reference markdown → Confluence storage XHTML converter.
 
 This is the canonical reference implementation that backs every RuneSmith
 skill that publishes to Confluence (feature-doc, architecture-doc, project-
@@ -30,7 +30,7 @@ Supports:
 - Tables (| col1 | col2 |)
 
 Does NOT support (use raw storage XHTML for these):
-- Confluence info/warning/note panels (handle in skill — wrap output)
+- Confluence info/warning/note panels (handle in skill - wrap output)
 - Status lozenges
 - Task lists / decision lists
 - Embedded media

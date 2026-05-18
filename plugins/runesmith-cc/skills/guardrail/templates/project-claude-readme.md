@@ -8,7 +8,7 @@ Combined with the user-level RuneSmith guardrail (installed via `/runesmith-cc:g
 
 ## When to edit `settings.json`
 
-`additionalDirectories` — add absolute paths or `~`-relative paths the project legitimately needs to access. Examples:
+`additionalDirectories` - add absolute paths or `~`-relative paths the project legitimately needs to access. Examples:
 
 - **Monorepo sibling**: `"../shared-libs"` so CC can read shared code in a sibling package.
 - **System config**: `"/etc/myapp"` for an ops project that touches a service config.
@@ -16,12 +16,12 @@ Combined with the user-level RuneSmith guardrail (installed via `/runesmith-cc:g
 
 Every entry is an escape hatch. Document the reason inline (`_comment` per entry, or in this README's "Approved cross-project access" section below) so future maintainers know why the boundary was widened.
 
-`permissions.allow` / `permissions.deny` — project-specific overrides. Use sparingly:
+`permissions.allow` / `permissions.deny` - project-specific overrides. Use sparingly:
 
 - Allow a `Bash(npm run *)` that the user-level config blocked.
 - Deny a path inside the project that should never be touched (e.g. `Read(./.secrets/**)`).
 
-The user-level guardrail's `defaultMode: "dontAsk"` plus categorical denies (`.credentials`, `.env`, `id_rsa*`, etc.) still apply on top of these. You cannot allow what the user-level config denies — deny-first precedence wins.
+The user-level guardrail's `defaultMode: "dontAsk"` plus categorical denies (`.credentials`, `.env`, `id_rsa*`, etc.) still apply on top of these. You cannot allow what the user-level config denies - deny-first precedence wins.
 
 ## What's still NOT protected
 

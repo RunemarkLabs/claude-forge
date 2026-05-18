@@ -1,4 +1,4 @@
-# Atlassian REST — canonical endpoints
+# Atlassian REST - canonical endpoints
 
 All Jira/Confluence calls in this marketplace use these exact endpoints. No deprecated paths.
 

@@ -35,7 +35,7 @@ The parent skill provides:
    https://x-access-token:$github_pat@github.com/{owner}/{name}.git
    ```
 4. `git clone <pat-auth-url> <target_dir>`.
-5. `cd <target_dir> && git remote set-url origin https://github.com/{owner}/{name}.git` — strip PAT from stored remote so it never gets committed or leaked.
+5. `cd <target_dir> && git remote set-url origin https://github.com/{owner}/{name}.git` - strip PAT from stored remote so it never gets committed or leaked.
 6. Drop stub CLAUDE.md from `templates/CLAUDE.repo.md` (token-substitute `{REPO_NAME}` → repo_name, `{PROJECT}` → workspace name).
 7. `git add . && git commit -m "Initial CLAUDE.md from bootstrap-cc"`.
 8. `git push origin main` (or master if that's the default branch).
@@ -69,7 +69,7 @@ On failure: `{"success": false, "step": "<which step failed>", "error": "<messag
 - [ ] PAT never appears in stored git remote (stripped via `set-url` before any push)
 - [ ] PAT never logged or echoed
 - [ ] Stub CLAUDE.md never overwrites an existing CLAUDE.md without explicit consent
-- [ ] Git operations all run inside `target_dir` — never affect other repos
+- [ ] Git operations all run inside `target_dir` - never affect other repos
 - [ ] Returns structured success/failure to parent (parent owns user interaction)
 - [ ] Subagent context never leaks to main conversation beyond the structured return
 

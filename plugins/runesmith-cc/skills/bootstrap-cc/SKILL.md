@@ -12,14 +12,14 @@ Idempotent. Safe to re-run.
 
 ## References
 
-- `agents/repo-bootstrapper.md` — subagent for repo create/clone with PAT auth
-- `lib/cc-workspace.md` — canonical structure
-- `lib/comms-protocol.md` — comms folder shape
-- `lib/comms-check.md` — runs first
-- `lib/credentials.md` — `.credentials` resolution + GITHUB_PAT
-- `lib/naming.md` — kebab-case-lowercase normalization rule
-- `lib/agent-operating-principles.md` — agent-ops principles applied to CC head CLAUDE.md
-- `lib/code-analyzers.md` — per-language analyzer registry for the deployed `code-tech-debt` skill
+- `agents/repo-bootstrapper.md` - subagent for repo create/clone with PAT auth
+- `lib/cc-workspace.md` - canonical structure
+- `lib/comms-protocol.md` - comms folder shape
+- `lib/comms-check.md` - runs first
+- `lib/credentials.md` - `.credentials` resolution + GITHUB_PAT
+- `lib/naming.md` - kebab-case-lowercase normalization rule
+- `lib/agent-operating-principles.md` - agent-ops principles applied to CC head CLAUDE.md
+- `lib/code-analyzers.md` - per-language analyzer registry for the deployed `code-tech-debt` skill
 - Templates in this skill's `templates/` directory (notably `CLAUDE.parent.md` which carries the agent-ops marker section)
 
 ## User input rules (CRITICAL)
@@ -40,7 +40,7 @@ See `lib/comms-check.md`.
 
 ### 1. Workspace root
 
-Resolve workspace root (cwd or `BOOTSTRAP_WORKSPACE` env). No confirmation prompt — surface it in the upcoming plan.
+Resolve workspace root (cwd or `BOOTSTRAP_WORKSPACE` env). No confirmation prompt - surface it in the upcoming plan.
 
 ### 2. Detect git repos at workspace root
 
@@ -127,7 +127,7 @@ Per `lib/cc-workspace.md`, ensure these exist (do not clobber if user has custom
 | `<name>.cc/CLAUDE.md` | `templates/CLAUDE.parent.md` (token-substituted) |
 | `<name>.cc/README.md` | `templates/README.md` |
 | `<name>.cc/.claude-code-workspace` | `templates/marker.json` (token-substituted) |
-| `<name>.cc/.claude/settings.json` | `../guardrail/templates/project-settings.json` (project-level guardrail scaffolding — `additionalDirectories: []`, empty allow/deny) |
+| `<name>.cc/.claude/settings.json` | `../guardrail/templates/project-settings.json` (project-level guardrail scaffolding - `additionalDirectories: []`, empty allow/deny) |
 | `<name>.cc/.claude/README.md` | `../guardrail/templates/project-claude-readme.md` (documents the boundary + escape-hatch usage) |
 | `<name>.cc/.claude/settings.local.json` | empty `{}` (gitignored) |
 | `<name>.cc/.claude/skills/code-tech-debt/SKILL.md` | `../../cc-skill-templates/code-tech-debt/SKILL.md` (plugin-relative) |
@@ -149,8 +149,8 @@ Token substitution:
 
 **Idempotent re-apply on existing CC head**: if `<name>.cc/CLAUDE.md` already exists, do not overwrite. Instead, refresh the marker-bounded sections in place:
 
-1. `<!-- atlassian-section:start -->` / `<!-- atlassian-section:end -->` — leave content alone (atlassian-enable owns it; bootstrap-cc only seeds empty markers on first write)
-2. `<!-- agent-ops:start -->` / `<!-- agent-ops:end -->` — replace content between markers with the current body from `templates/CLAUDE.parent.md`. If markers don't exist, append the full block before the closing comment.
+1. `<!-- atlassian-section:start -->` / `<!-- atlassian-section:end -->` - leave content alone (atlassian-enable owns it; bootstrap-cc only seeds empty markers on first write)
+2. `<!-- agent-ops:start -->` / `<!-- agent-ops:end -->` - replace content between markers with the current body from `templates/CLAUDE.parent.md`. If markers don't exist, append the full block before the closing comment.
 
 Never touch content outside any marker pair.
 
@@ -158,11 +158,11 @@ Never touch content outside any marker pair.
 
 Every CC head ships with the following CC-side skill templates (callable from inside CC via slash commands):
 
-- **`code-tech-debt`** — repo-level dead-code / unused-export / unused-dep scanner. Per-language analyzers (TS, JS, Node, React, Next.js, Python out of the box; extensible via `code-analyzers.md`). Source: `cc-skill-templates/code-tech-debt/SKILL.md` in this plugin. The skill's lib (`code-analyzers.md`) is also copied into the deployed skill's own `lib/` so it travels with the skill.
+- **`code-tech-debt`** - repo-level dead-code / unused-export / unused-dep scanner. Per-language analyzers (TS, JS, Node, React, Next.js, Python out of the box; extensible via `code-analyzers.md`). Source: `cc-skill-templates/code-tech-debt/SKILL.md` in this plugin. The skill's lib (`code-analyzers.md`) is also copied into the deployed skill's own `lib/` so it travels with the skill.
 
-**Note**: As of v0.8.0, the user-level CC project-boundary guardrail is installed via a one-shot installer script copied to the workspace root by `/runesmith-cc:guardrail`. It is no longer deployed as a CC-side skill template — CC's own permission system blocked the install of its own boundary, so the install path moved to a workspace-rooted PowerShell / bash script the user runs once per machine.
+**Note**: As of v0.8.0, the user-level CC project-boundary guardrail is installed via a one-shot installer script copied to the workspace root by `/runesmith-cc:guardrail`. It is no longer deployed as a CC-side skill template - CC's own permission system blocked the install of its own boundary, so the install path moved to a workspace-rooted PowerShell / bash script the user runs once per machine.
 
-Sprint-specific skills (sprint-pull, ticket-document, blocker-write, ticket-done) are NOT deployed by bootstrap-cc — those are deployed by `/runesmith-sprint:enable` and only when the user opts into the Atlassian workflow.
+Sprint-specific skills (sprint-pull, ticket-document, blocker-write, ticket-done) are NOT deployed by bootstrap-cc - those are deployed by `/runesmith-sprint:enable` and only when the user opts into the Atlassian workflow.
 
 Copy templates with token substitution where applicable. Do not clobber if the user has customized the deployed copy.
 
@@ -236,8 +236,8 @@ Comms: <name>.cc/comms/  (open is gitignored, archive is committed)
       git -C <path> remote set-url origin https://github.com/<owner>/<repo>.git
 
 Next:
-  /runesmith-sprint:enable      — wire Atlassian into this project (optional)
-  /runesmith-cc:bootstrap-cc    — re-run any time to add more repos
+  /runesmith-sprint:enable      - wire Atlassian into this project (optional)
+  /runesmith-cc:bootstrap-cc    - re-run any time to add more repos
 ```
 
 ## Idempotent re-run

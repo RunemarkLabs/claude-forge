@@ -1,23 +1,23 @@
 ---
 name: tech-debt
-description: "Scan the workspace for stale, orphaned, or unreferenced artifacts using a cross-reference graph (plans → refs/tickets/decisions → research/source-docs/drafts). Identifies what is ACTUALLY tech debt — content that no longer traces back to a live plan, ticket, or decision. Workspace-side only; never enters source repos. Use after a round of changes, when things feel messy, proactively between work sessions, or to verify cleanliness before a release. Triggers on: \"tech debt\", \"clean up\", \"stale files\", \"what's out of date\", \"is anything orphaned\"."
+description: "Scan the workspace for stale, orphaned, or unreferenced artifacts using a cross-reference graph (plans → refs/tickets/decisions → research/source-docs/drafts). Identifies what is ACTUALLY tech debt - content that no longer traces back to a live plan, ticket, or decision. Workspace-side only; never enters source repos. Use after a round of changes, when things feel messy, proactively between work sessions, or to verify cleanliness before a release. Triggers on: \"tech debt\", \"clean up\", \"stale files\", \"what's out of date\", \"is anything orphaned\"."
 model: haiku
 compatibility: Requires Cowork desktop app environment.
 ---
 
 # Workspace Tech Debt Scanner
 
-Identify workspace content that is no longer alive — orphaned, unreferenced, or superseded — and propose archive/delete actions with user consent.
+Identify workspace content that is no longer alive - orphaned, unreferenced, or superseded - and propose archive/delete actions with user consent.
 
 Tech debt here means **unreferenced** content, not just old content. Age is a weak signal; cross-references are the real test. A 6-month-old reference doc still cited by an active plan is alive. A 1-week-old draft that nobody points to and references a superseded plan is debt.
 
-**Scope is the workspace only.** This skill does not touch source repos. For code-level tech debt (unused functions, dead classes, leftover scaffolding from refactors), see `runesmith-cc:code-tech-debt` — a CC-side skill template deployed by `runesmith-cc:bootstrap-cc`.
+**Scope is the workspace only.** This skill does not touch source repos. For code-level tech debt (unused functions, dead classes, leftover scaffolding from refactors), see `runesmith-cc:code-tech-debt` - a CC-side skill template deployed by `runesmith-cc:bootstrap-cc`.
 
 ## References
 
-- `agents/workspace-scanner.md` — subagent for directory walk + raw findings
-- `lib/folder-conventions.md` — canonical layout this skill scans against
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `agents/workspace-scanner.md` - subagent for directory walk + raw findings
+- `lib/folder-conventions.md` - canonical layout this skill scans against
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 ## User input rules
 
@@ -33,7 +33,7 @@ Use for:
 - Proactive workspace hygiene between sessions
 - After completing a major project phase
 - When the workspace feels cluttered or you suspect orphans
-- Before tagging a release — verify no stale plan/draft/research is shipping
+- Before tagging a release - verify no stale plan/draft/research is shipping
 - After running `/runesmith-workspace:reallocate` to verify nothing fell through
 
 Do **not** use for:
@@ -45,7 +45,7 @@ Do **not** use for:
 
 Tech-debt **never enters `{PROJECT}.cc/<repo>/`**. The CC head's repos are CC's territory. The workspace's job ends at the boundary.
 
-Tech-debt **does** scan `{PROJECT}.cc/comms/archive/` if asked (rare — archive is the audit trail, usually preserved).
+Tech-debt **does** scan `{PROJECT}.cc/comms/archive/` if asked (rare - archive is the audit trail, usually preserved).
 
 ## Workflow
 
@@ -91,13 +91,13 @@ Walk the canonical workspace dirs and build an in-memory graph:
 
 For each node, assign a status:
 
-- **alive** — referenced by an active plan, recent note, or open comm
-- **structural-debt** — wrong location for its status (e.g. `status: done` plan still in `plans/active/`, pushed ticket draft still in `plans/active/<slug>/tickets/`)
-- **orphan** — no live references; candidate for archive
-- **superseded-history** — referenced only via `supersedes:` from a newer plan; preserve as history
-- **operation-snapshot-stale** — `archive/_pre-*/` snapshot older than 90 days
-- **broken** — structural issue (e.g. plugin missing `.claude-plugin/plugin.json`, ticket JSON whose plan slug doesn't exist)
-- **unknown** — outside the canonical layout (shouldn't exist after reallocate; flag for inbox routing)
+- **alive** - referenced by an active plan, recent note, or open comm
+- **structural-debt** - wrong location for its status (e.g. `status: done` plan still in `plans/active/`, pushed ticket draft still in `plans/active/<slug>/tickets/`)
+- **orphan** - no live references; candidate for archive
+- **superseded-history** - referenced only via `supersedes:` from a newer plan; preserve as history
+- **operation-snapshot-stale** - `archive/_pre-*/` snapshot older than 90 days
+- **broken** - structural issue (e.g. plugin missing `.claude-plugin/plugin.json`, ticket JSON whose plan slug doesn't exist)
+- **unknown** - outside the canonical layout (shouldn't exist after reallocate; flag for inbox routing)
 
 ### 3. Group findings + propose action
 
@@ -136,7 +136,7 @@ What do you want to act on?
   [ ] Orphans (archive to archive/superseded/<YYYY-MM>/)
   [ ] Operation snapshots > 90 days (delete)
   [ ] Broken items (review individually)
-  [ ] Nothing — preview only
+  [ ] Nothing - preview only
 ```
 
 Then per selected category, a per-item structured prompt or batch-confirm.
@@ -176,7 +176,7 @@ Live graph: {N} active plans, {M} references, {O} orphans remaining
 - [ ] Per-category consent via structured multi-pick
 - [ ] Broken items surfaced, never auto-fixed without per-item user input
 - [ ] Reallocate-style structural moves (e.g. `status: done` plan to archive) handled here, not duplicating reallocate's job
-- [ ] No code analysis — that's `runesmith-cc:code-tech-debt`
+- [ ] No code analysis - that's `runesmith-cc:code-tech-debt`
 
 ## Error Cases
 

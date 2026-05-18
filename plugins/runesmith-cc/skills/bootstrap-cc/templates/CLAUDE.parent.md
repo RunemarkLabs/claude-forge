@@ -1,4 +1,4 @@
-# Claude Code Workspace — {PROJECT}
+# Claude Code Workspace - {PROJECT}
 
 Monorepo head for the {PROJECT} Claude Code workspace. Repos live as
 subdirectories. Each repo has its own CLAUDE.md.
@@ -43,7 +43,7 @@ files in `comms/`.
 
 ## Reference
 
-- Active plans: `@../plans/active/`  (read-only — Cowork owns these)
+- Active plans: `@../plans/active/`  (read-only - Cowork owns these)
 - Active comms: `@comms/open/`
 - Comms protocol: `@comms/README.md`
 
@@ -56,8 +56,8 @@ files in `comms/`.
 
 **File operations**
 - Project root is real; bash sandbox is a shadow. Default to direct file tools (Read/Write/Edit/Glob). Bash is for scripts and shell pipelines.
-- When bash fails with "No such file" on an existing path, the shadow is stale. Switch vectors — direct tools, parent-dir-replace, or copy-to-/tmp/-and-back. Don't retry the same bash command.
-- File ops in this CC head are agent territory. Delete, move, rename — do it. Don't defer file chores to the user. (Repo internals — inside `{repo}/` — are handled by repo-scoped tooling and per-repo CLAUDE.md rules.)
+- When bash fails with "No such file" on an existing path, the shadow is stale. Switch vectors - direct tools, parent-dir-replace, or copy-to-/tmp/-and-back. Don't retry the same bash command.
+- File ops in this CC head are agent territory. Delete, move, rename - do it. Don't defer file chores to the user. (Repo internals - inside `{repo}/` - are handled by repo-scoped tooling and per-repo CLAUDE.md rules.)
 
 **Destructive operations**
 - Confirm scope before mutating external systems (Jira, Confluence, git push). Wait for the trigger phrase from your task comm.
@@ -68,10 +68,10 @@ files in `comms/`.
 - For ambiguity, blockers, or user-only actions, write a `comms/open/{ISO}-{slug}.md` comm with the appropriate `to:` and `type:`.
 
 **Placeholder syntax**
-- Curly braces `{PLACEHOLDER}` only when authoring plugin metadata. Never angle brackets `<placeholder>` — Cowork's upload validator rejects them.
+- Curly braces `{PLACEHOLDER}` only when authoring plugin metadata. Never angle brackets `<placeholder>` - Cowork's upload validator rejects them.
 
 **Workspace boundaries**
-- The CC head (this directory) is yours to organize. Repos under `<repo>/` are yours to work in. The workspace root (the parent directory) is Cowork's territory — don't reach into it.
+- The CC head (this directory) is yours to organize. Repos under `<repo>/` are yours to work in. The workspace root (the parent directory) is Cowork's territory - don't reach into it.
 - For repo-level cleanup (dead code, unused exports, unused deps), use `/code-tech-debt` (deployed in `.claude/skills/code-tech-debt/`).
 
 **Sandbox vs permissions**

@@ -6,7 +6,7 @@ Part of the [RuneSmith marketplace](https://github.com/runemarklabs/runesmith).
 
 ## Skills
 
-- **`/runesmith-cc:bootstrap-cc`** — Build the Claude Code monorepo head with CLAUDE.md, .claude/, comms/, and optional repo clone via PAT.
+- **`/runesmith-cc:bootstrap-cc`** - Build the Claude Code monorepo head with CLAUDE.md, .claude/, comms/, and optional repo clone via PAT.
 
 ## Install
 

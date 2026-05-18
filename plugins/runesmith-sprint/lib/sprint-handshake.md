@@ -30,7 +30,7 @@ status: open
 created: {ISO}
 ---
 
-# Begin Sprint {SPRINT_ID} — {SPRINT_NAME}
+# Begin Sprint {SPRINT_ID} - {SPRINT_NAME}
 
 You are working Sprint {SPRINT_ID} ({SPRINT_NAME}) on Jira project
 {JIRA_PROJECT_KEY}, board {BOARD_ID}.
@@ -42,11 +42,11 @@ Pull active sprint tickets via Jira REST (read-only token in
 ticket itself.
 
 Tag tickets per `@.claude/skills/atlassian/jira-tags.md`:
-- `cc-plan`     — implementation plan
-- `cc-action`   — actions taken
-- `cc-decision` — non-obvious decisions
-- `cc-blocked`  — paired with a blocker comm
-- `cc-done`     — completed (also write a transition comm)
+- `cc-plan`     - implementation plan
+- `cc-action`   - actions taken
+- `cc-decision` - non-obvious decisions
+- `cc-blocked`  - paired with a blocker comm
+- `cc-done`     - completed (also write a transition comm)
 
 For state changes, write `type: ticket-transition` comms. Cowork
 executes the Jira mutation. Your token cannot write Jira state.
@@ -81,7 +81,7 @@ status: open
 created: {ISO}
 ---
 
-# Acknowledged — Sprint {SPRINT_ID}
+# Acknowledged - Sprint {SPRINT_ID}
 
 Working Sprint {SPRINT_ID} ({SPRINT_NAME}) on project
 {JIRA_PROJECT_KEY}.

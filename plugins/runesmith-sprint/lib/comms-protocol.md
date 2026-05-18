@@ -2,14 +2,14 @@
 
 File-based message exchange between Cowork and Claude Code, plus the user as a routed audience.
 
-Comms is a **local accelerator only** — fast, offline, structured. Persistent records of work (plans, decisions, ticket history) live elsewhere: in `plans/active/<slug>/` markdown for plans, in Jira tickets + tags for atlassian-enabled work. Comms is not the durable record.
+Comms is a **local accelerator only** - fast, offline, structured. Persistent records of work (plans, decisions, ticket history) live elsewhere: in `plans/active/<slug>/` markdown for plans, in Jira tickets + tags for atlassian-enabled work. Comms is not the durable record.
 
 ## Why files
 
 - Both Cowork and CC can read/write disk; no broker required.
 - Survives session restarts on either side.
 - Greppable, diffable, auditable.
-- Same protocol works in base config and atlassian config — the only difference is whether messages reference Jira tickets.
+- Same protocol works in base config and atlassian config - the only difference is whether messages reference Jira tickets.
 
 ## Folder layout
 
@@ -22,7 +22,7 @@ Comms is a **local accelerator only** — fast, offline, structured. Persistent 
 │   └── <slug>/
 │       ├── <ISO>-<slug>.md      original message
 │       └── <ISO>-<slug>.md      reply
-├── README.md                    summary of the protocol — readable by CC via @comms/README.md
+├── README.md                    summary of the protocol - readable by CC via @comms/README.md
 └── .gitkeep                     keep dirs in git even when empty
 ```
 
@@ -38,7 +38,7 @@ id: <uuid-or-short-id>           # unique within this project
 from: cowork | cc | user
 to:   cowork | cc | user
 type: session-init | task | answer | ambiguity | blocker | user-action | confirmation | ticket-transition | handshake
-parent: <id>                     # for replies — links to the comm being answered
+parent: <id>                     # for replies - links to the comm being answered
 ticket: <KEY>                    # Jira key (atlassian-enabled only; omit otherwise)
 plan: <slug>                     # plan slug (when relevant)
 status: open | resolved
@@ -88,14 +88,14 @@ Same `<slug>` ties a question to its answer. Different `<ISO>` orders them. Keep
 
 ## Check-on-entry pattern
 
-Every Cowork-side planning skill calls a comms-check helper at the start of its workflow. See `lib/comms-check.md`. Check applies to both base config and atlassian config — comms exists in both.
+Every Cowork-side planning skill calls a comms-check helper at the start of its workflow. See `lib/comms-check.md`. Check applies to both base config and atlassian config - comms exists in both.
 
 ## Atlassian-enabled additions
 
 When the workspace is atlassian-enabled, comms files MAY include:
 
-- `ticket: <KEY>` in frontmatter — the Jira ticket the comm is about
-- `type: ticket-transition` — CC asks Cowork to mutate a ticket (CC has read-only Jira access; mutations go through Cowork via MCP)
+- `ticket: <KEY>` in frontmatter - the Jira ticket the comm is about
+- `type: ticket-transition` - CC asks Cowork to mutate a ticket (CC has read-only Jira access; mutations go through Cowork via MCP)
 
 The protocol is identical otherwise.
 
@@ -108,9 +108,9 @@ The protocol is identical otherwise.
 
 ## Skills that read/write comms
 
-- `core:plan` — checks comms on entry; may write tasks for CC in base config
-- `atlassian:check-comms` — manual triage; lists `open/` items grouped by `to:`, surfaces `to: user` to the user, drafts replies, archives resolved pairs
-- `atlassian:start-sprint` / `sprint-status` — write `session-init` comms when sprint changes
-- `atlassian:plan-to-tickets` — checks comms on entry; produces tickets, may write task comms
-- All atlassian publish skills — check comms on entry before publishing
-- CC-side skill templates (`sprint-pull`, `ticket-document`, `blocker-write`, `ticket-done`) — write `from: cc` comms; read replies addressed back
+- `core:plan` - checks comms on entry; may write tasks for CC in base config
+- `atlassian:check-comms` - manual triage; lists `open/` items grouped by `to:`, surfaces `to: user` to the user, drafts replies, archives resolved pairs
+- `atlassian:start-sprint` / `sprint-status` - write `session-init` comms when sprint changes
+- `atlassian:plan-to-tickets` - checks comms on entry; produces tickets, may write task comms
+- All atlassian publish skills - check comms on entry before publishing
+- CC-side skill templates (`sprint-pull`, `ticket-document`, `blocker-write`, `ticket-done`) - write `from: cc` comms; read replies addressed back

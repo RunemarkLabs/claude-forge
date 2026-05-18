@@ -1,6 +1,6 @@
 ---
 name: blocker-write
-description: "Declare a blocker on a Jira ticket — write a comm requesting unblock, tag the ticket cc-blocked. Use when CC is stuck and needs Cowork or the user to act before continuing. Runs in Claude Code."
+description: "Declare a blocker on a Jira ticket - write a comm requesting unblock, tag the ticket cc-blocked. Use when CC is stuck and needs Cowork or the user to act before continuing. Runs in Claude Code."
 compatibility: Requires Cowork desktop app environment.
 ---
 
@@ -10,7 +10,7 @@ Pair: a comms file + a ticket label. The comm carries the explanation; the label
 
 ## References
 
-- `@comms/README.md` — comms protocol
+- `@comms/README.md` - comms protocol
 - `@lib/jira-tags.md`
 - Sibling: `ticket-document` (similar capability tiering)
 
@@ -26,9 +26,9 @@ Pair: a comms file + a ticket label. The comm carries the explanation; the label
 
 - Ticket key
 - Blocker type: `ambiguity` | `blocker` | `user-action`
-- `to:` — `cowork` (most blockers) or `user` (user-only actions like API key, repo creation, paste a secret)
-- Body — what's blocking, what would unblock
-- Acceptance — what response would let CC resume
+- `to:` - `cowork` (most blockers) or `user` (user-only actions like API key, repo creation, paste a secret)
+- Body - what's blocking, what would unblock
+- Acceptance - what response would let CC resume
 
 ### 2. Write the comm
 
@@ -50,7 +50,7 @@ created: <ISO>
 # Blocked on {KEY}
 
 ## Body
-<what's blocking — concrete, technical>
+<what's blocking - concrete, technical>
 
 ## Acceptance
 <what response would unblock>
@@ -93,13 +93,13 @@ Picking next available ticket from sprint…
 - [ ] `to:` audience matches the blocker type (user-action → `to: user`)
 - [ ] `cc-blocked` label requested (direct or via comms)
 - [ ] CC stops work on this ticket immediately
-- [ ] Body is concrete (no "I don't know" — name the specific thing missing)
+- [ ] Body is concrete (no "I don't know" - name the specific thing missing)
 
 ## Error Cases
 
 **Body too vague:** Surface to user via the comm itself: "I'm blocked on {KEY} but I don't have a concrete acceptance criterion. Need scope tightening." Treat as `type: ambiguity`.
 **Label add fails (read-only):** Always succeeds via comms route as fallback. Surface in CC report.
-**Ticket key invalid:** Cannot proceed — write `to: cowork, type: ambiguity` instead, naming the wrong key.
+**Ticket key invalid:** Cannot proceed - write `to: cowork, type: ambiguity` instead, naming the wrong key.
 
 ---
 

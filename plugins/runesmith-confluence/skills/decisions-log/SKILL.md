@@ -10,16 +10,16 @@ Append-only log of project decisions on a single Confluence page.
 
 ## References
 
-- `agents/page-publisher.md` — subagent for markdown→XHTML→POST/PUT with version-bump
+- `agents/page-publisher.md` - subagent for markdown→XHTML→POST/PUT with version-bump
 
 - `lib/atlassian-rest.md`
 - `lib/confluence-format.md`
 - `lib/credentials.md`
 - `lib/consent.md`
 - `lib/tokens.md`
-- `lib/comms-check.md` — runs first
-- `lib/plan-format.md` — for optional source: `plans/active/<slug>/decisions.md`
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/comms-check.md` - runs first
+- `lib/plan-format.md` - for optional source: `plans/active/<slug>/decisions.md`
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -65,7 +65,7 @@ Do not use for:
 ### 2. Compose entry (markdown)
 
 ```markdown
-## {YYYY-MM-DD} — {decision title}
+## {YYYY-MM-DD} - {decision title}
 
 **Decision:** ...
 **Rationale:** ...
@@ -76,7 +76,7 @@ Do not use for:
 
 ### 3. Get consent
 
-"Append to Decisions Log in {SPACE_KEY}?" — wait for trigger phrase.
+"Append to Decisions Log in {SPACE_KEY}?" - wait for trigger phrase.
 
 ### 4. Publish
 
@@ -94,7 +94,7 @@ Both per `confluence-format.md`. Convert markdown entry → storage XHTML.
 
 ```
 ✓ Decision logged
-{date} — {decision title}
+{date} - {decision title}
 {page_url}
 ```
 

@@ -13,7 +13,7 @@ Read-only. No consent gate.
 
 ## References
 
-- `lib/install-paths.md` — runtime detection and plugin scan paths
+- `lib/install-paths.md` - runtime detection and plugin scan paths
 
 ## Pre-Flight Checks
 
@@ -56,26 +56,26 @@ If this marketplace is installed, ensure these are listed:
 
 ### 4. Format output
 
-Group by plugin, alphabetical within group. One line per skill: `/<plugin>:<skill> — <one-line description>`.
+Group by plugin, alphabetical within group. One line per skill: `/<plugin>:<skill> - <one-line description>`.
 
 ```
 Installed plugins (n)
 
 core
-  /core:plan          — Discuss before writing
-  /core:install       — Browse and install plugins
-  /core:sync          — Pull latest plugin versions
-  /core:setup         — Configure credentials
+  /core:plan          - Discuss before writing
+  /core:install       - Browse and install plugins
+  /core:sync          - Pull latest plugin versions
+  /core:setup         - Configure credentials
 
 atlassian
-  /atlassian:ticket   — Create a Jira ticket
+  /atlassian:ticket   - Create a Jira ticket
   …
 
 aiops
-  /aiops:bootstrap-aiops — Populate AIOPS space
+  /aiops:bootstrap-aiops - Populate AIOPS space
 
 devtools
-  /devtools:help      — This help
+  /devtools:help      - This help
   …
 
 Try /core:install to add more, or /core:setup to configure credentials.
@@ -83,7 +83,7 @@ Try /core:install to add more, or /core:setup to configure credentials.
 
 ### 5. Topic search (if user asked "how do I X?")
 
-Match X against skill descriptions. Suggest top 1–3 matches with their trigger phrases.
+Match X against skill descriptions. Suggest top 1-3 matches with their trigger phrases.
 
 ## Guard Rails
 

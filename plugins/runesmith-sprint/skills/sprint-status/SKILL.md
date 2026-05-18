@@ -7,18 +7,18 @@ compatibility: Requires Cowork desktop app environment.
 
 # Sprint Status
 
-Read-only sprint summary plus comms triage hint. Atlassian-enabled only — replaces `project-status` for this config.
+Read-only sprint summary plus comms triage hint. Atlassian-enabled only - replaces `project-status` for this config.
 
 If the active sprint id from Jira differs from the cached `activeSprintId` in the marker, this skill **implicitly fires** a session-init comm (per `start-sprint`) before reporting. That keeps CC in sync without requiring the user to remember.
 
 ## References
 
-- `lib/atlassian-rest.md` — search/sprint endpoints
-- `lib/comms-check.md` — runs first
+- `lib/atlassian-rest.md` - search/sprint endpoints
+- `lib/comms-check.md` - runs first
 - `lib/atlassian-enabled.md`
 - `lib/sprint-handshake.md`
 - `lib/jira-tags.md`
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -55,7 +55,7 @@ Compare new sprint id to cached `atlassian.activeSprintId` in marker.
 
 If different (or null):
 - Hand off to `start-sprint` workflow: write session-init comm, archive any superseded one, update marker.
-- Note in this skill's output: "Detected new active sprint — fired session-init."
+- Note in this skill's output: "Detected new active sprint - fired session-init."
 
 If same: no comm action.
 
@@ -74,10 +74,10 @@ POST {SITE_URL}/rest/api/3/search/jql
 
 Bucket tickets by `status.name`. Highlight tickets carrying tags from `jira-tags.md`:
 
-- `cc-blocked` — surface separately as Blockers
-- `cc-done` — pending transition
-- `needs-user` — pending user action
-- `cowork-planned` — Cowork-spawned this sprint
+- `cc-blocked` - surface separately as Blockers
+- `cc-done` - pending transition
+- `needs-user` - pending user action
+- `cowork-planned` - Cowork-spawned this sprint
 
 ### 5. Comms summary
 
@@ -89,7 +89,7 @@ Read `{PROJECT}.cc/comms/open/`. Count by `to:`:
 ### 6. Output
 
 ```
-Sprint {SPRINT_ID} — {SPRINT_NAME}    (board {BOARD_ID})
+Sprint {SPRINT_ID} - {SPRINT_NAME}    (board {BOARD_ID})
 
 By status
   In Progress (n)
@@ -107,7 +107,7 @@ CC done, pending transition ({cc-done count})
   {KEY-7}  {summary}
 
 Comms ({PROJECT}.cc/comms/open/)
-  {n} to user        — run /atlassian:check-comms
+  {n} to user        - run /atlassian:check-comms
   {n} to cowork
   {n} to cc
 

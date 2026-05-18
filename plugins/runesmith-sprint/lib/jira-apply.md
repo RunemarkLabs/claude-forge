@@ -1,6 +1,6 @@
-# Jira Section Apply — CLAUDE.md sections
+# Jira Section Apply - CLAUDE.md sections
 
-Exact content `atlassian:enable` writes into the workspace and CC parent CLAUDE.md files. Idempotent — uses marker tags so re-running replaces in place without duplicating.
+Exact content `atlassian:enable` writes into the workspace and CC parent CLAUDE.md files. Idempotent - uses marker tags so re-running replaces in place without duplicating.
 
 ## Workspace `CLAUDE.md` application
 
@@ -20,7 +20,7 @@ Confluence space **{CONFLUENCE_SPACE_KEY}** at `{SITE_URL}`.
 - Claude Code works the active sprint from the `{PROJECT}.cc/` workspace.
 - CC reads sprint tickets directly via Jira REST (read-only token in
   `{PROJECT}.cc/.credentials`).
-- CC mutations to Jira (transitions, status changes) go through comms —
+- CC mutations to Jira (transitions, status changes) go through comms -
   CC writes a `type: ticket-transition` comm and Cowork executes via MCP.
 
 ### Comms checking
@@ -39,7 +39,7 @@ facing summary on board {BOARD_ID}).
 
 ## CC parent `CLAUDE.md` application
 
-Inserted between `<!-- atlassian-section:start -->` and `<!-- atlassian-section:end -->` (already present in the parent template — see `devtools/skills/bootstrap-cc/templates/CLAUDE.parent.md`).
+Inserted between `<!-- atlassian-section:start -->` and `<!-- atlassian-section:end -->` (already present in the parent template - see `devtools/skills/bootstrap-cc/templates/CLAUDE.parent.md`).
 
 ```markdown
 <!-- atlassian-section:start -->
@@ -56,26 +56,26 @@ under `atlassian.activeSprintId`.
    and acceptance criteria.
 3. Implement.
 4. Document on the ticket itself. Use these tags:
-   - `cc-plan` — your implementation plan
-   - `cc-action` — actions taken (commit, refactor, push)
-   - `cc-decision` — non-obvious decisions worth recording
-   - `cc-blocked` — paired with a blocker comm
-   - `cc-done` — work complete, ready for transition
+   - `cc-plan` - your implementation plan
+   - `cc-action` - actions taken (commit, refactor, push)
+   - `cc-decision` - non-obvious decisions worth recording
+   - `cc-blocked` - paired with a blocker comm
+   - `cc-done` - work complete, ready for transition
 
 5. State changes (transitions, comments to non-CC tags) go through comms.
    Write a `type: ticket-transition` comm requesting the change.
    Cowork executes the Jira mutation. Do not attempt writes to Jira
-   yourself — your token is read-only by design.
+   yourself - your token is read-only by design.
 
 ### Skills available to you
 Deployed by `/atlassian:enable` into `.claude/skills/atlassian/`:
-- `sprint-pull` — read active sprint, list ticket details
-- `ticket-document` — append plan/action/decision to a ticket as a comment
-- `blocker-write` — declare a blocker, write a comm, tag the ticket
-- `ticket-done` — write a comm requesting Done transition
+- `sprint-pull` - read active sprint, list ticket details
+- `ticket-document` - append plan/action/decision to a ticket as a comment
+- `blocker-write` - declare a blocker, write a comm, tag the ticket
+- `ticket-done` - write a comm requesting Done transition
 
 ### Comms protocol
-Same as base config — see `@comms/README.md`. Comms files MAY include
+Same as base config - see `@comms/README.md`. Comms files MAY include
 `ticket: <KEY>` in frontmatter to associate with a Jira ticket.
 
 ### Tag taxonomy

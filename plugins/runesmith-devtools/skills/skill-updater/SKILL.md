@@ -1,6 +1,6 @@
 ---
 name: skill-updater
-description: "Propagate convention changes across skills safely by orchestrating per-skill modifications through Anthropic's skill-creator. Use after a decision changes how the system works — variable renames, workflow changes, lib reference updates, removed features, new conventions. Triggers on: \"update skills\", \"propagate this\", \"skills are stale\", \"sync the change\", \"make sure skills reflect this\", or when a decision contradicts what existing skills describe."
+description: "Propagate convention changes across skills safely by orchestrating per-skill modifications through Anthropic's skill-creator. Use after a decision changes how the system works - variable renames, workflow changes, lib reference updates, removed features, new conventions. Triggers on: \"update skills\", \"propagate this\", \"skills are stale\", \"sync the change\", \"make sure skills reflect this\", or when a decision contradicts what existing skills describe."
 compatibility: Requires Cowork desktop app environment.
 ---
 
@@ -12,9 +12,9 @@ This split exists so that bulk changes never corrupt skill files. Every per-skil
 
 ## References
 
-- `lib/install-paths.md` — runtime detection and plugin scan paths
-- Anthropic's `skill-creator` skill (ships with Claude) — used for per-skill modify + validation
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/install-paths.md` - runtime detection and plugin scan paths
+- Anthropic's `skill-creator` skill (ships with Claude) - used for per-skill modify + validation
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -59,7 +59,7 @@ Ask user:
 - What decision changed?
 - What's the old pattern (regex or literal)?
 - What's the new pattern?
-- Scope — all plugins, specific plugin(s), or specific skills?
+- Scope - all plugins, specific plugin(s), or specific skills?
 - Any per-skill exceptions where the old pattern should remain?
 
 Reject vague changes ("update the skills"). Demand specificity (e.g. "rename any reference from one library file name to another across all runesmith plugins, with the exact old and new names provided").

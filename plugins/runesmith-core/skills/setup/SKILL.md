@@ -10,9 +10,9 @@ Configure workspace credentials and API endpoints for all skills in this marketp
 
 ## References
 
-- `lib/credentials.md` — file location, key list, auth header
-- `lib/install-paths.md` — runtime install locations
-- `lib/user-prompts.md` — structured-input requirement for any user prompt
+- `lib/credentials.md` - file location, key list, auth header
+- `lib/install-paths.md` - runtime install locations
+- `lib/user-prompts.md` - structured-input requirement for any user prompt
 
 
 ## User input rules
@@ -68,9 +68,9 @@ Atomic write (temp file + rename). Mode `0600`. Verify `.credentials` is in `.gi
 ### 6. Verify
 
 Run health checks:
-- Atlassian Confluence: `GET {ATLASSIAN_API_URL}/wiki/api/v2/spaces?limit=1` — expect 200.
-- Atlassian Jira: `GET {ATLASSIAN_API_URL}/rest/api/3/myself` — expect 200, returns accountId.
-- GitHub: `GET https://api.github.com/user` with PAT — expect 200.
+- Atlassian Confluence: `GET {ATLASSIAN_API_URL}/wiki/api/v2/spaces?limit=1` - expect 200.
+- Atlassian Jira: `GET {ATLASSIAN_API_URL}/rest/api/3/myself` - expect 200, returns accountId.
+- GitHub: `GET https://api.github.com/user` with PAT - expect 200.
 - Plugin sources (optional): fetch URL, expect HTTP 200 + valid JSON.
 
 Report which pass / fail.
